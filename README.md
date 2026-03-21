@@ -26,7 +26,7 @@ Rebuild libz
 sh prebuilt/scripts/build-libz-mac-arm64.sh
 ```
 
-Copy the files in to place
+Copy the files into place
 ```
 REPO=/Users/emily-elizabethhoward/Developer/HyperXTalk
 cp "$REPO/_build/mac/Debug/libcairo.a"  "$REPO/prebuilt/lib/mac/libcairo.a"
