@@ -1676,6 +1676,9 @@ SSL_SESSION *d2i_SSL_SESSION(SSL_SESSION **a, const unsigned char **pp,
 
 # ifdef HEADER_X509_H
 __owur X509 *SSL_get_peer_certificate(const SSL *s);
+/* OpenSSL 3.x rename: declare the new symbol and redirect the old name. */
+__owur X509 *SSL_get1_peer_certificate(const SSL *s);
+#  define SSL_get_peer_certificate SSL_get1_peer_certificate
 # endif
 
 __owur STACK_OF(X509) *SSL_get_peer_cert_chain(const SSL *s);

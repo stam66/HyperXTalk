@@ -531,6 +531,29 @@ dlmmap (void *start, size_t length, int prot,
       return ptr;
     }
 
+#if defined(__APPLE__) && defined(__aarch64__) && !defined(TARGET_SUBPLATFORM_IPHONE)
+  /* On Apple Silicon macOS, anonymous mmap(PROT_READ|PROT_WRITE|PROT_EXEC)
+     returns EPERM even with cs.allow-unsigned-executable-memory.  Use
+     MAP_JIT instead, which the kernel permits when CS_ALLOW_JIT is set
+     (requires CS_RUNTIME + com.apple.security.cs.allow-jit).
+     NOTE: MAP_JIT pages have a per-thread hardware write-guard on Apple
+     Silicon: any store to a MAP_JIT page faults with SIGBUS unless
+     pthread_jit_write_protect_np(0) is active on this thread.  We do NOT
+     toggle the guard here (inside dlmmap, which is called by dlmalloc);
+     instead we hold the guard DISABLED for the entire duration of each
+     dlmalloc / dlfree call so dlmalloc can write its bookkeeping headers
+     into the JIT pages.  ffi_closure_alloc / ffi_closure_free handle this.
+     ffi_prep_closure_loc separately disables/enables around its own stores.  */
+  if (execfd == -1)
+    {
+      ptr = mmap (start, length, prot | PROT_EXEC, flags | MAP_JIT, fd, offset);
+      if (ptr != MFAIL)
+	return ptr;
+      /* MAP_JIT failed (e.g. entitlement absent); fall through to the
+	 standard anonymous-RWX / temp-file paths below.  */
+    }
+#endif /* __APPLE__ && __aarch64__ */
+
   if (execfd == -1 && !is_selinux_enabled ())
     {
       ptr = mmap (start, length, prot | PROT_EXEC, flags, fd, offset);
@@ -602,6 +625,24 @@ segment_holding_code (mstate m, char* addr)
 
 #endif /* !(defined(X86_WIN32) || defined(X86_WIN64) || defined(__OS2__)) || defined (__CYGWIN__) || defined(__INTERIX) */
 
+/* On Apple Silicon macOS, MAP_JIT pages have a per-thread hardware write
+   guard: stores fault with SIGBUS unless pthread_jit_write_protect_np(0)
+   is active.  dlmalloc writes bookkeeping headers into JIT pages, so we
+   must hold the guard DISABLED for every dlmalloc / dlfree call that may
+   touch those pages.  Declare the function with weak_import so the code
+   is safe on non-JIT builds (the function is simply NULL and the ifs are
+   skipped).  */
+#if defined(__APPLE__) && defined(__aarch64__) && !defined(TARGET_SUBPLATFORM_IPHONE)
+extern void pthread_jit_write_protect_np (int) __attribute__ ((weak_import));
+#define FFI_JIT_WRITE_UNPROTECT() \
+  do { if (pthread_jit_write_protect_np) pthread_jit_write_protect_np (0); } while (0)
+#define FFI_JIT_WRITE_PROTECT()   \
+  do { if (pthread_jit_write_protect_np) pthread_jit_write_protect_np (1); } while (0)
+#else
+#define FFI_JIT_WRITE_UNPROTECT() do {} while (0)
+#define FFI_JIT_WRITE_PROTECT()   do {} while (0)
+#endif
+
 /* Allocate a chunk of memory with the given size.  Returns a pointer
    to the writable address, and sets *CODE to the executable
    corresponding virtual address.  */
@@ -613,7 +654,11 @@ ffi_closure_alloc (size_t size, void **code)
   if (!code)
     return NULL;
 
+  /* dlmalloc may write bookkeeping data into MAP_JIT pages; disable the
+     per-thread write guard on Apple Silicon for the duration of the call. */
+  FFI_JIT_WRITE_UNPROTECT ();
   ptr = dlmalloc (size);
+  FFI_JIT_WRITE_PROTECT ();
 
   if (ptr)
     {
@@ -639,7 +684,10 @@ ffi_closure_free (void *ptr)
     ptr = sub_segment_exec_offset (ptr, seg);
 #endif
 
+  /* dlfree writes free-list pointers into MAP_JIT pages; guard must be off. */
+  FFI_JIT_WRITE_UNPROTECT ();
   dlfree (ptr);
+  FFI_JIT_WRITE_PROTECT ();
 }
 
 

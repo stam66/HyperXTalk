@@ -90,56 +90,55 @@
 
 /* Begin PBXBuildFile section */
 		09AF1230B11A21A3ED83CE9A /* support.c in Sources */ = {isa = PBXBuildFile; fileRef = 4E70F966BF82FE627D88A301 /* support.c */; };
-		0D274CBC21BE9A61C669A830 /* libicuuc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1ED821D6F55929C1A8EFAF5 /* libicuuc.a */; };
 		0EB59E2CAC943FF3BB2C2508 /* libFoundation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 978B0523E87E7EBCC4640014 /* libFoundation.a */; };
 		0F84C82A47DF3799E195BE7F /* dummy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4A5D6C557E695591FE4D106 /* dummy.cpp */; };
-		100BB85912609E396B6599F8 /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AB361E0A208808C420755A2 /* libffi.a */; };
 		16B8E146589850348620FCDB /* grammar.c in Sources */ = {isa = PBXBuildFile; fileRef = 466002C0ECB9455CF16B7DA9 /* grammar.c */; };
 		193A8419FF3520AA5D40142A /* liblc-compile-ffi-java-lib-target.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F632F47D99D46636A4AF4C03 /* liblc-compile-ffi-java-lib-target.a */; };
 		19B19BBC017936E7476ABDBA /* libScript-host.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A75F4B5A80BC3EBD0D509CC6 /* libScript-host.a */; };
-		1BE9DBC9B5AC98248F4B9AFF /* libicuuc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1ED821D6F55929C1A8EFAF5 /* libicuuc.a */; };
 		1F7B9506D56722D8EFAA6390 /* libFoundation-host.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9CB90EB0644810E0E47F9A6 /* libFoundation-host.a */; };
 		21121F238E390094B2CCDCCD /* gen.l.c in Sources */ = {isa = PBXBuildFile; fileRef = A6E157CE3C33AC2C07010346 /* gen.l.c */; };
 		21B71A9D6E68D5E79234C94C /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 049AF8A5895EF1E1471AEC43 /* libffi.a */; };
-		2ED016A807D69AF3E47A3E8E /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97354CA81B14B9BD622AF18C /* libffi.a */; };
-		2F437C7C3C62F9A8B8013CA1 /* libicutu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF19790E5C458A23B7A0AA5A /* libicutu.a */; };
+		2807AC4AC7E08033EB9097D0 /* libicuuc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1ED821D6F55929C1A8EFAF5 /* libicuuc.a */; };
+		32CEECA87F9C646B5213D8A8 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 533A33CA2B83614B60722F0E /* CoreFoundation.framework */; };
 		3892CA3D36D3FCF688FC9FC2 /* bind.c in Sources */ = {isa = PBXBuildFile; fileRef = 264A609AFD8B079ADC8911FD /* bind.c */; };
-		3D91A4D31A02A916897BC159 /* libicuio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0569C9EAF2EF033EF9D336BA /* libicuio.a */; };
 		41C5ACD70BE2258AE35082D2 /* gen.y.c in Sources */ = {isa = PBXBuildFile; fileRef = FC684E519FFC61A7CB638568 /* gen.y.c */; };
-		4FC959D8844DE064E89BB763 /* libicutu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF19790E5C458A23B7A0AA5A /* libicutu.a */; };
+		507B503EBC162D126B08F59F /* libicui18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 89B780590E49109FCDF61172 /* libicui18n.a */; };
 		515363BD3F20537DE680ED36 /* generate.c in Sources */ = {isa = PBXBuildFile; fileRef = 897558794AD1CD9BF637BADC /* generate.c */; };
-		5194DF39D4F00982168212DA /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 533A33CA2B83614B60722F0E /* CoreFoundation.framework */; };
-		52A4E22C3D5ACBA7776F3F21 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C739984B173C7B0DD18778D4 /* Foundation.framework */; };
-		60D21FBD5B49EB3409868B68 /* libicudata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB4375D46915487C3CED8E9 /* libicudata.a */; };
+		54D880EAE4FFD30F0DBB68A2 /* libicuuc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1ED821D6F55929C1A8EFAF5 /* libicuuc.a */; };
+		5D853C553A866667168D1A49 /* libicuio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0569C9EAF2EF033EF9D336BA /* libicuio.a */; };
+		646AB8E67F193DD90E31E05F /* libicui18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 89B780590E49109FCDF61172 /* libicui18n.a */; };
 		6623F5C7060760B5358CAC94 /* gen.l.c in Sources */ = {isa = PBXBuildFile; fileRef = A6E157CE3C33AC2C07010346 /* gen.l.c */; };
-		73943786B1C3D05C77492854 /* libz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D9DCA335C3E0A7798F68D54 /* libz.a */; };
+		6DD55FCCA18C6525EDEE8A29 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 533A33CA2B83614B60722F0E /* CoreFoundation.framework */; };
 		7B0D19609AD62D4C1441F013 /* output.c in Sources */ = {isa = PBXBuildFile; fileRef = 44B6A59A782E134D22B87A0E /* output.c */; };
 		8264D690C7F43608666CAD24 /* libcompile-target.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE1C12379E041A4C87A287A6 /* libcompile-target.a */; };
 		829CEF36C018F7703E99A717 /* check.c in Sources */ = {isa = PBXBuildFile; fileRef = C7954B58A67326028A61097F /* check.c */; };
-		82EBAA7AA49B86E68A48B76E /* libicudata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB4375D46915487C3CED8E9 /* libicudata.a */; };
 		867EE68712E9790B9C2FCBD9 /* generate.c in Sources */ = {isa = PBXBuildFile; fileRef = 897558794AD1CD9BF637BADC /* generate.c */; };
 		8E0D7D2152A8B73C87925627 /* liblc-compile-ffi-java-lib-host.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2E98D48B51F654CC298B96F /* liblc-compile-ffi-java-lib-host.a */; };
+		9368EA92F8600EED540704F6 /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AB361E0A208808C420755A2 /* libffi.a */; };
 		97E5E3D9F84E474B77D7BF3E /* libcompile-host.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E76E76D92095BA05EE8573D /* libcompile-host.a */; };
-		9800872761763B0CA696A0F5 /* libicui18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 89B780590E49109FCDF61172 /* libicui18n.a */; };
-		99F1C5A2D8A057DF9A8376CF /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AB361E0A208808C420755A2 /* libffi.a */; };
+		A53C597A08B67113837AF749 /* libicuio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0569C9EAF2EF033EF9D336BA /* libicuio.a */; };
 		A86261A63728FB373C67C6A6 /* libgrts.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C44DD6E5F246297E13E29E /* libgrts.a */; };
-		B59AF108D32D68F247DFDF08 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C739984B173C7B0DD18778D4 /* Foundation.framework */; };
+		AD8715B64D3B77F1CA82707C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C739984B173C7B0DD18778D4 /* Foundation.framework */; };
+		B01A837A634BD923C1DEC08A /* libicudata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB4375D46915487C3CED8E9 /* libicudata.a */; };
+		BA877C9AB04FA5664C0DAA80 /* libicutu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF19790E5C458A23B7A0AA5A /* libicutu.a */; };
 		BF9600097C4001BB28C126C9 /* output.c in Sources */ = {isa = PBXBuildFile; fileRef = 44B6A59A782E134D22B87A0E /* output.c */; };
-		CC205F12BED8F4DEAA17CD17 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 533A33CA2B83614B60722F0E /* CoreFoundation.framework */; };
+		C3F5B92FD1AC0420A37CF79C /* libicudata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB4375D46915487C3CED8E9 /* libicudata.a */; };
+		C8C78DC80C7F09B888E756C2 /* libicutu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF19790E5C458A23B7A0AA5A /* libicutu.a */; };
 		CD141FD874E72001F1A1972C /* gen.y.c in Sources */ = {isa = PBXBuildFile; fileRef = FC684E519FFC61A7CB638568 /* gen.y.c */; };
+		CEE6ED698ACA58BBA1FFFE6D /* libz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D9DCA335C3E0A7798F68D54 /* libz.a */; };
 		CF104120B586BB9BF832D0D0 /* libScript.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05B5B265BF4E347799153F62 /* libScript.a */; };
+		D04560930B1D8DBD0E2CC27C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C739984B173C7B0DD18778D4 /* Foundation.framework */; };
 		D93C145E75FC04B1A75747C3 /* libffi-host.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC71834FA21DC08F4FD4C9C /* libffi-host.a */; };
 		DA306E64E0C4B9CB9DCCCDF3 /* types.c in Sources */ = {isa = PBXBuildFile; fileRef = 1A2C12332024D777EA8F3ACE /* types.c */; };
 		DBC118A093499ACA17B57E2D /* check.c in Sources */ = {isa = PBXBuildFile; fileRef = C7954B58A67326028A61097F /* check.c */; };
-		E657214B197FBE2A2150F246 /* libz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D9DCA335C3E0A7798F68D54 /* libz.a */; };
 		EBC452B369B39C43AC348472 /* libgrts-host.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E1096630635FE53C770C104 /* libgrts-host.a */; };
+		ED3FCA4A891B11EAEF52F034 /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AB361E0A208808C420755A2 /* libffi.a */; };
 		EE8469BE8BE63B3943679367 /* grammar.c in Sources */ = {isa = PBXBuildFile; fileRef = 466002C0ECB9455CF16B7DA9 /* grammar.c */; };
 		F25787FB767D9B94C78780EB /* types.c in Sources */ = {isa = PBXBuildFile; fileRef = 1A2C12332024D777EA8F3ACE /* types.c */; };
 		F64230906A8FDA99C373AA90 /* bind.c in Sources */ = {isa = PBXBuildFile; fileRef = 264A609AFD8B079ADC8911FD /* bind.c */; };
 		F7EBA619D5DBE474D39D7EC9 /* dummy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4A5D6C557E695591FE4D106 /* dummy.cpp */; };
-		F84186723A418AC61A6DA9C8 /* libicui18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 89B780590E49109FCDF61172 /* libicui18n.a */; };
 		F894868EC1975145F1D6F2AD /* support.c in Sources */ = {isa = PBXBuildFile; fileRef = 4E70F966BF82FE627D88A301 /* support.c */; };
-		FA5E51FE7B00387CEAC12A18 /* libicuio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0569C9EAF2EF033EF9D336BA /* libicuio.a */; };
+		FAEC8CB7D652BC0F886FDF8B /* libz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D9DCA335C3E0A7798F68D54 /* libz.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -868,7 +867,6 @@
 		896B02A407C53DBFD71AB35E /* fetch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = fetch.xcodeproj; path = "../../../build-mac/livecode/prebuilt/fetch.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		897558794AD1CD9BF637BADC /* generate.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = generate.c; sourceTree = "<group>"; };
 		89B780590E49109FCDF61172 /* libicui18n.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libicui18n.a; path = ../../../prebuilt/lib/mac/libicui18n.a; sourceTree = "<group>"; };
-		97354CA81B14B9BD622AF18C /* libffi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libffi.a; path = /opt/homebrew/Cellar/libffi/3.5.2/lib/libffi.a; sourceTree = "<group>"; };
 		A640DE340164326E31CC3562 /* gen.y */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.yacc; path = gen.y; sourceTree = "<group>"; };
 		A6E157CE3C33AC2C07010346 /* gen.l.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = gen.l.c; sourceTree = "<group>"; };
 		A72E2AD8FDF9BE737E3E2D7D /* check.g */ = {isa = PBXFileReference; lastKnownFileType = text; path = check.g; sourceTree = "<group>"; };
@@ -920,16 +918,17 @@
 				8264D690C7F43608666CAD24 /* libcompile-target.a in Frameworks */,
 				193A8419FF3520AA5D40142A /* liblc-compile-ffi-java-lib-target.a in Frameworks */,
 				0EB59E2CAC943FF3BB2C2508 /* libFoundation.a in Frameworks */,
+				21B71A9D6E68D5E79234C94C /* libffi.a in Frameworks */,
 				CF104120B586BB9BF832D0D0 /* libScript.a in Frameworks */,
-				CC205F12BED8F4DEAA17CD17 /* CoreFoundation.framework in Frameworks */,
-				B59AF108D32D68F247DFDF08 /* Foundation.framework in Frameworks */,
-				F84186723A418AC61A6DA9C8 /* libicui18n.a in Frameworks */,
-				FA5E51FE7B00387CEAC12A18 /* libicuio.a in Frameworks */,
-				4FC959D8844DE064E89BB763 /* libicutu.a in Frameworks */,
-				0D274CBC21BE9A61C669A830 /* libicuuc.a in Frameworks */,
-				60D21FBD5B49EB3409868B68 /* libicudata.a in Frameworks */,
-				73943786B1C3D05C77492854 /* libz.a in Frameworks */,
-				99F1C5A2D8A057DF9A8376CF /* libffi.a in Frameworks */,
+				32CEECA87F9C646B5213D8A8 /* CoreFoundation.framework in Frameworks */,
+				D04560930B1D8DBD0E2CC27C /* Foundation.framework in Frameworks */,
+				646AB8E67F193DD90E31E05F /* libicui18n.a in Frameworks */,
+				5D853C553A866667168D1A49 /* libicuio.a in Frameworks */,
+				BA877C9AB04FA5664C0DAA80 /* libicutu.a in Frameworks */,
+				54D880EAE4FFD30F0DBB68A2 /* libicuuc.a in Frameworks */,
+				B01A837A634BD923C1DEC08A /* libicudata.a in Frameworks */,
+				CEE6ED698ACA58BBA1FFFE6D /* libz.a in Frameworks */,
+				ED3FCA4A891B11EAEF52F034 /* libffi.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -943,15 +942,15 @@
 				1F7B9506D56722D8EFAA6390 /* libFoundation-host.a in Frameworks */,
 				D93C145E75FC04B1A75747C3 /* libffi-host.a in Frameworks */,
 				19B19BBC017936E7476ABDBA /* libScript-host.a in Frameworks */,
-				5194DF39D4F00982168212DA /* CoreFoundation.framework in Frameworks */,
-				52A4E22C3D5ACBA7776F3F21 /* Foundation.framework in Frameworks */,
-				9800872761763B0CA696A0F5 /* libicui18n.a in Frameworks */,
-				3D91A4D31A02A916897BC159 /* libicuio.a in Frameworks */,
-				2F437C7C3C62F9A8B8013CA1 /* libicutu.a in Frameworks */,
-				1BE9DBC9B5AC98248F4B9AFF /* libicuuc.a in Frameworks */,
-				82EBAA7AA49B86E68A48B76E /* libicudata.a in Frameworks */,
-				E657214B197FBE2A2150F246 /* libz.a in Frameworks */,
-				100BB85912609E396B6599F8 /* libffi.a in Frameworks */,
+				6DD55FCCA18C6525EDEE8A29 /* CoreFoundation.framework in Frameworks */,
+				AD8715B64D3B77F1CA82707C /* Foundation.framework in Frameworks */,
+				507B503EBC162D126B08F59F /* libicui18n.a in Frameworks */,
+				A53C597A08B67113837AF749 /* libicuio.a in Frameworks */,
+				C8C78DC80C7F09B888E756C2 /* libicutu.a in Frameworks */,
+				2807AC4AC7E08033EB9097D0 /* libicuuc.a in Frameworks */,
+				C3F5B92FD1AC0420A37CF79C /* libicudata.a in Frameworks */,
+				FAEC8CB7D652BC0F886FDF8B /* libz.a in Frameworks */,
+				9368EA92F8600EED540704F6 /* libffi.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1069,6 +1068,22 @@
 			name = Projects;
 			sourceTree = "<group>";
 		};
+		C50E699C148350D1BE34B591 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				533A33CA2B83614B60722F0E /* CoreFoundation.framework */,
+				C739984B173C7B0DD18778D4 /* Foundation.framework */,
+				7AB361E0A208808C420755A2 /* libffi.a */,
+				CCB4375D46915487C3CED8E9 /* libicudata.a */,
+				89B780590E49109FCDF61172 /* libicui18n.a */,
+				0569C9EAF2EF033EF9D336BA /* libicuio.a */,
+				CF19790E5C458A23B7A0AA5A /* libicutu.a */,
+				E1ED821D6F55929C1A8EFAF5 /* libicuuc.a */,
+				6D9DCA335C3E0A7798F68D54 /* libz.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C7B6A7599947B29D09C529BC /* Build */ = {
 			isa = PBXGroup;
 			children = (
@@ -1105,23 +1120,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D492D09A42320C099DF037B9 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				533A33CA2B83614B60722F0E /* CoreFoundation.framework */,
-				C739984B173C7B0DD18778D4 /* Foundation.framework */,
-				7AB361E0A208808C420755A2 /* libffi.a */,
-				97354CA81B14B9BD622AF18C /* libffi.a */,
-				CCB4375D46915487C3CED8E9 /* libicudata.a */,
-				89B780590E49109FCDF61172 /* libicui18n.a */,
-				0569C9EAF2EF033EF9D336BA /* libicuio.a */,
-				CF19790E5C458A23B7A0AA5A /* libicutu.a */,
-				E1ED821D6F55929C1A8EFAF5 /* libicuuc.a */,
-				6D9DCA335C3E0A7798F68D54 /* libz.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		DB5047BF90C2E7609A2EEDB6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1146,7 +1144,7 @@
 				EE0AF966BC3FB4F8E96C3C79 /* Source */,
 				11BE690BE655DFECB7915A1F /* Intermediates */,
 				882EC16DADE8A599A4F0AF7F /* Projects */,
-				D492D09A42320C099DF037B9 /* Frameworks */,
+				C50E699C148350D1BE34B591 /* Frameworks */,
 				2A00FB40A1BC704595E40E05 /* Products */,
 				C7B6A7599947B29D09C529BC /* Build */,
 			);
@@ -2170,7 +2168,6 @@
 					../../libcompile/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
-					/opt/homebrew/Cellar/libffi/3.5.2/lib,
 					"$(SDKROOT)/System/Library/Frameworks",
 					../../../prebuilt/lib/mac,
 				);
@@ -2235,7 +2232,6 @@
 					../../libcompile/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
-					/opt/homebrew/Cellar/libffi/3.5.2/lib,
 					"$(SDKROOT)/System/Library/Frameworks",
 					../../../prebuilt/lib/mac,
 				);
@@ -2602,7 +2598,6 @@
 					../../libcompile/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
-					/opt/homebrew/Cellar/libffi/3.5.2/lib,
 					"$(SDKROOT)/System/Library/Frameworks",
 					../../../prebuilt/lib/mac,
 				);

@@ -23,6 +23,7 @@
 
 /* Begin PBXBuildFile section */
 		0613B5F6A0F642362DE36495 /* libbrowser_value.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 76EB003DF7FBA69B967C6A32 /* libbrowser_value.cpp */; };
+		2007A0AF3DD828116F19C946 /* libbrowser_wkwebview.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3A13CF15683FB9F1211130D6 /* libbrowser_wkwebview.mm */; };
 		37AFDD6043D70927C62FB1CB /* libbrowser_osx_factories.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 80B0005E57698FE1712044CF /* libbrowser_osx_factories.cpp */; };
 		3EC9FA2BCD2BD34F48EDD401 /* libbrowser_value.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 76EB003DF7FBA69B967C6A32 /* libbrowser_value.cpp */; };
 		4A5847E3709AB0A8BFB1B185 /* libbrowser_memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C5D7E89259BDD25FE8233A9 /* libbrowser_memory.cpp */; };
@@ -34,6 +35,7 @@
 		DEC15E0C48848DE136ABA9F1 /* libbrowser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A39801663295A7688A0087A /* libbrowser.cpp */; };
 		EA3451381FAC6A13A0B0FB84 /* libbrowser_osx_factories.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 80B0005E57698FE1712044CF /* libbrowser_osx_factories.cpp */; };
 		F05D6B63C95A4B7A21CBC8F1 /* libbrowser_nsvalue.mm in Sources */ = {isa = PBXBuildFile; fileRef = C53A458BBA2EED700B2B3AD9 /* libbrowser_nsvalue.mm */; };
+		F3AE942CE413429C65C35782 /* libbrowser_wkwebview.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3A13CF15683FB9F1211130D6 /* libbrowser_wkwebview.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -287,6 +289,7 @@
 				4A5847E3709AB0A8BFB1B185 /* libbrowser_memory.cpp in Sources */,
 				0613B5F6A0F642362DE36495 /* libbrowser_value.cpp in Sources */,
 				75FC9F4F3CD0F251250ABF5A /* libbrowser_osx_webview.mm in Sources */,
+				F3AE942CE413429C65C35782 /* libbrowser_wkwebview.mm in Sources */,
 				F05D6B63C95A4B7A21CBC8F1 /* libbrowser_nsvalue.mm in Sources */,
 				EA3451381FAC6A13A0B0FB84 /* libbrowser_osx_factories.cpp in Sources */,
 			);
@@ -300,6 +303,7 @@
 				C405ECBC3980D89504651F74 /* libbrowser_memory.cpp in Sources */,
 				3EC9FA2BCD2BD34F48EDD401 /* libbrowser_value.cpp in Sources */,
 				D2AABE6F88EEB77493777498 /* libbrowser_osx_webview.mm in Sources */,
+				2007A0AF3DD828116F19C946 /* libbrowser_wkwebview.mm in Sources */,
 				B02361E89BD16DFEA7675B57 /* libbrowser_nsvalue.mm in Sources */,
 				37AFDD6043D70927C62FB1CB /* libbrowser_osx_factories.cpp in Sources */,
 			);

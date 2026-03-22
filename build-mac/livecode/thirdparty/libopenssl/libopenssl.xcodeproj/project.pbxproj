@@ -61,7 +61,6 @@
 		0CF0448A88523E5494105938 /* dummy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6A743D720E9F49790C29E7E /* dummy.cpp */; };
 		4E718BF0345D6181A93E8290 /* libcustomssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC41BE319B6EE5C76A31E50C /* libcustomssl.a */; };
 		806D2C7F4176FEED98DDEB68 /* ssl.mac.stubs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 556F3F3BAEA55CFFA5E08CAC /* ssl.mac.stubs.cpp */; };
-		8D95544422F530E5FCB00E3F /* libopenssl_stubs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CEB79D217913334C8567E5B /* libopenssl_stubs.a */; };
 		B5B671D17D212B7C8664D5A4 /* libcustomcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6350B659646A07A5285D9DA3 /* libcustomcrypto.a */; };
 /* End PBXBuildFile section */
 
@@ -79,13 +78,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 36E5DC3F74E1F57AE2605276;
 			remoteInfo = libopenssl_symbol_list;
-		};
-		20BDFF2A493E9CF7E3A619EC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 395DF3A9256AD0AD1479EF55 /* libopenssl.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = AA218954B1B661FF661B206F;
-			remoteInfo = libopenssl_headers;
 		};
 		2787A375CCAC045918B1545D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -128,13 +120,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 4B43414E2B095285C1144194;
 			remoteInfo = fetch;
-		};
-		9EE60E92AE2E30F6BF20B978 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 47BD7CD5FF7DC1B7F5180378 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7F31033BA37DB57E32A81D01;
-			remoteInfo = libopenssl_stubs;
 		};
 		A396B3834D9BA73A8973DABB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -207,7 +192,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D95544422F530E5FCB00E3F /* libopenssl_stubs.a in Frameworks */,
 				B5B671D17D212B7C8664D5A4 /* libcustomcrypto.a in Frameworks */,
 				4E718BF0345D6181A93E8290 /* libcustomssl.a in Frameworks */,
 			);
@@ -399,10 +383,8 @@
 			dependencies = (
 				2363180D52861188142AE443 /* PBXTargetDependency */,
 				1B81B2D6FE0C6D7A59CC24AB /* PBXTargetDependency */,
-				A6B912B62B54DD3A9FC8D31C /* PBXTargetDependency */,
 				638C5DF828892FF4202DFA37 /* PBXTargetDependency */,
 				9387D4D4BCBAA130BAC8550C /* PBXTargetDependency */,
-				2E1E1634C6BF9445327E61A4 /* PBXTargetDependency */,
 			);
 			name = revsecurity;
 			productName = revsecurity;
@@ -529,11 +511,6 @@
 			target = 36E5DC3F74E1F57AE2605276 /* libopenssl_symbol_list */;
 			targetProxy = FED2CF4E8E04720DBC9ECE81 /* PBXContainerItemProxy */;
 		};
-		2E1E1634C6BF9445327E61A4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = libopenssl_headers;
-			targetProxy = 20BDFF2A493E9CF7E3A619EC /* PBXContainerItemProxy */;
-		};
 		638C5DF828892FF4202DFA37 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = fetch;
@@ -563,11 +540,6 @@
 			isa = PBXTargetDependency;
 			target = FEC45DAC320224A91E16BC6F /* revsecurity */;
 			targetProxy = 1307C4FDB0617751DE38DD0D /* PBXContainerItemProxy */;
-		};
-		A6B912B62B54DD3A9FC8D31C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7F31033BA37DB57E32A81D01 /* libopenssl_stubs */;
-			targetProxy = 9EE60E92AE2E30F6BF20B978 /* PBXContainerItemProxy */;
 		};
 		FE543FB367AC4B25AF14F4E9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -849,7 +821,6 @@
 				EXECUTABLE_PREFIX = "";
 				EXPORTED_SYMBOLS_FILE = "$(SHARED_INTERMEDIATE_DIR)/src/sslstubs.mac.symlist";
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"OPENSSL_API_COMPAT=0x10100000L",
 					CROSS_COMPILE_TARGET,
 					TARGET_PLATFORM_MACOS_X,
 					_MACOSX,
@@ -878,7 +849,6 @@
 				LIBRARY_SEARCH_PATHS = ../../prebuilt/lib/mac;
 				MACH_O_TYPE = mh_dylib;
 				OTHER_LDFLAGS = (
-					"-undefined dynamic_lookup",
 					"-Wl,-platform_version",
 					"-Wl,macos",
 					"-Wl,11.0",
@@ -1482,7 +1452,6 @@
 				EXECUTABLE_PREFIX = "";
 				EXPORTED_SYMBOLS_FILE = "$(SHARED_INTERMEDIATE_DIR)/src/sslstubs.mac.symlist";
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"OPENSSL_API_COMPAT=0x10100000L",
 					CROSS_COMPILE_TARGET,
 					TARGET_PLATFORM_MACOS_X,
 					_MACOSX,
@@ -1512,7 +1481,6 @@
 				LIBRARY_SEARCH_PATHS = ../../prebuilt/lib/mac;
 				MACH_O_TYPE = mh_dylib;
 				OTHER_LDFLAGS = (
-					"-undefined dynamic_lookup",
 					"-Wl,-platform_version",
 					"-Wl,macos",
 					"-Wl,11.0",
@@ -1562,7 +1530,6 @@
 				EXECUTABLE_PREFIX = "";
 				EXPORTED_SYMBOLS_FILE = "$(SHARED_INTERMEDIATE_DIR)/src/sslstubs.mac.symlist";
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"OPENSSL_API_COMPAT=0x10100000L",
 					CROSS_COMPILE_TARGET,
 					TARGET_PLATFORM_MACOS_X,
 					_MACOSX,
@@ -1592,7 +1559,6 @@
 				LIBRARY_SEARCH_PATHS = ../../prebuilt/lib/mac;
 				MACH_O_TYPE = mh_dylib;
 				OTHER_LDFLAGS = (
-					"-undefined dynamic_lookup",
 					"-Wl,-platform_version",
 					"-Wl,macos",
 					"-Wl,11.0",

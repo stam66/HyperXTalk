@@ -365,7 +365,7 @@ extend_hfa_type (void *dest, void *src, int h)
 "2:	str	q17, [%2, #16]\n"
 "1:	str	q16, [%2]"
     : "=&r"(x0)
-    : "r"(f * 12), "r"(dest), "r"(src)
+    : "r"((unsigned long)(unsigned int)(f * 12)), "r"(dest), "r"(src)
     : "memory", "v16", "v17", "v18", "v19");
 }
 
@@ -753,6 +753,19 @@ ffi_prep_closure_loc (ffi_closure *closure,
   else
     start = ffi_closure_SYSV;
 
+  /* On Apple Silicon macOS the entire ffi_closure struct — trampoline
+     bytes AND the data fields cif/fun/user_data — lives inside the
+     same MAP_JIT allocation returned by dlmmap.  The kernel enforces
+     a per-thread hardware write-guard on MAP_JIT pages: any store
+     faults with SIGBUS unless pthread_jit_write_protect_np(0) is
+     active on this thread.  Disable the guard here, before the first
+     write, and re-enable it after the last one (user_data) so the
+     pages return to execute-only before we leave the function.  */
+#if defined(__APPLE__) && defined(__aarch64__) && !defined(TARGET_SUBPLATFORM_IPHONE)
+  extern void pthread_jit_write_protect_np(int) __attribute__((weak_import));
+  if (pthread_jit_write_protect_np) pthread_jit_write_protect_np(0);
+#endif
+
 #if FFI_EXEC_TRAMPOLINE_TABLE
 #ifdef __MACH__
   void **config = (void **)((uint8_t *)codeloc - PAGE_MAX_SIZE);
@@ -766,9 +779,8 @@ ffi_prep_closure_loc (ffi_closure *closure,
     0x00, 0x02, 0x1f, 0xd6	/* br	x16		*/
   };
   char *tramp = closure->tramp;
-  
+
   memcpy (tramp, trampoline, sizeof(trampoline));
-  
   *(UINT64 *)(tramp + 16) = (uintptr_t)start;
 
   ffi_clear_cache(tramp, tramp + FFI_TRAMPOLINE_SIZE);
@@ -777,6 +789,10 @@ ffi_prep_closure_loc (ffi_closure *closure,
   closure->cif = cif;
   closure->fun = fun;
   closure->user_data = user_data;
+
+#if defined(__APPLE__) && defined(__aarch64__) && !defined(TARGET_SUBPLATFORM_IPHONE)
+  if (pthread_jit_write_protect_np) pthread_jit_write_protect_np(1);
+#endif
 
   return FFI_OK;
 }

@@ -174,10 +174,48 @@ ifneq ($(TRAVIS),undefined)
 endif
 	$(XCODEBUILD) -project "build-mac$(BUILD_SUBDIR)/$(BUILD_PROJECT).xcodeproj" -configuration $(BUILDTYPE) -target default \
 	  $(XCODEBUILD_FILTER)
+	@# Sign the app with Hardened Runtime (--options runtime) so that all
+	@# embedded entitlements are actually honored by the kernel (AMFI only
+	@# reads entitlements when CS_RUNTIME is set in the CodeDirectory).
+	@# Without this flag, com.apple.security.cs.allow-jit is ignored, every
+	@# mmap(MAP_JIT) call in libffi returns EPERM, and dlmmap_locked falls
+	@# back to creating an unsigned /tmp file which syspolicyd evaluates for
+	@# ~4 seconds — causing the browser-widget hang introduced by rebranding.
+	@#
+	@# IMPORTANT: Do NOT use --deep here.  --deep re-signs every nested
+	@# executable (lc-compile, helper tools, etc.) with --options runtime,
+	@# which on macOS 26+ produces page-hash mismatches and kills those
+	@# tools with SIGKILL (CODESIGNING, Code 2, Invalid Page).  Instead:
+	@#   1. Sign nested dylibs/frameworks from the inside out (bare --sign -)
+	@#      so they retain valid signatures Xcode already gave them.
+	@#   2. Sign only the top-level app bundle with runtime + entitlements.
+	@# The allow-jit entitlement is checked against the calling process
+	@# (HyperXTalk) so only its signature needs CS_RUNTIME.
+	@if [ -f "_build/mac/$(BUILDTYPE)/HyperXTalk.app/Contents/MacOS/HyperXTalk" ]; then \
+	  echo "Signing nested frameworks and dylibs (inside-out, no runtime)..."; \
+	  find "_build/mac/$(BUILDTYPE)/HyperXTalk.app" \
+	      \( -name "*.framework" -o -name "*.dylib" \) | \
+	    sort -r | while read F; do \
+	    codesign --force --sign - "$$F" 2>/dev/null || true; \
+	  done; \
+	  echo "Signing HyperXTalk.app with Hardened Runtime + entitlements..."; \
+	  codesign --force --sign - \
+	    --options runtime \
+	    --entitlements HyperXTalk.entitlements \
+	    "_build/mac/$(BUILDTYPE)/HyperXTalk.app"; \
+	fi
+	@# Sign external bundles that live beside the app (revbrowser.bundle,
+	@# revdb.bundle, etc.).  They are loaded into the HyperXTalk process so
+	@# they do not need their own CS_RUNTIME — bare --sign - is sufficient.
+	@echo "Signing external bundles in _build/mac/$(BUILDTYPE)/..."
+	@find "_build/mac/$(BUILDTYPE)" -maxdepth 1 \
+	    \( -name "*.bundle" -o -name "*.dylib" \) | while read F; do \
+	  codesign --force --sign - "$$F" 2>/dev/null || true; \
+	done
 ifneq ($(TRAVIS),undefined)
 	@echo "travis_fold:end:compile"
 endif
-	  
+
 check-mac:
 ifneq ($(TRAVIS),undefined)
 	@echo "travis_fold:start:testcpp"

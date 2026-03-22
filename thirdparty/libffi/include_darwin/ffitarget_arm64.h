@@ -49,6 +49,11 @@ typedef enum ffi_abi
  * 36 % 8 != 0 causes an assembler error on the macOS non-trampoline-table path.
  * The actual trampoline bytecode is 12 bytes so the extra 4 bytes are padding. */
 #define FFI_TRAMPOLINE_SIZE 40
+/* cif/fun/user_data start immediately after the trampoline bytes in ffi_closure.
+ * May also be supplied via -D on the command line; guard to avoid redefinition. */
+#ifndef FFI_TRAMPOLINE_CLOSURE_OFFSET
+#define FFI_TRAMPOLINE_CLOSURE_OFFSET FFI_TRAMPOLINE_SIZE
+#endif
 #define FFI_NATIVE_RAW_API 0
 
 /* ---- Internal ---- */

@@ -12,7 +12,6 @@
 		033E04F47BDEBAF68DA4258C /* cairo-spans.c in Sources */ = {isa = PBXBuildFile; fileRef = 731BB28F670EA8ED640F3E9A /* cairo-spans.c */; };
 		081FEC04A3267E19D85F8D59 /* cairo-image-source.c in Sources */ = {isa = PBXBuildFile; fileRef = C90A65F55B56F8EAB7F54609 /* cairo-image-source.c */; };
 		0BA2BE472D5FF5748B7004D0 /* cairo-misc.c in Sources */ = {isa = PBXBuildFile; fileRef = 627E4EDC337201F55D941B81 /* cairo-misc.c */; };
-		/* 0CD3A256125CC2CD6A67D758 pixman-sse2.c removed: x86-only, not arm64 compatible */
 		0DBB56B04634FE6CD9AB8D55 /* cairo-path-stroke-traps.c in Sources */ = {isa = PBXBuildFile; fileRef = A82AE1C8953CD5925BA61572 /* cairo-path-stroke-traps.c */; };
 		0E032406769DBE622B1636A5 /* cairo-gstate.c in Sources */ = {isa = PBXBuildFile; fileRef = B488B395DCF2C0EBCA2F0205 /* cairo-gstate.c */; };
 		0FD6D296561A8B82098853A7 /* pixman-combine32.c in Sources */ = {isa = PBXBuildFile; fileRef = FEA1D0C8013922AEB1674EC2 /* pixman-combine32.c */; };
@@ -132,7 +131,6 @@
 		D9FE453EC9ED9CFD8B7F17E2 /* pixman-arm-neon.c in Sources */ = {isa = PBXBuildFile; fileRef = 1B9255115ECC27C6BAEF940B /* pixman-arm-neon.c */; };
 		DE1A84C392B73572BB1DD148 /* cairo-type1-fallback.c in Sources */ = {isa = PBXBuildFile; fileRef = 89E2C11C2A0926A83A28E07B /* cairo-type1-fallback.c */; };
 		DF1111D97B4DA6FCE7093375 /* cairo-matrix.c in Sources */ = {isa = PBXBuildFile; fileRef = 79BA994916F3E77E710655DF /* cairo-matrix.c */; };
-		DFB203CDE7387E68378B357A /* pixman-x86.c in Sources */ = {isa = PBXBuildFile; fileRef = 95B7D8C95D5345C5E7E6EB0B /* pixman-x86.c */; };
 		DFC736AC8DD76087E3BAFF8B /* cairo-pdf-surface.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FB92C8D8E01BBCC12B7084B /* cairo-pdf-surface.c */; };
 		E0D51BC1FD6CF2B339F509AE /* cairo-shape-mask-compositor.c in Sources */ = {isa = PBXBuildFile; fileRef = 6268BF2A8C2DEF7F03168BCF /* cairo-shape-mask-compositor.c */; };
 		E32B54DA7B8DE66E1B9B8627 /* cairo-stroke-dash.c in Sources */ = {isa = PBXBuildFile; fileRef = D616C90B7B1D21350CC20F22 /* cairo-stroke-dash.c */; };
@@ -154,7 +152,6 @@
 		F8DB45536FD214C716F9FF7D /* cairo-spans-compositor.c in Sources */ = {isa = PBXBuildFile; fileRef = D0B8329DB608229BDADBD1E3 /* cairo-spans-compositor.c */; };
 		F920A06797A2457E5E2F602D /* pixman.c in Sources */ = {isa = PBXBuildFile; fileRef = F947EE159657C13EBC17BA50 /* pixman.c */; };
 		FB14A3FC16C560373D1F8701 /* cairo-analysis-surface.c in Sources */ = {isa = PBXBuildFile; fileRef = 1AF349B92A40A314BB8C96D7 /* cairo-analysis-surface.c */; };
-		/* FB481ADCDAFA5E047DC16E86 pixman-mmx.c removed: x86-only, not arm64 compatible */
 		FB4DBE940B5B7FB361B47013 /* cairo-time.c in Sources */ = {isa = PBXBuildFile; fileRef = A088721A3F628F5221D7A1A4 /* cairo-time.c */; };
 		FC21BA42068D93EAAA550CB7 /* cairo-base85-stream.c in Sources */ = {isa = PBXBuildFile; fileRef = 83B7C73D52EEBF39B6029597 /* cairo-base85-stream.c */; };
 		FC99F8E2137702ABD652A5E8 /* cairo-path-bounds.c in Sources */ = {isa = PBXBuildFile; fileRef = 30FE1BAA56363C104043F0A5 /* cairo-path-bounds.c */; };
@@ -1250,18 +1247,15 @@
 				769AC0983B5964E742EAF83C /* pixman-linear-gradient.c in Sources */,
 				A08087CF9AC33B064DCA632A /* pixman-matrix.c in Sources */,
 				FED307E5AEBB460110C6BA0F /* pixman-mips.c in Sources */,
-				/* FB481ADCDAFA5E047DC16E86 pixman-mmx.c excluded from arm64 build */
 				6D8D9B7A6D155CCDDA32660D /* pixman-noop.c in Sources */,
 				5AE5EF5F03A9DD2EA222BD00 /* pixman-ppc.c in Sources */,
 				5870192B0A8718C003CCA982 /* pixman-radial-gradient.c in Sources */,
 				739169FF0AD021CB82C0CDBB /* pixman-region16.c in Sources */,
 				43835C8C90A10EFC8E8F80A7 /* pixman-region32.c in Sources */,
 				C1F33F175B5BCB7022DB4497 /* pixman-solid-fill.c in Sources */,
-				/* 0CD3A256125CC2CD6A67D758 pixman-sse2.c excluded from arm64 build */
 				62A8C3B5472E00AD2D652CF5 /* pixman-timer.c in Sources */,
 				EFD24991558F0AF2CCBF5C27 /* pixman-trap.c in Sources */,
 				2BCFAD8129546731DADDF8D4 /* pixman-utils.c in Sources */,
-				DFB203CDE7387E68378B357A /* pixman-x86.c in Sources */,
 				F920A06797A2457E5E2F602D /* pixman.c in Sources */,
 				AC2A362BBFCD9DAA4C2752DF /* cairo-pdf-ext.c in Sources */,
 			);

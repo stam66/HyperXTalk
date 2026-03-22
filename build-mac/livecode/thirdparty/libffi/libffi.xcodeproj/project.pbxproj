@@ -22,17 +22,25 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		05F89DA5DD8453B3D3C37970 /* debug.c in Sources */ = {isa = PBXBuildFile; fileRef = 2194A7843472D335F6BF09D3 /* debug.c */; };
-		17353DB7761A3D9469FA4384 /* darwin64.S in Sources */ = {isa = PBXBuildFile; fileRef = 8DFE20033396FFDA1156F0C6 /* darwin64.S */; };
-		19BBD222BDF0C7F289524767 /* types.c in Sources */ = {isa = PBXBuildFile; fileRef = A8F76611CCAEBC23C11DBD2D /* types.c */; };
-		251DE46CACF070A773AF9446 /* darwin.S in Sources */ = {isa = PBXBuildFile; fileRef = 22939330DAABE9070E886E00 /* darwin.S */; };
-		69D1DFB488E83A80B7976BEB /* raw_api.c in Sources */ = {isa = PBXBuildFile; fileRef = 67B6A8A5A932263CE7BEA5DE /* raw_api.c */; };
-		9AF9707F70F2100774885B12 /* prep_cif.c in Sources */ = {isa = PBXBuildFile; fileRef = ACCE01A5A4AFF44F6B4DF562 /* prep_cif.c */; };
-		B5D8FD84ABD76FEBA2132B84 /* ffi64.c in Sources */ = {isa = PBXBuildFile; fileRef = 56E8E09C47685F886B3CDA0D /* ffi64.c */; };
-		CE157D30AF94FFD2DA638603 /* ffi.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BFA06FB9FF3405673276835 /* ffi.c */; };
-		D6D74D6C0C09F9BC1683DF9D /* win32.S in Sources */ = {isa = PBXBuildFile; fileRef = B510D96E8FF6C7C0A8D312FB /* win32.S */; };
-		E65C3A45F50A2CD55F55B363 /* java_raw_api.c in Sources */ = {isa = PBXBuildFile; fileRef = 17651E939C4D8C95A434840E /* java_raw_api.c */; };
-		F49583C92F4A22484F703AC8 /* closures.c in Sources */ = {isa = PBXBuildFile; fileRef = 0C208FCC50DC20814D69E7BF /* closures.c */; };
+		103E713AEAA9A5CA07A04C1E /* types.c in Sources */ = {isa = PBXBuildFile; fileRef = A8F76611CCAEBC23C11DBD2D /* types.c */; };
+		1F4767331D2382F003DAFAE3 /* darwin.S in Sources */ = {isa = PBXBuildFile; fileRef = 22939330DAABE9070E886E00 /* darwin.S */; };
+		1FBC833D3C8A8528AD8D7825 /* ffi_arm64.c in Sources */ = {isa = PBXBuildFile; fileRef = 0CAFF8FFA6E1C70A94922043 /* ffi_arm64.c */; };
+		212C50A5987B0ECBD9FA17DD /* win32.S in Sources */ = {isa = PBXBuildFile; fileRef = B510D96E8FF6C7C0A8D312FB /* win32.S */; };
+		2CC61528B3E74784E2412C54 /* raw_api.c in Sources */ = {isa = PBXBuildFile; fileRef = 67B6A8A5A932263CE7BEA5DE /* raw_api.c */; };
+		3C03BFD6C66A5D41E246266A /* prep_cif.c in Sources */ = {isa = PBXBuildFile; fileRef = ACCE01A5A4AFF44F6B4DF562 /* prep_cif.c */; };
+		521F90B44E197AA3EBFFC8EE /* ffi.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BFA06FB9FF3405673276835 /* ffi.c */; };
+		733BCBAA72692756B4CE28ED /* raw_api.c in Sources */ = {isa = PBXBuildFile; fileRef = 67B6A8A5A932263CE7BEA5DE /* raw_api.c */; };
+		86B1847B11ED322B0B1D6130 /* closures.c in Sources */ = {isa = PBXBuildFile; fileRef = 0C208FCC50DC20814D69E7BF /* closures.c */; };
+		8FB9E3EEE1970DA1F4F4EA83 /* java_raw_api.c in Sources */ = {isa = PBXBuildFile; fileRef = 17651E939C4D8C95A434840E /* java_raw_api.c */; };
+		989460AE040E4A963CD92BCD /* debug.c in Sources */ = {isa = PBXBuildFile; fileRef = 2194A7843472D335F6BF09D3 /* debug.c */; };
+		A0BA6F259FDC6E189D4D739C /* ffi64.c in Sources */ = {isa = PBXBuildFile; fileRef = 56E8E09C47685F886B3CDA0D /* ffi64.c */; };
+		B29BD7BF9B12FD56EDD579F2 /* debug.c in Sources */ = {isa = PBXBuildFile; fileRef = 2194A7843472D335F6BF09D3 /* debug.c */; };
+		BEAFB4C446715EA1453419D1 /* closures.c in Sources */ = {isa = PBXBuildFile; fileRef = 0C208FCC50DC20814D69E7BF /* closures.c */; };
+		D04CD4708AF7BE8497C1F018 /* prep_cif.c in Sources */ = {isa = PBXBuildFile; fileRef = ACCE01A5A4AFF44F6B4DF562 /* prep_cif.c */; };
+		D0DD996668E173F70F93B79E /* sysv_arm64.S in Sources */ = {isa = PBXBuildFile; fileRef = DBF81B50ADE75E7CB03BB5CE /* sysv_arm64.S */; };
+		D5A0E7FCDDDAE37A73245B50 /* darwin64.S in Sources */ = {isa = PBXBuildFile; fileRef = 8DFE20033396FFDA1156F0C6 /* darwin64.S */; };
+		DF43EDA6B2B93CD2040F34AC /* types.c in Sources */ = {isa = PBXBuildFile; fileRef = A8F76611CCAEBC23C11DBD2D /* types.c */; };
+		E0F89055FBAACC6F5A594C6D /* java_raw_api.c in Sources */ = {isa = PBXBuildFile; fileRef = 17651E939C4D8C95A434840E /* java_raw_api.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +63,7 @@
 /* Begin PBXFileReference section */
 		047A97324AAA4175556F3284 /* win32.gypi */ = {isa = PBXFileReference; explicitFileType = sourcecode; name = win32.gypi; path = ../../config/win32.gypi; sourceTree = "<group>"; };
 		0C208FCC50DC20814D69E7BF /* closures.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = closures.c; sourceTree = "<group>"; };
+		0CAFF8FFA6E1C70A94922043 /* ffi_arm64.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ffi_arm64.c; sourceTree = "<group>"; };
 		17651E939C4D8C95A434840E /* java_raw_api.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = java_raw_api.c; sourceTree = "<group>"; };
 		1C14FD4BFA342D1A45D1EC45 /* emscripten.gypi */ = {isa = PBXFileReference; explicitFileType = sourcecode; name = emscripten.gypi; path = ../../config/emscripten.gypi; sourceTree = "<group>"; };
 		2194A7843472D335F6BF09D3 /* debug.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = debug.c; sourceTree = "<group>"; };
@@ -84,6 +93,7 @@
 		D3825D3C2B77D4F105107276 /* libffi-host.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libffi-host.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D74F0EDEED6E5F0ECDFEDF2C /* arch.gypi */ = {isa = PBXFileReference; explicitFileType = sourcecode; name = arch.gypi; path = ../../config/arch.gypi; sourceTree = "<group>"; };
 		D91EEC3518A62EDF2F5D88C8 /* crosscompile.gypi */ = {isa = PBXFileReference; explicitFileType = sourcecode; name = crosscompile.gypi; path = ../../config/crosscompile.gypi; sourceTree = "<group>"; };
+		DBF81B50ADE75E7CB03BB5CE /* sysv_arm64.S */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.asm; path = sysv_arm64.S; sourceTree = "<group>"; };
 		DD0B99274170AF361F422504 /* emscripten-settings.gypi */ = {isa = PBXFileReference; explicitFileType = sourcecode; name = "emscripten-settings.gypi"; path = "../../config/emscripten-settings.gypi"; sourceTree = "<group>"; };
 		F6D58E75AD5B4AE5ECADDC94 /* version.gypi */ = {isa = PBXFileReference; explicitFileType = sourcecode; name = version.gypi; path = ../../config/version.gypi; sourceTree = "<group>"; };
 		F796FF9C4785BA823DB55865 /* mac.gypi */ = {isa = PBXFileReference; explicitFileType = sourcecode; name = mac.gypi; path = ../../config/mac.gypi; sourceTree = "<group>"; };
@@ -121,15 +131,6 @@
 			path = src;
 			sourceTree = "<group>";
 		};
-		1735E9DD9E0DA39A653C4151 /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				F62CBF81459BE7A08BF9E17E /* ../.. */,
-				0ABE3538669C091D281BE841 /* src */,
-			);
-			name = Source;
-			sourceTree = "<group>";
-		};
 		34B8501326BF45DD5AE80DD6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,10 +140,29 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		381DEB7E62CE8C453EC24434 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				F62CBF81459BE7A08BF9E17E /* ../.. */,
+				498EE145957B75141FAE19F6 /* git_master/darwin_ios/src/aarch64 */,
+				0ABE3538669C091D281BE841 /* src */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		498EE145957B75141FAE19F6 /* git_master/darwin_ios/src/aarch64 */ = {
+			isa = PBXGroup;
+			children = (
+				0CAFF8FFA6E1C70A94922043 /* ffi_arm64.c */,
+				DBF81B50ADE75E7CB03BB5CE /* sysv_arm64.S */,
+			);
+			path = git_master/darwin_ios/src/aarch64;
+			sourceTree = "<group>";
+		};
 		767E88597F3BC112815F58F2 = {
 			isa = PBXGroup;
 			children = (
-				1735E9DD9E0DA39A653C4151 /* Source */,
+				381DEB7E62CE8C453EC24434 /* Source */,
 				34B8501326BF45DD5AE80DD6 /* Products */,
 				EF6FE024B283BF59C6B58894 /* Build */,
 			);
@@ -258,6 +278,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FBC833D3C8A8528AD8D7825 /* ffi_arm64.c in Sources */,
+				D0DD996668E173F70F93B79E /* sysv_arm64.S in Sources */,
+				BEAFB4C446715EA1453419D1 /* closures.c in Sources */,
+				989460AE040E4A963CD92BCD /* debug.c in Sources */,
+				E0F89055FBAACC6F5A594C6D /* java_raw_api.c in Sources */,
+				3C03BFD6C66A5D41E246266A /* prep_cif.c in Sources */,
+				733BCBAA72692756B4CE28ED /* raw_api.c in Sources */,
+				DF43EDA6B2B93CD2040F34AC /* types.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,17 +293,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				251DE46CACF070A773AF9446 /* darwin.S in Sources */,
-				17353DB7761A3D9469FA4384 /* darwin64.S in Sources */,
-				CE157D30AF94FFD2DA638603 /* ffi.c in Sources */,
-				B5D8FD84ABD76FEBA2132B84 /* ffi64.c in Sources */,
-				D6D74D6C0C09F9BC1683DF9D /* win32.S in Sources */,
-				F49583C92F4A22484F703AC8 /* closures.c in Sources */,
-				05F89DA5DD8453B3D3C37970 /* debug.c in Sources */,
-				E65C3A45F50A2CD55F55B363 /* java_raw_api.c in Sources */,
-				9AF9707F70F2100774885B12 /* prep_cif.c in Sources */,
-				69D1DFB488E83A80B7976BEB /* raw_api.c in Sources */,
-				19BBD222BDF0C7F289524767 /* types.c in Sources */,
+				1F4767331D2382F003DAFAE3 /* darwin.S in Sources */,
+				D5A0E7FCDDDAE37A73245B50 /* darwin64.S in Sources */,
+				521F90B44E197AA3EBFFC8EE /* ffi.c in Sources */,
+				A0BA6F259FDC6E189D4D739C /* ffi64.c in Sources */,
+				212C50A5987B0ECBD9FA17DD /* win32.S in Sources */,
+				86B1847B11ED322B0B1D6130 /* closures.c in Sources */,
+				B29BD7BF9B12FD56EDD579F2 /* debug.c in Sources */,
+				8FB9E3EEE1970DA1F4F4EA83 /* java_raw_api.c in Sources */,
+				D04CD4708AF7BE8497C1F018 /* prep_cif.c in Sources */,
+				2CC61528B3E74784E2412C54 /* raw_api.c in Sources */,
+				103E713AEAA9A5CA07A04C1E /* types.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,7 +496,13 @@
 					_RELEASE,
 					NDEBUG,
 				);
-				HEADER_SEARCH_PATHS = /opt/homebrew/Cellar/libffi/3.5.2/include;
+				HEADER_SEARCH_PATHS = (
+					./include_darwin,
+					git_master/src,
+					git_master/src/aarch64,
+					git_master/darwin_common/include,
+					git_master/darwin_ios/src/aarch64,
+				);
 				OTHER_LDFLAGS = (
 					"-Wl,-platform_version",
 					"-Wl,macos",
@@ -491,7 +525,13 @@
 					_MACOSX,
 					_DEBUG,
 				);
-				HEADER_SEARCH_PATHS = /opt/homebrew/Cellar/libffi/3.5.2/include;
+				HEADER_SEARCH_PATHS = (
+					./include_darwin,
+					git_master/src,
+					git_master/src/aarch64,
+					git_master/darwin_common/include,
+					git_master/darwin_ios/src/aarch64,
+				);
 				OTHER_LDFLAGS = (
 					"-Wl,-platform_version",
 					"-Wl,macos",
@@ -515,7 +555,13 @@
 					_RELEASE,
 					NDEBUG,
 				);
-				HEADER_SEARCH_PATHS = /opt/homebrew/Cellar/libffi/3.5.2/include;
+				HEADER_SEARCH_PATHS = (
+					./include_darwin,
+					git_master/src,
+					git_master/src/aarch64,
+					git_master/darwin_common/include,
+					git_master/darwin_ios/src/aarch64,
+				);
 				OTHER_LDFLAGS = (
 					"-Wl,-platform_version",
 					"-Wl,macos",

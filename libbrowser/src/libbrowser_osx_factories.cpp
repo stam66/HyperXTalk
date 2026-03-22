@@ -18,14 +18,18 @@
 
 #include "libbrowser_internal.h"
 
+extern bool MCWKWebViewBrowserFactoryCreate(MCBrowserFactoryRef &r_factory);
 extern bool MCWebViewBrowserFactoryCreate(MCBrowserFactoryRef &r_factory);
 
-
-// Overcome the tautological error if s_factory_list is a static pointer
+// WKWebView is the primary factory on macOS — avoids the main-thread
+// process-launch stall caused by the deprecated WebView class.
+// The legacy "WebView" entry is kept so that scripts explicitly requesting
+// it continue to work.
 MCBrowserFactoryMap kMCBrowserFactoryMap[] =
 {
-	{ "WebView", nil, MCWebViewBrowserFactoryCreate },
-    { nil, nil, nil },
+	{ "WkWebView", nil, MCWKWebViewBrowserFactoryCreate },
+	{ "WebView",   nil, MCWebViewBrowserFactoryCreate   },
+	{ nil,         nil, nil                              },
 };
 
 MCBrowserFactoryMap* s_factory_list = kMCBrowserFactoryMap;

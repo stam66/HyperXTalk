@@ -45,8 +45,12 @@
 /* Define if your assembler supports .ascii. */
 /* #undef HAVE_AS_ASCII_PSEUDO_OP */
 
-/* Define if your assembler supports .cfi_* directives. */
-#define HAVE_AS_CFI_PSEUDO_OP 1
+/* macOS arm64: Clang's integrated assembler rejects .cfi_def_cfa with a
+ * non-sp/fp base register (used in ffi_call_SYSV) and cannot encode the
+ * large .cfi_adjust_cfa_offset value (272) via compact-unwind.  Disable CFI
+ * pseudo-ops so the cfi_* macros expand to nothing.  macOS uses its own
+ * compact-unwind info for stack unwinding regardless of DWARF CFI. */
+/* #undef HAVE_AS_CFI_PSEUDO_OP */
 
 /* Define if your assembler supports .register. */
 /* #undef HAVE_AS_REGISTER_PSEUDO_OP */

@@ -475,6 +475,16 @@ int EVP_CIPHER_CTX_encrypting(const EVP_CIPHER_CTX *ctx);
 int EVP_CIPHER_CTX_nid(const EVP_CIPHER_CTX *ctx);
 int EVP_CIPHER_CTX_block_size(const EVP_CIPHER_CTX *ctx);
 int EVP_CIPHER_CTX_key_length(const EVP_CIPHER_CTX *ctx);
+
+/* OpenSSL 3.x renames: declare the new symbols and redirect the old names.
+ * The prebuilt arm64 library exports only the get_-prefixed versions; these
+ * macros ensure compiled code calls those names at link time. */
+int EVP_CIPHER_get_key_length(const EVP_CIPHER *cipher);
+int EVP_CIPHER_CTX_get_block_size(const EVP_CIPHER_CTX *ctx);
+int EVP_CIPHER_CTX_get_key_length(const EVP_CIPHER_CTX *ctx);
+# define EVP_CIPHER_key_length     EVP_CIPHER_get_key_length
+# define EVP_CIPHER_CTX_block_size EVP_CIPHER_CTX_get_block_size
+# define EVP_CIPHER_CTX_key_length EVP_CIPHER_CTX_get_key_length
 int EVP_CIPHER_CTX_iv_length(const EVP_CIPHER_CTX *ctx);
 const unsigned char *EVP_CIPHER_CTX_iv(const EVP_CIPHER_CTX *ctx);
 const unsigned char *EVP_CIPHER_CTX_original_iv(const EVP_CIPHER_CTX *ctx);

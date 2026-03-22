@@ -140,10 +140,19 @@
 					{
 						'sources!':
 						[
+							'src/libbrowser_ios_factories.cpp',
+						],
+					},
+				],
+
+				# wkwebview sources are shared between iOS and macOS
+				[
+					'not toolset_os in ["ios", "mac"]',
+					{
+						'sources!':
+						[
 							'src/libbrowser_wkwebview.h',
 							'src/libbrowser_wkwebview.mm',
-
-							'src/libbrowser_ios_factories.cpp',
 						],
 					},
 				],

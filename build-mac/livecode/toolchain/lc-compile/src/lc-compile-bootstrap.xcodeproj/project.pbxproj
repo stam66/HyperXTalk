@@ -236,158 +236,155 @@
 
 /* Begin PBXBuildFile section */
 		00C1F843ABCB47A2B0036CD6 /* gen.l.c in Sources */ = {isa = PBXBuildFile; fileRef = CC4C6E7E0240394FFC503E53 /* gen.l.c */; };
-		04D59CC6BBCE1D7165F5B07D /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EE1419D6892C3FF51D5E95C /* CoreFoundation.framework */; };
+		028390660491B39239BBF3D8 /* libicuuc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46511A5382C77586C7389B19 /* libicuuc.a */; };
+		04E463DB5C9D878360843F69 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B996683ECA2B9299A386F96C /* Foundation.framework */; };
 		059AD695BF0DF8306F48B335 /* gen.l.c in Sources */ = {isa = PBXBuildFile; fileRef = 53D479681F04325A8D57B7CF /* gen.l.c */; };
-		05A892C0FA5F1E2BE650D26F /* libicuio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF60EFCD69B4683F15E5B6B9 /* libicuio.a */; };
+		05DCFECC7BB7255644BF281A /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FBF153999B7D0852E2A73A2 /* libffi.a */; };
 		060C70A64F1F2C1804B9B9D2 /* libFoundation-host.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CC45AE181F65C5A74C46758 /* libFoundation-host.a */; };
 		0624AF88184D1DB0FC077C97 /* syntax.c in Sources */ = {isa = PBXBuildFile; fileRef = 7E076EFD0F17E2CAF54217C4 /* syntax.c */; };
-		0720EE55B3D50ADC4B5E70D1 /* libicutu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8C43140E8264D203FFB4773 /* libicutu.a */; };
 		07AB542E4C8747D382D75816 /* libcompile-target.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF2782BAF3E422D9D415C38F /* libcompile-target.a */; };
+		08AF05C4534EEA190DF7665E /* libicuuc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46511A5382C77586C7389B19 /* libicuuc.a */; };
+		09B3754DA1813F0629B33AD4 /* libicudata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1593D3D465E5AC4AE1AACE16 /* libicudata.a */; };
+		0DA6914DA0AAF8C0099432AA /* libicutu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8C43140E8264D203FFB4773 /* libicutu.a */; };
 		0E315CC9696B7C557B603050 /* libgrts-host.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AADA5E18C8FB3AC9037CF5E /* libgrts-host.a */; };
+		1072A0B0BDC09831CADB72C3 /* libicuuc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46511A5382C77586C7389B19 /* libicuuc.a */; };
 		1132EDE39632EE1AE3D96BF5 /* liblc-compile-lib-host.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A866BA09BE302E858AF6BA2 /* liblc-compile-lib-host.a */; };
-		13556611F191EDA91453ACC8 /* libicui18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBCEDF56FFC3FDAAA7ADFA51 /* libicui18n.a */; };
-		147E4F0E3BADECD3C47A8815 /* libz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75F505FEA224D78A9159968A /* libz.a */; };
-		16B0F9B4D9ACF3949AA02A77 /* libicudata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1593D3D465E5AC4AE1AACE16 /* libicudata.a */; };
-		18710421A1E738974200DFDD /* libicuuc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46511A5382C77586C7389B19 /* libicuuc.a */; };
-		1902AB8ACC5B12CD49285B07 /* libicui18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBCEDF56FFC3FDAAA7ADFA51 /* libicui18n.a */; };
+		1583822E9A9FF54FDEC2F326 /* libicuio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF60EFCD69B4683F15E5B6B9 /* libicuio.a */; };
+		16DAC2CA1C49713175C2E4B8 /* libicui18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBCEDF56FFC3FDAAA7ADFA51 /* libicui18n.a */; };
+		170A9EFC6526ABDD75B6914F /* libicui18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBCEDF56FFC3FDAAA7ADFA51 /* libicui18n.a */; };
+		1753874FF670E2982230DA01 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EE1419D6892C3FF51D5E95C /* CoreFoundation.framework */; };
 		1A0F0E3655BBEB06CE5479AE /* libScript.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0599D47673B804F1040612B7 /* libScript.a */; };
-		1CBA9E6D121C08BA290AE7E3 /* libicuio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF60EFCD69B4683F15E5B6B9 /* libicuio.a */; };
-		1DEE342852DD42C4195ED218 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EE1419D6892C3FF51D5E95C /* CoreFoundation.framework */; };
 		1E26CB6041CDC982B0191E24 /* support.c in Sources */ = {isa = PBXBuildFile; fileRef = 0102A1A74DE5383D20160B55 /* support.c */; };
 		1F60202A079EED7E8711107A /* gen.y.c in Sources */ = {isa = PBXBuildFile; fileRef = 842BF7D5B21BF537E39A7953 /* gen.y.c */; };
+		208B9AFB0F99076A8EEDA608 /* libicutu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8C43140E8264D203FFB4773 /* libicutu.a */; };
 		20DD7113E9A3FDE84550DD77 /* libFoundation-host.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CC45AE181F65C5A74C46758 /* libFoundation-host.a */; };
-		240ACB468D5BF97E11EC0E27 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EE1419D6892C3FF51D5E95C /* CoreFoundation.framework */; };
 		249C25F70D0E6EC93B1DB893 /* check.c in Sources */ = {isa = PBXBuildFile; fileRef = 97639FD92C3D9D370EA51087 /* check.c */; };
-		24DD34D099F95B28E19BC3BD /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FBF153999B7D0852E2A73A2 /* libffi.a */; };
 		258A46F7AB7A33E5A9CA21B3 /* libScript.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0599D47673B804F1040612B7 /* libScript.a */; };
 		27791201DE8FEDA9FC6F6350 /* grammar_full.c in Sources */ = {isa = PBXBuildFile; fileRef = 66AAB1CCED07AF2386C940BF /* grammar_full.c */; };
 		2827502517F6BDE87A9DFAAA /* libcompile-host.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E440BD859F9915515239CF4 /* libcompile-host.a */; };
-		2877083DE4EC64269DEE3164 /* libicudata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1593D3D465E5AC4AE1AACE16 /* libicudata.a */; };
-		287B6AECD543E4409E6EDD22 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B996683ECA2B9299A386F96C /* Foundation.framework */; };
 		29B48BA3648DDF2D4024ECF9 /* gen.y.c in Sources */ = {isa = PBXBuildFile; fileRef = C60C5779EAB685B417B7D777 /* gen.y.c */; };
 		2A9F22EE85E437C6F197B8CA /* types.c in Sources */ = {isa = PBXBuildFile; fileRef = 50C4E915B4C63ED930E2A64C /* types.c */; };
-		31799D72C14399DB542B08EC /* libicuuc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46511A5382C77586C7389B19 /* libicuuc.a */; };
+		2AEB2786DDB7DEB69425BAE5 /* libicutu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8C43140E8264D203FFB4773 /* libicutu.a */; };
+		2FAF416B21EAEA723513BAEC /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FBF153999B7D0852E2A73A2 /* libffi.a */; };
+		354222C8233D9EBECF7E59A1 /* libz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75F505FEA224D78A9159968A /* libz.a */; };
 		36B59C379A2A7F49C2EA23C1 /* support.c in Sources */ = {isa = PBXBuildFile; fileRef = 0C629B2C9C05C52CA92F48BE /* support.c */; };
-		37BD10F43FB03B4E9711D38E /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FBF153999B7D0852E2A73A2 /* libffi.a */; };
 		382453678AE3410618E838C2 /* dummy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EB536A6D0DF8976A795E6FA /* dummy.cpp */; };
-		386B760ADB1354E9CA0DD93C /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D07C9C382E3D3162A53C9A3 /* libffi.a */; };
 		3897F13D511441824AECA809 /* libcompile-target.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF2782BAF3E422D9D415C38F /* libcompile-target.a */; };
 		39E97617209B1A5930D5417D /* libcompile-target.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF2782BAF3E422D9D415C38F /* libcompile-target.a */; };
-		3D9E16D96035BE8BB1B8014F /* libicui18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBCEDF56FFC3FDAAA7ADFA51 /* libicui18n.a */; };
-		3E0CFD1DA45FE10F32F50FC5 /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FBF153999B7D0852E2A73A2 /* libffi.a */; };
-		41E9832923E05739E00466D2 /* libicudata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1593D3D465E5AC4AE1AACE16 /* libicudata.a */; };
+		3FA5FA12637D4BD52CC39B9E /* libicuuc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46511A5382C77586C7389B19 /* libicuuc.a */; };
 		445D895552389A529E2BB346 /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 345AFE76849CD9C4EDEBEBE1 /* libffi.a */; };
-		4802680E8D58EFA416A3F35A /* libicudata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1593D3D465E5AC4AE1AACE16 /* libicudata.a */; };
 		4B65A95A0C022B6382CFC6C3 /* generate.c in Sources */ = {isa = PBXBuildFile; fileRef = 34231F62E32FB161DB5826BB /* generate.c */; };
 		4C7EDD31A0ED2B8133A96D3E /* generate.c in Sources */ = {isa = PBXBuildFile; fileRef = 887A0C419369EF7E7D57FF9F /* generate.c */; };
 		4CBC121A469B1B11BACF0ED9 /* types.c in Sources */ = {isa = PBXBuildFile; fileRef = 8DE1374FAB325C4FB56EC7E4 /* types.c */; };
+		4CE5161722214B8F8D488A95 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B996683ECA2B9299A386F96C /* Foundation.framework */; };
 		4D3D08996AD48FA10C7AE2A7 /* liblc-compile-lib-host.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A866BA09BE302E858AF6BA2 /* liblc-compile-lib-host.a */; };
 		4E18787174407792347971E8 /* generate.c in Sources */ = {isa = PBXBuildFile; fileRef = 34231F62E32FB161DB5826BB /* generate.c */; };
-		4EC5A89C92696879E72F0D34 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B996683ECA2B9299A386F96C /* Foundation.framework */; };
 		4FC905AA440BA72F12999F71 /* libFoundation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C1FF31B77A7B33F962C3624 /* libFoundation.a */; };
 		5088D0586336D83ADB649DC7 /* generate.c in Sources */ = {isa = PBXBuildFile; fileRef = A3B736289C79A1DF99C1B852 /* generate.c */; };
 		50B655D4BB95EF142CF2C390 /* libffi-host.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2DA52A9135E04FF65C2FFB /* libffi-host.a */; };
 		50D916E0E3F6D6735C397FCE /* support.c in Sources */ = {isa = PBXBuildFile; fileRef = 0102A1A74DE5383D20160B55 /* support.c */; };
-		51FD94C770B14351CD3CE58B /* libicutu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8C43140E8264D203FFB4773 /* libicutu.a */; };
-		524E0E972B4389E5DC2A56D6 /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D07C9C382E3D3162A53C9A3 /* libffi.a */; };
 		52C0ABA06B07152268B86DF5 /* liblc-compile-lib-target.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57BFBD1C168F2AFE90858C98 /* liblc-compile-lib-target.a */; };
 		544F56F3009643FDE004B133 /* types.c in Sources */ = {isa = PBXBuildFile; fileRef = 50C4E915B4C63ED930E2A64C /* types.c */; };
-		5494322EF4608088885AD205 /* libicuuc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46511A5382C77586C7389B19 /* libicuuc.a */; };
-		553378879D1A462CAECCB82E /* libz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75F505FEA224D78A9159968A /* libz.a */; };
 		55BA5B99BAFC9EFEAF31EA99 /* bind.c in Sources */ = {isa = PBXBuildFile; fileRef = DD23C49CED1147B658171D01 /* bind.c */; };
 		56C7575BCDFC5F71F89A629D /* types.c in Sources */ = {isa = PBXBuildFile; fileRef = DC56F3AC93A1DD918122F560 /* types.c */; };
 		58335333D98E8CF99449610A /* grammar_full.c in Sources */ = {isa = PBXBuildFile; fileRef = 0E2ED9FEDF05B98C51F7B4B6 /* grammar_full.c */; };
+		5C4364A8C5900EE339DF815F /* libicuio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF60EFCD69B4683F15E5B6B9 /* libicuio.a */; };
+		5F86ADA835DD9070AA2107CC /* libicudata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1593D3D465E5AC4AE1AACE16 /* libicudata.a */; };
 		5FFE3E7D80144E36D9D33CF9 /* liblc-compile-lib-target.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57BFBD1C168F2AFE90858C98 /* liblc-compile-lib-target.a */; };
+		60516941BBAD51A5C5EDE9D1 /* libicuio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF60EFCD69B4683F15E5B6B9 /* libicuio.a */; };
 		6420B0E5A0BF069FAF5AD4A5 /* libffi-host.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2DA52A9135E04FF65C2FFB /* libffi-host.a */; };
 		64F24DFA9CB09CFE3DDCE0A1 /* libgrts.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 649D3D8A7F31E5C11C94756B /* libgrts.a */; };
 		68450ECB77099C619478EA10 /* check.c in Sources */ = {isa = PBXBuildFile; fileRef = CFB93A233D970DCD43C30C28 /* check.c */; };
 		6BBEBC671A97766F52F823CB /* libcompile-host.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E440BD859F9915515239CF4 /* libcompile-host.a */; };
+		6E12A1B251FAB9D6A9D51DEE /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EE1419D6892C3FF51D5E95C /* CoreFoundation.framework */; };
 		6E1C2BA9A182CB8E6DE99C72 /* grammar.c in Sources */ = {isa = PBXBuildFile; fileRef = D147615480A6A290F163E720 /* grammar.c */; };
 		6E62A6EE58BBD68A1F34F14A /* support.c in Sources */ = {isa = PBXBuildFile; fileRef = 0C629B2C9C05C52CA92F48BE /* support.c */; };
-		6EDA242840177A390A321312 /* libicui18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBCEDF56FFC3FDAAA7ADFA51 /* libicui18n.a */; };
 		75E95B07826A7AFB993175B2 /* bind.c in Sources */ = {isa = PBXBuildFile; fileRef = D0578CA1C23CF4EA428B7F56 /* bind.c */; };
-		7649F5645B1A81DEBC0B0397 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EE1419D6892C3FF51D5E95C /* CoreFoundation.framework */; };
-		7734086EA2024A4952D8F758 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EE1419D6892C3FF51D5E95C /* CoreFoundation.framework */; };
-		78C64C89584AC2CF69577785 /* libz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75F505FEA224D78A9159968A /* libz.a */; };
+		785D3BD58EF107C2ED29A474 /* libicuuc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46511A5382C77586C7389B19 /* libicuuc.a */; };
 		793C658FB65BE05D8E37D25D /* bind.c in Sources */ = {isa = PBXBuildFile; fileRef = 7442BC35356517D61EDC270C /* bind.c */; };
+		7980948E46FA85A9CD37FE92 /* libicudata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1593D3D465E5AC4AE1AACE16 /* libicudata.a */; };
 		798EABCC7CB09261F432FF74 /* syntax.c in Sources */ = {isa = PBXBuildFile; fileRef = 11B31D9814AE0A647ACB13DE /* syntax.c */; };
+		79AD3E30A8922CB270E8462E /* libicudata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1593D3D465E5AC4AE1AACE16 /* libicudata.a */; };
 		7A23B04F268905082A4BFA40 /* support.c in Sources */ = {isa = PBXBuildFile; fileRef = 5F1E9BD92D15FC48F178F039 /* support.c */; };
 		7ABAAC78421E8472BF4C6534 /* bind.c in Sources */ = {isa = PBXBuildFile; fileRef = D0578CA1C23CF4EA428B7F56 /* bind.c */; };
-		7AF244E0E4AA400F73CE9F90 /* libicuio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF60EFCD69B4683F15E5B6B9 /* libicuio.a */; };
 		7CC537E894A13C2E6569CB1C /* grammar.c in Sources */ = {isa = PBXBuildFile; fileRef = D147615480A6A290F163E720 /* grammar.c */; };
 		7D0A9977C87ED9F45B171093 /* syntax.c in Sources */ = {isa = PBXBuildFile; fileRef = 7E076EFD0F17E2CAF54217C4 /* syntax.c */; };
+		7E18ED01CC8C74E55B59CF39 /* libicui18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBCEDF56FFC3FDAAA7ADFA51 /* libicui18n.a */; };
 		7E5AE351BC9F67ABFB5C9F2D /* gen.y.c in Sources */ = {isa = PBXBuildFile; fileRef = FEBE8DB47106B6980BF7FFC2 /* gen.y.c */; };
 		7FB3CB7FA5DF142F6B45E682 /* libFoundation-host.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CC45AE181F65C5A74C46758 /* libFoundation-host.a */; };
+		7FDF6C71E8BECA9B8C375178 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EE1419D6892C3FF51D5E95C /* CoreFoundation.framework */; };
 		81A27735375FC31894A31969 /* gen.y.c in Sources */ = {isa = PBXBuildFile; fileRef = FEBE8DB47106B6980BF7FFC2 /* gen.y.c */; };
-		81E189B4E3B78E9B9651D7D6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B996683ECA2B9299A386F96C /* Foundation.framework */; };
-		82FEAAA7C42452D9E9AFADA4 /* libz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75F505FEA224D78A9159968A /* libz.a */; };
-		8399AEFF2B6F974F34DF377D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B996683ECA2B9299A386F96C /* Foundation.framework */; };
+		853C63E7591719EA66841CE4 /* libicudata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1593D3D465E5AC4AE1AACE16 /* libicudata.a */; };
 		8718FDCAD4273BE1CD28FC9B /* libffi-host.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2DA52A9135E04FF65C2FFB /* libffi-host.a */; };
-		881D43A4F1B495901C7380CB /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FBF153999B7D0852E2A73A2 /* libffi.a */; };
+		8AB1372E32C154836EA0BFE6 /* libicui18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBCEDF56FFC3FDAAA7ADFA51 /* libicui18n.a */; };
+		8B3D54962E9C01751C7E9762 /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FBF153999B7D0852E2A73A2 /* libffi.a */; };
+		8B504912BCE93F15E875CA3D /* libicutu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8C43140E8264D203FFB4773 /* libicutu.a */; };
 		8C4399C4A9BCE13BF61D4D04 /* libFoundation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C1FF31B77A7B33F962C3624 /* libFoundation.a */; };
 		8E715832E76925CBE68A4218 /* gen.y.c in Sources */ = {isa = PBXBuildFile; fileRef = 842BF7D5B21BF537E39A7953 /* gen.y.c */; };
-		8EDEEC852888D0ADAFD7A965 /* libicuio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF60EFCD69B4683F15E5B6B9 /* libicuio.a */; };
-		903F8994C1FCDFB3EF31F890 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EE1419D6892C3FF51D5E95C /* CoreFoundation.framework */; };
+		8E74C28FA8BC7F78672C44E3 /* libicutu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8C43140E8264D203FFB4773 /* libicutu.a */; };
+		8FC8A5DAB80DCB3BBA99D79E /* libicui18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBCEDF56FFC3FDAAA7ADFA51 /* libicui18n.a */; };
+		90082FA254D2EF5697850855 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EE1419D6892C3FF51D5E95C /* CoreFoundation.framework */; };
+		90F8AC9F5971FEEACBEDB85A /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EE1419D6892C3FF51D5E95C /* CoreFoundation.framework */; };
 		925D7AB27CFAB184908A0F16 /* libgrts.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 649D3D8A7F31E5C11C94756B /* libgrts.a */; };
+		935E0FFCA8B6A559819AFB1C /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FBF153999B7D0852E2A73A2 /* libffi.a */; };
 		93713F4BF4912DB24EA78952 /* libcompile-host.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E440BD859F9915515239CF4 /* libcompile-host.a */; };
 		95ACFAD90B8F3CA4FF9C1D04 /* libScript-host.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 396EC6A2AC50B04DE1E9D1D1 /* libScript-host.a */; };
 		961CDEB3F4C4DE7F9F546CE1 /* gen.y.c in Sources */ = {isa = PBXBuildFile; fileRef = C60C5779EAB685B417B7D777 /* gen.y.c */; };
 		96699A301994093D83C7B4CB /* support.c in Sources */ = {isa = PBXBuildFile; fileRef = 5F1E9BD92D15FC48F178F039 /* support.c */; };
-		96BF1893E3B708EA91A0C7FD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B996683ECA2B9299A386F96C /* Foundation.framework */; };
+		98BA586621C50271FDE3BA0A /* libz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75F505FEA224D78A9159968A /* libz.a */; };
+		9915DB4643E41414DEDD4CC2 /* libz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75F505FEA224D78A9159968A /* libz.a */; };
 		9A52082B2B07B10B5B3B0963 /* generate.c in Sources */ = {isa = PBXBuildFile; fileRef = A3B736289C79A1DF99C1B852 /* generate.c */; };
+		9BACFF655A917FA8A85A72BC /* libicudata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1593D3D465E5AC4AE1AACE16 /* libicudata.a */; };
 		9D534C149CEFE1D1952A4AD5 /* check.c in Sources */ = {isa = PBXBuildFile; fileRef = FA54EEA3A035695534FD8167 /* check.c */; };
-		9D8C92866D6FDAF673DA4D42 /* libicuuc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46511A5382C77586C7389B19 /* libicuuc.a */; };
+		9D5E40CBD025DA7BEC9B80B8 /* libicuio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF60EFCD69B4683F15E5B6B9 /* libicuio.a */; };
+		9E97CC0AFEE9EE18544E9763 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EE1419D6892C3FF51D5E95C /* CoreFoundation.framework */; };
 		9EA986ED2F15F9BFBEEFB241 /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 345AFE76849CD9C4EDEBEBE1 /* libffi.a */; };
 		9F237506800C9232CBA33C69 /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 345AFE76849CD9C4EDEBEBE1 /* libffi.a */; };
-		A0D0A31E873BF7F9F182AEA7 /* libicui18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBCEDF56FFC3FDAAA7ADFA51 /* libicui18n.a */; };
-		A1E0EA344CD492504D29BDB2 /* libicuuc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46511A5382C77586C7389B19 /* libicuuc.a */; };
 		A311137938BE0EDCEC1D315A /* check.c in Sources */ = {isa = PBXBuildFile; fileRef = FA54EEA3A035695534FD8167 /* check.c */; };
+		A782FE6AA11E825A07782888 /* libicuio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF60EFCD69B4683F15E5B6B9 /* libicuio.a */; };
 		A8BF1E5693E8795F70092CA8 /* grammar_full.c in Sources */ = {isa = PBXBuildFile; fileRef = 0E2ED9FEDF05B98C51F7B4B6 /* grammar_full.c */; };
 		A92C02F45CBD30C8BAB7564A /* libScript-host.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 396EC6A2AC50B04DE1E9D1D1 /* libScript-host.a */; };
+		A9D291939149B8D516262085 /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FBF153999B7D0852E2A73A2 /* libffi.a */; };
 		AA0F5C124B4723F80D00913E /* dummy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EB536A6D0DF8976A795E6FA /* dummy.cpp */; };
 		AC2B627BAF205CBCC69916C6 /* libgrts-host.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AADA5E18C8FB3AC9037CF5E /* libgrts-host.a */; };
-		B0FDDE4FB0809F7FF95D2F36 /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FBF153999B7D0852E2A73A2 /* libffi.a */; };
-		B1AF0C4E097D31B786584597 /* libicutu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8C43140E8264D203FFB4773 /* libicutu.a */; };
+		ADCE331238BA59E8A6DC6F52 /* libicuuc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46511A5382C77586C7389B19 /* libicuuc.a */; };
+		B1179EE81D0E3517FA8EBF88 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B996683ECA2B9299A386F96C /* Foundation.framework */; };
+		B365798CD5EDE07A6FC184F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B996683ECA2B9299A386F96C /* Foundation.framework */; };
 		B7158D4C42DFFED2CECB29CF /* check.c in Sources */ = {isa = PBXBuildFile; fileRef = CFB93A233D970DCD43C30C28 /* check.c */; };
 		B721E4216AC40377415C9D15 /* types.c in Sources */ = {isa = PBXBuildFile; fileRef = DC56F3AC93A1DD918122F560 /* types.c */; };
 		B87D21C1A3DB97AFA7B1B645 /* dummy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EB536A6D0DF8976A795E6FA /* dummy.cpp */; };
 		BA4CA2C1E81F340A482A30C4 /* liblc-compile-lib-host.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A866BA09BE302E858AF6BA2 /* liblc-compile-lib-host.a */; };
+		BA4F46AA8A1AC886CF72CA97 /* libicui18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBCEDF56FFC3FDAAA7ADFA51 /* libicui18n.a */; };
 		BE2E8F26B01F122BCBEF0A56 /* dummy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EB536A6D0DF8976A795E6FA /* dummy.cpp */; };
 		BE7587090FB03C5851630C49 /* syntax.c in Sources */ = {isa = PBXBuildFile; fileRef = 4F42346E5F8C22E6B6F18ED5 /* syntax.c */; };
 		BF72342F3580DA88E015259E /* libScript-host.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 396EC6A2AC50B04DE1E9D1D1 /* libScript-host.a */; };
 		BFD62E91EA65F568B9B39070 /* syntax.c in Sources */ = {isa = PBXBuildFile; fileRef = 4F42346E5F8C22E6B6F18ED5 /* syntax.c */; };
 		C1505B0C275849D206C268AC /* gen.l.c in Sources */ = {isa = PBXBuildFile; fileRef = CC4C6E7E0240394FFC503E53 /* gen.l.c */; };
 		C2C2EA0431E775B7979E60D3 /* libFoundation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C1FF31B77A7B33F962C3624 /* libFoundation.a */; };
-		C3ACE5042C43DD419E0CCBA5 /* libicutu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8C43140E8264D203FFB4773 /* libicutu.a */; };
 		C3D2B55871F50E6054DC0F8E /* dummy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EB536A6D0DF8976A795E6FA /* dummy.cpp */; };
 		C5146C066AF602C9B3E2B29D /* libgrts.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 649D3D8A7F31E5C11C94756B /* libgrts.a */; };
-		C7384945DDA61CE6421D8BE0 /* libz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75F505FEA224D78A9159968A /* libz.a */; };
 		C73AA24F4E7DC27DAE9BBEA2 /* check.c in Sources */ = {isa = PBXBuildFile; fileRef = 97639FD92C3D9D370EA51087 /* check.c */; };
-		CA001871B57F936EF554CAE9 /* libz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75F505FEA224D78A9159968A /* libz.a */; };
 		CDE4E5B968D78AC3399E908A /* libScript.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0599D47673B804F1040612B7 /* libScript.a */; };
-		CF336F6CE18237709946462B /* libicudata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1593D3D465E5AC4AE1AACE16 /* libicudata.a */; };
+		CED533388AA3687196E51790 /* libz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75F505FEA224D78A9159968A /* libz.a */; };
 		CF3C20E11DA354A4C9961303 /* types.c in Sources */ = {isa = PBXBuildFile; fileRef = 8DE1374FAB325C4FB56EC7E4 /* types.c */; };
 		D172D3DEF649F897D7E0B22F /* syntax.c in Sources */ = {isa = PBXBuildFile; fileRef = 11B31D9814AE0A647ACB13DE /* syntax.c */; };
-		D242F0A72BAC589A5ECEE3F9 /* libicuio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF60EFCD69B4683F15E5B6B9 /* libicuio.a */; };
 		D9A7D6F65AA95B7BD68852AD /* dummy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EB536A6D0DF8976A795E6FA /* dummy.cpp */; };
-		DB7905EA7027404D1EEBEBCF /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D07C9C382E3D3162A53C9A3 /* libffi.a */; };
-		DC8C04AE67855038F18D8345 /* libicui18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBCEDF56FFC3FDAAA7ADFA51 /* libicui18n.a */; };
-		E63D0A7BC26F3C57FA5AB9A2 /* libicudata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1593D3D465E5AC4AE1AACE16 /* libicudata.a */; };
+		DAC804E13E99E0A2156983F4 /* libz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75F505FEA224D78A9159968A /* libz.a */; };
+		DC6658FCD855D7BBDB95D689 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B996683ECA2B9299A386F96C /* Foundation.framework */; };
+		DD2E5365A4A48805087ED1D4 /* libicuio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF60EFCD69B4683F15E5B6B9 /* libicuio.a */; };
+		E3B41172D4C4FC191B0F3D8B /* libicutu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8C43140E8264D203FFB4773 /* libicutu.a */; };
+		E49FA9EF693850B48CC1302B /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FBF153999B7D0852E2A73A2 /* libffi.a */; };
 		E80E5A4871958EA17F43A3B3 /* grammar_full.c in Sources */ = {isa = PBXBuildFile; fileRef = 66AAB1CCED07AF2386C940BF /* grammar_full.c */; };
-		EA685D6CF3DF7B7C63F88A81 /* libicutu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8C43140E8264D203FFB4773 /* libicutu.a */; };
+		EC4675FF4BC1B5F153C10952 /* libz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75F505FEA224D78A9159968A /* libz.a */; };
 		ED8B8D39AC5ACAE78995FC91 /* bind.c in Sources */ = {isa = PBXBuildFile; fileRef = DD23C49CED1147B658171D01 /* bind.c */; };
-		F06F08147F59BFE579715EBE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B996683ECA2B9299A386F96C /* Foundation.framework */; };
-		F104EC9C5F9ACA2BC46C1DC8 /* libicuio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF60EFCD69B4683F15E5B6B9 /* libicuio.a */; };
 		F6B5694A803176740EE4ADB2 /* liblc-compile-lib-target.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57BFBD1C168F2AFE90858C98 /* liblc-compile-lib-target.a */; };
 		F6F94B9C008DABBB082E6516 /* gen.l.c in Sources */ = {isa = PBXBuildFile; fileRef = 5A7E52462BB194F635E8CFE9 /* gen.l.c */; };
 		F79154915EF0AD33B43D325D /* generate.c in Sources */ = {isa = PBXBuildFile; fileRef = 887A0C419369EF7E7D57FF9F /* generate.c */; };
 		F8393BD7BD211692065788AA /* gen.l.c in Sources */ = {isa = PBXBuildFile; fileRef = 5A7E52462BB194F635E8CFE9 /* gen.l.c */; };
 		F902AF2990780DEF159F0E49 /* libgrts-host.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AADA5E18C8FB3AC9037CF5E /* libgrts-host.a */; };
-		FA524561C9E3C7094038529E /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FBF153999B7D0852E2A73A2 /* libffi.a */; };
-		FA55A610CE6968A089615F10 /* libicutu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8C43140E8264D203FFB4773 /* libicutu.a */; };
+		FC16B1C8D77E8271A87051BF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B996683ECA2B9299A386F96C /* Foundation.framework */; };
 		FDA82E9AB8C304FB7BF5D34C /* bind.c in Sources */ = {isa = PBXBuildFile; fileRef = 7442BC35356517D61EDC270C /* bind.c */; };
 		FDBFD2C6351D43935846B636 /* gen.l.c in Sources */ = {isa = PBXBuildFile; fileRef = 53D479681F04325A8D57B7CF /* gen.l.c */; };
-		FFC31ADC2687AAC1F52D18AF /* libicuuc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46511A5382C77586C7389B19 /* libicuuc.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2249,7 +2246,6 @@
 		18BEA0879E649A75D7D0A79A /* type.lcb */ = {isa = PBXFileReference; lastKnownFileType = text; path = type.lcb; sourceTree = "<group>"; };
 		19F200ED9EA0896DE3111473 /* engine-sources.gypi */ = {isa = PBXFileReference; explicitFileType = sourcecode; name = "engine-sources.gypi"; path = "../../../engine/engine-sources.gypi"; sourceTree = "<group>"; };
 		1A9F539D8D8E53E5EF1BF8C7 /* version */ = {isa = PBXFileReference; lastKnownFileType = text; path = version; sourceTree = "<group>"; };
-		1D07C9C382E3D3162A53C9A3 /* libffi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libffi.a; path = /opt/homebrew/Cellar/libffi/3.5.2/lib/libffi.a; sourceTree = "<group>"; };
 		243DEA247D90DF3FAC6A318E /* check.g */ = {isa = PBXFileReference; lastKnownFileType = text; path = check.g; sourceTree = "<group>"; };
 		261C31AEA54DECD3277E85B3 /* target_os.gypi */ = {isa = PBXFileReference; explicitFileType = sourcecode; name = target_os.gypi; path = ../../../config/target_os.gypi; sourceTree = "<group>"; };
 		280B37FA5853DF6231D9C4F9 /* gen.tkn */ = {isa = PBXFileReference; lastKnownFileType = text; path = gen.tkn; sourceTree = "<group>"; };
@@ -2381,16 +2377,17 @@
 				3897F13D511441824AECA809 /* libcompile-target.a in Frameworks */,
 				F6B5694A803176740EE4ADB2 /* liblc-compile-lib-target.a in Frameworks */,
 				C2C2EA0431E775B7979E60D3 /* libFoundation.a in Frameworks */,
+				445D895552389A529E2BB346 /* libffi.a in Frameworks */,
 				1A0F0E3655BBEB06CE5479AE /* libScript.a in Frameworks */,
-				240ACB468D5BF97E11EC0E27 /* CoreFoundation.framework in Frameworks */,
-				287B6AECD543E4409E6EDD22 /* Foundation.framework in Frameworks */,
-				13556611F191EDA91453ACC8 /* libicui18n.a in Frameworks */,
-				D242F0A72BAC589A5ECEE3F9 /* libicuio.a in Frameworks */,
-				FA55A610CE6968A089615F10 /* libicutu.a in Frameworks */,
-				18710421A1E738974200DFDD /* libicuuc.a in Frameworks */,
-				4802680E8D58EFA416A3F35A /* libicudata.a in Frameworks */,
-				CA001871B57F936EF554CAE9 /* libz.a in Frameworks */,
-				37BD10F43FB03B4E9711D38E /* libffi.a in Frameworks */,
+				90F8AC9F5971FEEACBEDB85A /* CoreFoundation.framework in Frameworks */,
+				04E463DB5C9D878360843F69 /* Foundation.framework in Frameworks */,
+				7E18ED01CC8C74E55B59CF39 /* libicui18n.a in Frameworks */,
+				1583822E9A9FF54FDEC2F326 /* libicuio.a in Frameworks */,
+				8E74C28FA8BC7F78672C44E3 /* libicutu.a in Frameworks */,
+				ADCE331238BA59E8A6DC6F52 /* libicuuc.a in Frameworks */,
+				79AD3E30A8922CB270E8462E /* libicudata.a in Frameworks */,
+				DAC804E13E99E0A2156983F4 /* libz.a in Frameworks */,
+				E49FA9EF693850B48CC1302B /* libffi.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2402,16 +2399,17 @@
 				07AB542E4C8747D382D75816 /* libcompile-target.a in Frameworks */,
 				5FFE3E7D80144E36D9D33CF9 /* liblc-compile-lib-target.a in Frameworks */,
 				8C4399C4A9BCE13BF61D4D04 /* libFoundation.a in Frameworks */,
-				3E0CFD1DA45FE10F32F50FC5 /* libffi.a in Frameworks */,
+				9F237506800C9232CBA33C69 /* libffi.a in Frameworks */,
 				CDE4E5B968D78AC3399E908A /* libScript.a in Frameworks */,
-				1DEE342852DD42C4195ED218 /* CoreFoundation.framework in Frameworks */,
-				8399AEFF2B6F974F34DF377D /* Foundation.framework in Frameworks */,
-				6EDA242840177A390A321312 /* libicui18n.a in Frameworks */,
-				1CBA9E6D121C08BA290AE7E3 /* libicuio.a in Frameworks */,
-				51FD94C770B14351CD3CE58B /* libicutu.a in Frameworks */,
-				5494322EF4608088885AD205 /* libicuuc.a in Frameworks */,
-				16B0F9B4D9ACF3949AA02A77 /* libicudata.a in Frameworks */,
-				147E4F0E3BADECD3C47A8815 /* libz.a in Frameworks */,
+				7FDF6C71E8BECA9B8C375178 /* CoreFoundation.framework in Frameworks */,
+				FC16B1C8D77E8271A87051BF /* Foundation.framework in Frameworks */,
+				170A9EFC6526ABDD75B6914F /* libicui18n.a in Frameworks */,
+				A782FE6AA11E825A07782888 /* libicuio.a in Frameworks */,
+				2AEB2786DDB7DEB69425BAE5 /* libicutu.a in Frameworks */,
+				3FA5FA12637D4BD52CC39B9E /* libicuuc.a in Frameworks */,
+				5F86ADA835DD9070AA2107CC /* libicudata.a in Frameworks */,
+				9915DB4643E41414DEDD4CC2 /* libz.a in Frameworks */,
+				2FAF416B21EAEA723513BAEC /* libffi.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2425,15 +2423,15 @@
 				20DD7113E9A3FDE84550DD77 /* libFoundation-host.a in Frameworks */,
 				50B655D4BB95EF142CF2C390 /* libffi-host.a in Frameworks */,
 				95ACFAD90B8F3CA4FF9C1D04 /* libScript-host.a in Frameworks */,
-				04D59CC6BBCE1D7165F5B07D /* CoreFoundation.framework in Frameworks */,
-				96BF1893E3B708EA91A0C7FD /* Foundation.framework in Frameworks */,
-				DC8C04AE67855038F18D8345 /* libicui18n.a in Frameworks */,
-				05A892C0FA5F1E2BE650D26F /* libicuio.a in Frameworks */,
-				0720EE55B3D50ADC4B5E70D1 /* libicutu.a in Frameworks */,
-				31799D72C14399DB542B08EC /* libicuuc.a in Frameworks */,
-				41E9832923E05739E00466D2 /* libicudata.a in Frameworks */,
-				C7384945DDA61CE6421D8BE0 /* libz.a in Frameworks */,
-				24DD34D099F95B28E19BC3BD /* libffi.a in Frameworks */,
+				6E12A1B251FAB9D6A9D51DEE /* CoreFoundation.framework in Frameworks */,
+				B1179EE81D0E3517FA8EBF88 /* Foundation.framework in Frameworks */,
+				BA4F46AA8A1AC886CF72CA97 /* libicui18n.a in Frameworks */,
+				9D5E40CBD025DA7BEC9B80B8 /* libicuio.a in Frameworks */,
+				208B9AFB0F99076A8EEDA608 /* libicutu.a in Frameworks */,
+				08AF05C4534EEA190DF7665E /* libicuuc.a in Frameworks */,
+				853C63E7591719EA66841CE4 /* libicudata.a in Frameworks */,
+				EC4675FF4BC1B5F153C10952 /* libz.a in Frameworks */,
+				935E0FFCA8B6A559819AFB1C /* libffi.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2447,15 +2445,15 @@
 				060C70A64F1F2C1804B9B9D2 /* libFoundation-host.a in Frameworks */,
 				6420B0E5A0BF069FAF5AD4A5 /* libffi-host.a in Frameworks */,
 				BF72342F3580DA88E015259E /* libScript-host.a in Frameworks */,
-				7734086EA2024A4952D8F758 /* CoreFoundation.framework in Frameworks */,
-				81E189B4E3B78E9B9651D7D6 /* Foundation.framework in Frameworks */,
-				3D9E16D96035BE8BB1B8014F /* libicui18n.a in Frameworks */,
-				7AF244E0E4AA400F73CE9F90 /* libicuio.a in Frameworks */,
-				B1AF0C4E097D31B786584597 /* libicutu.a in Frameworks */,
-				A1E0EA344CD492504D29BDB2 /* libicuuc.a in Frameworks */,
-				2877083DE4EC64269DEE3164 /* libicudata.a in Frameworks */,
-				553378879D1A462CAECCB82E /* libz.a in Frameworks */,
-				B0FDDE4FB0809F7FF95D2F36 /* libffi.a in Frameworks */,
+				90082FA254D2EF5697850855 /* CoreFoundation.framework in Frameworks */,
+				4CE5161722214B8F8D488A95 /* Foundation.framework in Frameworks */,
+				16DAC2CA1C49713175C2E4B8 /* libicui18n.a in Frameworks */,
+				60516941BBAD51A5C5EDE9D1 /* libicuio.a in Frameworks */,
+				8B504912BCE93F15E875CA3D /* libicutu.a in Frameworks */,
+				785D3BD58EF107C2ED29A474 /* libicuuc.a in Frameworks */,
+				9BACFF655A917FA8A85A72BC /* libicudata.a in Frameworks */,
+				354222C8233D9EBECF7E59A1 /* libz.a in Frameworks */,
+				8B3D54962E9C01751C7E9762 /* libffi.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2469,15 +2467,15 @@
 				7FB3CB7FA5DF142F6B45E682 /* libFoundation-host.a in Frameworks */,
 				8718FDCAD4273BE1CD28FC9B /* libffi-host.a in Frameworks */,
 				A92C02F45CBD30C8BAB7564A /* libScript-host.a in Frameworks */,
-				7649F5645B1A81DEBC0B0397 /* CoreFoundation.framework in Frameworks */,
-				4EC5A89C92696879E72F0D34 /* Foundation.framework in Frameworks */,
-				1902AB8ACC5B12CD49285B07 /* libicui18n.a in Frameworks */,
-				F104EC9C5F9ACA2BC46C1DC8 /* libicuio.a in Frameworks */,
-				C3ACE5042C43DD419E0CCBA5 /* libicutu.a in Frameworks */,
-				9D8C92866D6FDAF673DA4D42 /* libicuuc.a in Frameworks */,
-				E63D0A7BC26F3C57FA5AB9A2 /* libicudata.a in Frameworks */,
-				78C64C89584AC2CF69577785 /* libz.a in Frameworks */,
-				881D43A4F1B495901C7380CB /* libffi.a in Frameworks */,
+				9E97CC0AFEE9EE18544E9763 /* CoreFoundation.framework in Frameworks */,
+				B365798CD5EDE07A6FC184F4 /* Foundation.framework in Frameworks */,
+				8AB1372E32C154836EA0BFE6 /* libicui18n.a in Frameworks */,
+				DD2E5365A4A48805087ED1D4 /* libicuio.a in Frameworks */,
+				0DA6914DA0AAF8C0099432AA /* libicutu.a in Frameworks */,
+				1072A0B0BDC09831CADB72C3 /* libicuuc.a in Frameworks */,
+				09B3754DA1813F0629B33AD4 /* libicudata.a in Frameworks */,
+				98BA586621C50271FDE3BA0A /* libz.a in Frameworks */,
+				05DCFECC7BB7255644BF281A /* libffi.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2489,16 +2487,17 @@
 				39E97617209B1A5930D5417D /* libcompile-target.a in Frameworks */,
 				52C0ABA06B07152268B86DF5 /* liblc-compile-lib-target.a in Frameworks */,
 				4FC905AA440BA72F12999F71 /* libFoundation.a in Frameworks */,
+				9EA986ED2F15F9BFBEEFB241 /* libffi.a in Frameworks */,
 				258A46F7AB7A33E5A9CA21B3 /* libScript.a in Frameworks */,
-				903F8994C1FCDFB3EF31F890 /* CoreFoundation.framework in Frameworks */,
-				F06F08147F59BFE579715EBE /* Foundation.framework in Frameworks */,
-				A0D0A31E873BF7F9F182AEA7 /* libicui18n.a in Frameworks */,
-				8EDEEC852888D0ADAFD7A965 /* libicuio.a in Frameworks */,
-				EA685D6CF3DF7B7C63F88A81 /* libicutu.a in Frameworks */,
-				FFC31ADC2687AAC1F52D18AF /* libicuuc.a in Frameworks */,
-				CF336F6CE18237709946462B /* libicudata.a in Frameworks */,
-				82FEAAA7C42452D9E9AFADA4 /* libz.a in Frameworks */,
-				FA524561C9E3C7094038529E /* libffi.a in Frameworks */,
+				1753874FF670E2982230DA01 /* CoreFoundation.framework in Frameworks */,
+				DC6658FCD855D7BBDB95D689 /* Foundation.framework in Frameworks */,
+				8FC8A5DAB80DCB3BBA99D79E /* libicui18n.a in Frameworks */,
+				5C4364A8C5900EE339DF815F /* libicuio.a in Frameworks */,
+				E3B41172D4C4FC191B0F3D8B /* libicutu.a in Frameworks */,
+				028390660491B39239BBF3D8 /* libicuuc.a in Frameworks */,
+				7980948E46FA85A9CD37FE92 /* libicudata.a in Frameworks */,
+				CED533388AA3687196E51790 /* libz.a in Frameworks */,
+				A9D291939149B8D516262085 /* libffi.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2637,23 +2636,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		517DD49763756BEFF50FECD7 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				2EE1419D6892C3FF51D5E95C /* CoreFoundation.framework */,
-				B996683ECA2B9299A386F96C /* Foundation.framework */,
-				4FBF153999B7D0852E2A73A2 /* libffi.a */,
-				1D07C9C382E3D3162A53C9A3 /* libffi.a */,
-				1593D3D465E5AC4AE1AACE16 /* libicudata.a */,
-				EBCEDF56FFC3FDAAA7ADFA51 /* libicui18n.a */,
-				EF60EFCD69B4683F15E5B6B9 /* libicuio.a */,
-				A8C43140E8264D203FFB4773 /* libicutu.a */,
-				46511A5382C77586C7389B19 /* libicuuc.a */,
-				75F505FEA224D78A9159968A /* libz.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		65EC1AFDC96136D9B24C76D0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -2747,7 +2729,7 @@
 				7CBBB22AEA37C177FB81D0E7 /* Source */,
 				1B1380056ECE1CBBAB709DF0 /* Intermediates */,
 				BF5A5AC27DD3830BF59D3CFF /* Projects */,
-				517DD49763756BEFF50FECD7 /* Frameworks */,
+				E9878BD8857DC802D9C6B226 /* Frameworks */,
 				0B5CB8A43871F9658132B7F4 /* Products */,
 				1C9F17CC94FD4293ABCAE096 /* Build */,
 			);
@@ -2849,6 +2831,22 @@
 				50C4E915B4C63ED930E2A64C /* types.c */,
 			);
 			path = stage2;
+			sourceTree = "<group>";
+		};
+		E9878BD8857DC802D9C6B226 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2EE1419D6892C3FF51D5E95C /* CoreFoundation.framework */,
+				B996683ECA2B9299A386F96C /* Foundation.framework */,
+				4FBF153999B7D0852E2A73A2 /* libffi.a */,
+				1593D3D465E5AC4AE1AACE16 /* libicudata.a */,
+				EBCEDF56FFC3FDAAA7ADFA51 /* libicui18n.a */,
+				EF60EFCD69B4683F15E5B6B9 /* libicuio.a */,
+				A8C43140E8264D203FFB4773 /* libicutu.a */,
+				46511A5382C77586C7389B19 /* libicuuc.a */,
+				75F505FEA224D78A9159968A /* libz.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		F8176C45EE280F8E56A66CDE /* modules/lci */ = {
@@ -5659,7 +5657,6 @@
 					../../libcompile/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
-					/opt/homebrew/Cellar/libffi/3.5.2/lib,
 					"$(SDKROOT)/System/Library/Frameworks",
 					../../../prebuilt/lib/mac,
 				);
@@ -5731,7 +5728,6 @@
 					../../libcompile/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
-					/opt/homebrew/Cellar/libffi/3.5.2/lib,
 					"$(SDKROOT)/System/Library/Frameworks",
 					../../../prebuilt/lib/mac,
 				);
@@ -5944,7 +5940,6 @@
 					../../libcompile/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
-					/opt/homebrew/Cellar/libffi/3.5.2/lib,
 					"$(SDKROOT)/System/Library/Frameworks",
 					../../../prebuilt/lib/mac,
 				);
@@ -6139,7 +6134,6 @@
 					../../libcompile/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
-					/opt/homebrew/Cellar/libffi/3.5.2/lib,
 					"$(SDKROOT)/System/Library/Frameworks",
 					../../../prebuilt/lib/mac,
 				);
@@ -6326,7 +6320,6 @@
 					../../libcompile/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
-					/opt/homebrew/Cellar/libffi/3.5.2/lib,
 					"$(SDKROOT)/System/Library/Frameworks",
 					../../../prebuilt/lib/mac,
 				);
@@ -6456,7 +6449,6 @@
 					../../libcompile/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
-					/opt/homebrew/Cellar/libffi/3.5.2/lib,
 					"$(SDKROOT)/System/Library/Frameworks",
 					../../../prebuilt/lib/mac,
 				);
@@ -6527,7 +6519,6 @@
 					../../libcompile/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
-					/opt/homebrew/Cellar/libffi/3.5.2/lib,
 					"$(SDKROOT)/System/Library/Frameworks",
 					../../../prebuilt/lib/mac,
 				);
@@ -6657,7 +6648,6 @@
 					../../libcompile/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
-					/opt/homebrew/Cellar/libffi/3.5.2/lib,
 					"$(SDKROOT)/System/Library/Frameworks",
 					../../../prebuilt/lib/mac,
 				);
@@ -6754,7 +6744,6 @@
 					../../libcompile/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
-					/opt/homebrew/Cellar/libffi/3.5.2/lib,
 					"$(SDKROOT)/System/Library/Frameworks",
 					../../../prebuilt/lib/mac,
 				);

@@ -86,13 +86,6 @@
 			remoteGlobalIDString = 7236F38A185AADDD53C3DE13;
 			remoteInfo = "external-revzip";
 		};
-		1C3AAF5E3C152EFA7879DAF4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5F2AF10051ED786F313D001D /* engine.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 17B4A71571D0DFF589ECC199;
-			remoteInfo = standalone;
-		};
 		1C6B5CFD2AE5B796C66B1CA2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5639D219F8700C49E7040060 /* revzip.xcodeproj */;
@@ -148,13 +141,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 801C634E2786B854D171C9B2;
 			remoteInfo = "lcb-extensions";
-		};
-		61B7048E5A92EACB1F5AACDB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5F2AF10051ED786F313D001D /* engine.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 62DB8B91FBA6B16BF9E37E83;
-			remoteInfo = development;
 		};
 		77E18A671FA579DC3127625F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -226,6 +212,13 @@
 			remoteGlobalIDString = ADFE0A0C9A417EB0BC7CB852;
 			remoteInfo = server;
 		};
+		A4F7288BADBE5337B06A5D95 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5F2AF10051ED786F313D001D /* engine.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6C5399A9C32242083EA6EFF9;
+			remoteInfo = standalone;
+		};
 		B4349B562F6D081A737A5C74 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BD69D82C1119E05703E98E74 /* Project object */;
@@ -260,6 +253,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 6B30A47D43D6DE589C7A7D9C;
 			remoteInfo = "cross-platform-extension-dependencies";
+		};
+		E8F3D15649CAE104647DB46B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5F2AF10051ED786F313D001D /* engine.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4B5DF9A0F127CA174F41714B;
+			remoteInfo = development;
 		};
 		ED4DF20A6DB2F9271F47E7CE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -481,6 +481,18 @@
 				EBC76BE81EA572A18D0C0830 /* macstatusmenu.lcb */,
 			);
 			path = macstatusmenu;
+			sourceTree = "<group>";
+		};
+		3BA6799C73BA98C5AAB6E4C6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				34BA445F7749044493BCEE2E /* server-community */,
+				86A442137C3CFC0F19CD7589 /* server-community-host */,
+				3749D801F88867108E3B29C0 /* HyperXTalk-Standalone.app */,
+				AC1EBAA327542CF49DACAAE0 /* Installer.app */,
+				657DE9B9557075C3D7315F7E /* HyperXTalk.app */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		3F56DC6339B4FBC04883B9B9 /* widget-utils */ = {
@@ -877,18 +889,6 @@
 			path = messageauthentication;
 			sourceTree = "<group>";
 		};
-		D3012E4ADCA2C2DBF476C6DC /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				34BA445F7749044493BCEE2E /* server-community */,
-				86A442137C3CFC0F19CD7589 /* server-community-host */,
-				9A2E91D7C49C4BB09CA651D5 /* HyperXTalk-Standalone.app */,
-				AC1EBAA327542CF49DACAAE0 /* Installer.app */,
-				AC8F3107B1FAA53F576C4F6F /* HyperXTalk.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		D3889045BA3450373BCB1342 /* androidbutton */ = {
 			isa = PBXGroup;
 			children = (
@@ -1052,7 +1052,7 @@
 			projectDirPath = ../../../extensions;
 			projectReferences = (
 				{
-					ProductGroup = D3012E4ADCA2C2DBF476C6DC /* Products */;
+					ProductGroup = 3BA6799C73BA98C5AAB6E4C6 /* Products */;
 					ProjectRef = 5F2AF10051ED786F313D001D /* engine.xcodeproj */;
 				},
 				{
@@ -1120,6 +1120,20 @@
 			remoteRef = FE812397994287E58FE2967B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		3749D801F88867108E3B29C0 /* HyperXTalk-Standalone.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "HyperXTalk-Standalone.app";
+			remoteRef = A4F7288BADBE5337B06A5D95 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		657DE9B9557075C3D7315F7E /* HyperXTalk.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = HyperXTalk.app;
+			remoteRef = E8F3D15649CAE104647DB46B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		708FEB028C573EC64B93D172 /* server-revzip.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
@@ -1155,25 +1169,11 @@
 			remoteRef = 8E6F6F4E2F3424C89EA2CC64 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A2E91D7C49C4BB09CA651D5 /* HyperXTalk-Standalone.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = "HyperXTalk-Standalone.app";
-			remoteRef = 1C3AAF5E3C152EFA7879DAF4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		AC1EBAA327542CF49DACAAE0 /* Installer.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
 			path = Installer.app;
 			remoteRef = 9DA882EC517AD472768C89FE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		AC8F3107B1FAA53F576C4F6F /* HyperXTalk.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = "HyperXTalk.app";
-			remoteRef = 61B7048E5A92EACB1F5AACDB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

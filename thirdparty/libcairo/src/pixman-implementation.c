@@ -395,7 +395,10 @@ _pixman_choose_implementation (void)
     if (!_pixman_disabled ("fast"))
 	imp = _pixman_implementation_create_fast_path (imp);
 
+#if defined(__i386__) || defined(__x86_64__) || defined(__amd64__) || \
+    defined(_M_IX86) || defined(_M_AMD64)
     imp = _pixman_x86_get_implementations (imp);
+#endif
     imp = _pixman_arm_get_implementations (imp);
     imp = _pixman_ppc_get_implementations (imp);
     imp = _pixman_mips_get_implementations (imp);

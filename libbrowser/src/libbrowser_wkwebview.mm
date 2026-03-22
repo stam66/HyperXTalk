@@ -28,6 +28,36 @@
 #define LIBBROWSER_DUMMY_URL "http://libbrowser_dummy_url/"
 
 ////////////////////////////////////////////////////////////////////////////////
+// Platform abstractions for macOS vs iOS view types
+
+#if defined(TARGET_SUBPLATFORM_IPHONE)
+#  define MCPlatformView                   UIView
+#  define MCPlatformViewAutoresizingFlexibleWidth  UIViewAutoresizingFlexibleWidth
+#  define MCPlatformViewAutoresizingFlexibleHeight UIViewAutoresizingFlexibleHeight
+#  define MCPlatformViewMakeRect(x,y,w,h)  CGRectMake((x),(y),(w),(h))
+#else
+#  import <AppKit/AppKit.h>
+#  define MCPlatformView                   NSView
+#  define MCPlatformViewAutoresizingFlexibleWidth  NSViewWidthSizable
+#  define MCPlatformViewAutoresizingFlexibleHeight NSViewHeightSizable
+#  define MCPlatformViewMakeRect(x,y,w,h)  NSMakeRect((x),(y),(w),(h))
+#endif
+
+////////////////////////////////////////////////////////////////////////////////
+// Shared WKProcessPool — keeps the WebContent process alive across all
+// WKWebView instances so that Init() never has to wait for a cold process
+// launch on the main thread.
+
+static WKProcessPool *s_shared_process_pool = nil;
+
+static WKProcessPool *MCWKWebViewGetSharedProcessPool(void)
+{
+    if (s_shared_process_pool == nil)
+        s_shared_process_pool = [[WKProcessPool alloc] init];
+    return s_shared_process_pool;
+}
+
+////////////////////////////////////////////////////////////////////////////////
 
 typedef void (^MCWKNavigationDecisionHandler)(WKNavigationActionPolicy);
 @class com_livecode_libbrowser_MCWKWebViewNavigationDelegate;
@@ -145,11 +175,12 @@ inline void MCBrowserRunBlockOnMainFiber(void (^p_block)(void))
 
 ////////////////////////////////////////////////////////////////////////////////
 
+#if defined(TARGET_SUBPLATFORM_IPHONE)
 WKDataDetectorTypes MCBrowserDataDetectorTypeToWKDataDetectorTypes(MCBrowserDataDetectorType p_type)
 {
 	WKDataDetectorTypes t_types;
 	t_types = WKDataDetectorTypeNone;
-	
+
 	if (p_type & kMCBrowserDataDetectorTypePhoneNumber)
 		t_types |= WKDataDetectorTypePhoneNumber;
 	if (p_type & kMCBrowserDataDetectorTypeMapAddress)
@@ -164,7 +195,7 @@ WKDataDetectorTypes MCBrowserDataDetectorTypeToWKDataDetectorTypes(MCBrowserData
 		t_types |= WKDataDetectorTypeFlightNumber;
 	if (p_type & kMCBrowserDataDetectorTypeLookupSuggestion)
 		t_types |= WKDataDetectorTypeLookupSuggestion;
-	
+
 	return t_types;
 }
 
@@ -172,7 +203,7 @@ MCBrowserDataDetectorType MCBrowserDataDetectorTypeFromWKDataDetectorTypes(WKDat
 {
 	int32_t t_types;
 	t_types = kMCBrowserDataDetectorTypeNone;
-	
+
 	if (p_types & WKDataDetectorTypePhoneNumber)
 		t_types |= kMCBrowserDataDetectorTypePhoneNumber;
 	if (p_types & WKDataDetectorTypeAddress)
@@ -188,6 +219,7 @@ MCBrowserDataDetectorType MCBrowserDataDetectorTypeFromWKDataDetectorTypes(WKDat
 
 	return (MCBrowserDataDetectorType)t_types;
 }
+#endif /* TARGET_SUBPLATFORM_IPHONE */
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -258,105 +290,121 @@ bool MCWKWebViewBrowser::GetUrl(char *&r_url)
 
 bool MCWKWebViewBrowser::SetVerticalScrollbarEnabled(bool p_value)
 {
+#if defined(TARGET_SUBPLATFORM_IPHONE)
 	WKWebView *t_view;
 	if (!GetWebView(t_view))
 		return false;
-	
+
 	MCBrowserRunBlockOnMainFiber(^{
 		t_view.scrollView.showsVerticalScrollIndicator = p_value;
 	});
-	
+#endif
 	return true;
 }
 
 bool MCWKWebViewBrowser::GetVerticalScrollbarEnabled(bool& r_value)
 {
+#if defined(TARGET_SUBPLATFORM_IPHONE)
 	WKWebView *t_view;
 	if (!GetWebView(t_view))
 		return false;
-	
+
 	MCBrowserRunBlockOnMainFiber(^{
 		r_value = t_view.scrollView.showsVerticalScrollIndicator;
 	});
-	
+#else
+	r_value = true;
+#endif
 	return true;
 }
 
 bool MCWKWebViewBrowser::SetHorizontalScrollbarEnabled(bool p_value)
 {
+#if defined(TARGET_SUBPLATFORM_IPHONE)
 	WKWebView *t_view;
 	if (!GetWebView(t_view))
 		return false;
-	
+
 	MCBrowserRunBlockOnMainFiber(^{
 		t_view.scrollView.showsHorizontalScrollIndicator = p_value;
 	});
-	
+#endif
 	return true;
 }
 
 bool MCWKWebViewBrowser::GetHorizontalScrollbarEnabled(bool& r_value)
 {
+#if defined(TARGET_SUBPLATFORM_IPHONE)
 	WKWebView *t_view;
 	if (!GetWebView(t_view))
 		return false;
-	
+
 	MCBrowserRunBlockOnMainFiber(^{
 		r_value = t_view.scrollView.showsHorizontalScrollIndicator;
 	});
-	
+#else
+	r_value = true;
+#endif
 	return true;
 }
 
 bool MCWKWebViewBrowser::SetScrollEnabled(bool p_value)
 {
+#if defined(TARGET_SUBPLATFORM_IPHONE)
 	WKWebView *t_view;
 	if (!GetWebView(t_view))
 		return false;
-	
+
 	MCBrowserRunBlockOnMainFiber(^{
 		t_view.scrollView.scrollEnabled = p_value;
 	});
-	
+#endif
 	return true;
 }
 
 bool MCWKWebViewBrowser::GetScrollEnabled(bool& r_value)
 {
+#if defined(TARGET_SUBPLATFORM_IPHONE)
 	WKWebView *t_view;
 	if (!GetWebView(t_view))
 		return false;
-	
+
 	MCBrowserRunBlockOnMainFiber(^{
 		r_value = t_view.scrollView.scrollEnabled;
 	});
-	
+#else
+	r_value = true;
+#endif
 	return true;
 }
 
 bool MCWKWebViewBrowser::SetScrollCanBounce(bool p_value)
 {
+#if defined(TARGET_SUBPLATFORM_IPHONE)
 	WKWebView *t_view;
 	if (!GetWebView(t_view))
 		return false;
-	
+
 	MCBrowserRunBlockOnMainFiber(^{
 		t_view.scrollView.bounces = p_value;
 	});
-	
+#endif
 	return true;
 }
 
 bool MCWKWebViewBrowser::GetScrollCanBounce(bool& r_value)
 {
+#if defined(TARGET_SUBPLATFORM_IPHONE)
 	WKWebView *t_view;
 	if (!GetWebView(t_view))
 		return false;
-	
+
 	MCBrowserRunBlockOnMainFiber(^{
 		r_value = t_view.scrollView.bounces;
 	});
-	
+#else
+	r_value = false;
+#endif
 	return true;
 }
 
@@ -603,6 +651,7 @@ bool MCWKWebViewBrowser::GetCanGoBack(bool &r_value)
 
 bool MCWKWebViewBrowser::GetAllowUserInteraction(bool &r_value)
 {
+#if defined(TARGET_SUBPLATFORM_IPHONE)
 	WKWebView *t_view;
 	if (!GetWebView(t_view))
 		return false;
@@ -610,12 +659,15 @@ bool MCWKWebViewBrowser::GetAllowUserInteraction(bool &r_value)
 	MCBrowserRunBlockOnMainFiber(^{
 		r_value = [t_view isUserInteractionEnabled] == YES;
 	});
-
+#else
+	r_value = true;
+#endif
 	return true;
 }
 
 bool MCWKWebViewBrowser::SetAllowUserInteraction(bool p_value)
 {
+#if defined(TARGET_SUBPLATFORM_IPHONE)
 	WKWebView *t_view;
 	if (!GetWebView(t_view))
 		return false;
@@ -623,7 +675,7 @@ bool MCWKWebViewBrowser::SetAllowUserInteraction(bool p_value)
 	MCBrowserRunBlockOnMainFiber(^{
 		t_view.userInteractionEnabled = p_value;
 	});
-
+#endif
 	return true;
 }
 
@@ -650,6 +702,7 @@ bool MCWKWebViewBrowser::SetDelayRequests(bool p_value)
 
 ////////////////////////////////////////////////////////////////////////////////
 
+#if defined(TARGET_SUBPLATFORM_IPHONE)
 bool MCWKWebViewBrowser::GetDataDetectorTypes(int32_t &r_types)
 {
 	r_types = MCBrowserDataDetectorTypeFromWKDataDetectorTypes(m_configuration.dataDetectorTypes);
@@ -660,16 +713,29 @@ bool MCWKWebViewBrowser::SetDataDetectorTypes(int32_t p_types)
 {
 	WKDataDetectorTypes t_types;
 	t_types = MCBrowserDataDetectorTypeToWKDataDetectorTypes((MCBrowserDataDetectorType)p_types);
-	
+
 	if (t_types == m_configuration.dataDetectorTypes)
 		return true;
-	
+
 	m_configuration.dataDetectorTypes = t_types;
 	return Reconfigure();
 }
+#else
+bool MCWKWebViewBrowser::GetDataDetectorTypes(int32_t &r_types)
+{
+	r_types = kMCBrowserDataDetectorTypeNone;
+	return true;
+}
+
+bool MCWKWebViewBrowser::SetDataDetectorTypes(int32_t p_types)
+{
+	return true;
+}
+#endif /* TARGET_SUBPLATFORM_IPHONE */
 
 ////////////////////////////////////////////////////////////////////////////////
 
+#if defined(TARGET_SUBPLATFORM_IPHONE)
 bool MCWKWebViewBrowser::GetAllowsInlineMediaPlayback(bool &r_value)
 {
 	r_value = m_configuration.allowsInlineMediaPlayback;
@@ -680,13 +746,27 @@ bool MCWKWebViewBrowser::SetAllowsInlineMediaPlayback(bool p_value)
 {
 	if (p_value == m_configuration.allowsInlineMediaPlayback)
 		return true;
-	
+
 	m_configuration.allowsInlineMediaPlayback = p_value;
 	return Reconfigure();
 }
+#else
+/* macOS: media always plays inline — property does not exist on macOS SDK. */
+bool MCWKWebViewBrowser::GetAllowsInlineMediaPlayback(bool &r_value)
+{
+	r_value = true;
+	return true;
+}
+
+bool MCWKWebViewBrowser::SetAllowsInlineMediaPlayback(bool p_value)
+{
+	return true;
+}
+#endif /* TARGET_SUBPLATFORM_IPHONE */
 
 ////////////////////////////////////////////////////////////////////////////////
 
+#if defined(TARGET_SUBPLATFORM_IPHONE)
 bool MCWKWebViewBrowser::GetMediaPlaybackRequiresUserAction(bool &r_value)
 {
 	r_value = m_configuration.mediaPlaybackRequiresUserAction;
@@ -697,10 +777,24 @@ bool MCWKWebViewBrowser::SetMediaPlaybackRequiresUserAction(bool p_value)
 {
 	if (p_value == m_configuration.mediaPlaybackRequiresUserAction)
 		return true;
-	
+
 	m_configuration.mediaPlaybackRequiresUserAction = p_value;
 	return Reconfigure();
 }
+#else
+/* macOS: mediaPlaybackRequiresUserAction does not exist; default is no
+ * user action required so reads return false and writes are no-ops. */
+bool MCWKWebViewBrowser::GetMediaPlaybackRequiresUserAction(bool &r_value)
+{
+	r_value = false;
+	return true;
+}
+
+bool MCWKWebViewBrowser::SetMediaPlaybackRequiresUserAction(bool p_value)
+{
+	return true;
+}
+#endif /* TARGET_SUBPLATFORM_IPHONE */
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -888,10 +982,10 @@ bool MCWKWebViewBrowser::GetIntegerProperty(MCBrowserProperty p_property, int32_
 
 bool MCWKWebViewBrowser::GetRect(MCBrowserRect &r_rect)
 {
-	UIView *t_view;
+	MCPlatformView *t_view;
 	if (!GetContainerView(t_view))
 		return false;
-	
+
 	MCBrowserRunBlockOnMainFiber(^{
 		CGRect t_frame = [t_view frame];
 		r_rect.left = t_frame.origin.x;
@@ -899,19 +993,19 @@ bool MCWKWebViewBrowser::GetRect(MCBrowserRect &r_rect)
 		r_rect.right = t_frame.origin.x + t_frame.size.width;
 		r_rect.bottom = t_frame.origin.y + t_frame.size.height;
 	});
-	
+
 	return true;
 }
 
 bool MCWKWebViewBrowser::SetRect(const MCBrowserRect &p_rect)
 {
-	UIView *t_view;
+	MCPlatformView *t_view;
 	if (!GetContainerView(t_view))
 		return false;
-	
+
 	CGRect t_rect;
 	t_rect = CGRectMake(p_rect.left, p_rect.top, p_rect.right - p_rect.left, p_rect.bottom - p_rect.top);
-	
+
 	MCBrowserRunBlockOnMainFiber(^{
 		[t_view setFrame:t_rect];
 	});
@@ -1093,21 +1187,21 @@ bool MCWKWebViewBrowser::GetWebView(WKWebView *&r_view)
 	return true;
 }
 
-bool MCWKWebViewBrowser::GetContainerView(UIView *&r_view)
+bool MCWKWebViewBrowser::GetContainerView(MCPlatformView *&r_view)
 {
 	if (m_container_view == nil)
 		return false;
-	
+
 	r_view = m_container_view;
 	return true;
 }
 
 void *MCWKWebViewBrowser::GetNativeLayer()
 {
-	UIView *t_view;
+	MCPlatformView *t_view;
 	if (!GetContainerView(t_view))
 		return nil;
-	
+
 	return t_view;
 }
 
@@ -1119,15 +1213,15 @@ bool MCWKWebViewBrowser::Init(void)
 	t_success = true;
 	
 	MCBrowserRunBlockOnMainFiber(^{
-		UIView *t_container_view;
+		MCPlatformView *t_container_view;
 		t_container_view = nil;
-		
+
 		if (t_success)
 		{
-			t_container_view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+			t_container_view = [[MCPlatformView alloc] initWithFrame:MCPlatformViewMakeRect(0, 0, 0, 0)];
 			t_success = t_container_view != nil;
 		}
-	
+
 		MCWKWebViewScriptMessageHandler *t_message_handler;
 		t_message_handler = nil;
 		if (t_success)
@@ -1135,7 +1229,7 @@ bool MCWKWebViewBrowser::Init(void)
 			t_message_handler = [[MCWKWebViewScriptMessageHandler alloc] initWithInstance:this];
 			t_success = t_message_handler != nil;
 		}
-		
+
 		com_livecode_libbrowser_MCWKWebViewNavigationDelegate *t_delegate;
 		t_delegate = nil;
 		if (t_success)
@@ -1143,7 +1237,7 @@ bool MCWKWebViewBrowser::Init(void)
 			t_delegate = [[com_livecode_libbrowser_MCWKWebViewNavigationDelegate alloc] initWithInstance:this];
 			t_success = t_delegate != nil;
 		}
-		
+
 		WKUserContentController *t_content_controller;
 		t_content_controller = nil;
 		if (t_success)
@@ -1160,6 +1254,12 @@ bool MCWKWebViewBrowser::Init(void)
 			t_success = t_config != nil;
 		}
 
+		// Share a single WKProcessPool so the WebContent process is reused
+		// across all browser instances and is never launched cold on the main
+		// thread during a mode switch.
+		if (t_success)
+			[t_config setProcessPool:MCWKWebViewGetSharedProcessPool()];
+
 		if (t_success)
 		{
 			[t_content_controller addScriptMessageHandler:t_message_handler name:@"liveCode"];
@@ -1170,15 +1270,15 @@ bool MCWKWebViewBrowser::Init(void)
 		t_view = nil;
 		if (t_success)
 		{
-			t_view = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) configuration:t_config];
+			t_view = [[WKWebView alloc] initWithFrame:MCPlatformViewMakeRect(0, 0, 0, 0) configuration:t_config];
 			t_success = t_view != nil;
 		}
-		
+
 		if (t_success)
 		{
 			[t_view setNavigationDelegate: t_delegate];
 			[t_view setHidden: NO];
-			[t_view setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+			[t_view setAutoresizingMask:MCPlatformViewAutoresizingFlexibleWidth | MCPlatformViewAutoresizingFlexibleHeight];
 
 			[t_container_view setAutoresizesSubviews:YES];
 			[t_container_view addSubview:t_view];
@@ -1221,6 +1321,7 @@ bool MCWKWebViewBrowser::Reconfigure()
 	
 	MCBrowserRunBlockOnMainFiber(^{
 		/* Save webview properties */
+#if defined(TARGET_SUBPLATFORM_IPHONE)
 		bool t_vertical_scrollbar_enabled;
 		bool t_horizontal_scrollbar_enabled;
 		bool t_scroll_enabled;
@@ -1231,10 +1332,11 @@ bool MCWKWebViewBrowser::Reconfigure()
 		t_scroll_enabled = m_view.scrollView.scrollEnabled;
 		t_scroll_can_bounce = m_view.scrollView.bounces;
 		t_allow_user_interaction = m_view.userInteractionEnabled;
-		
+#endif
+
 		NSString *t_useragent;
 		t_useragent = m_view.customUserAgent;
-		
+
 		WKWebView *t_view;
 		t_view = nil;
 		if (t_success)
@@ -1242,30 +1344,32 @@ bool MCWKWebViewBrowser::Reconfigure()
 			t_view = [[WKWebView alloc] initWithFrame:m_container_view.bounds configuration:m_configuration];
 			t_success = t_view != nil;
 		}
-		
+
 		if (t_success)
 		{
 			// release current webview
 			[m_view removeFromSuperview];
 			[m_view release];
 			m_view = nil;
-			
+
 			[t_view setNavigationDelegate: m_delegate];
 			[t_view setHidden: NO];
-			[t_view setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+			[t_view setAutoresizingMask:MCPlatformViewAutoresizingFlexibleWidth | MCPlatformViewAutoresizingFlexibleHeight];
 
 			[m_container_view addSubview:t_view];
-			
+
 			m_view = t_view;
-			
+
 			m_view.customUserAgent = t_useragent;
-			
+
+#if defined(TARGET_SUBPLATFORM_IPHONE)
 			m_view.scrollView.showsVerticalScrollIndicator = t_vertical_scrollbar_enabled;
 			m_view.scrollView.showsHorizontalScrollIndicator = t_horizontal_scrollbar_enabled;
 			m_view.scrollView.scrollEnabled = t_scroll_enabled;
 			m_view.scrollView.bounces = t_scroll_can_bounce;
 			m_view.userInteractionEnabled = t_allow_user_interaction;
-			
+#endif
+
 			if (!MCCStringIsEmpty(m_htmltext))
 				/* UNCHECKED */ LoadHTMLText(m_htmltext, m_url);
 			else if (!MCCStringIsEmpty(m_url))
@@ -1273,7 +1377,7 @@ bool MCWKWebViewBrowser::Reconfigure()
 		}
 		else
 		{
-		 	if (t_view != nil)
+			if (t_view != nil)
 				[t_view release];
 		}
 	});
@@ -1446,7 +1550,16 @@ void MCWKWebViewBrowserNavigationRequest::Cancel()
 	bool t_quiet = false;
 	if (navigationAction.navigationType == WKNavigationTypeOther)
 	{
-		MCAssert(m_pending_request != nil);
+		if (m_pending_request == nil)
+		{
+			// On macOS 26+ / newer WebKit, the WKWebView can fire an initial
+			// WKNavigationTypeOther navigation internally (e.g. the initial
+			// about:blank load) before any libbrowser API call has set a
+			// pending request.  Allow it directly without touching our request
+			// state machine to avoid a spurious abort().
+			decisionHandler(WKNavigationActionPolicyAllow);
+			return;
+		}
 		t_quiet = m_pending_request.quiet;
 	}
 	

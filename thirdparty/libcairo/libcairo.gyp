@@ -511,6 +511,19 @@
 								},
 							],
 							[
+								# x86 SIMD sources (MMX, SSE2, x86-dispatch) cannot be
+								# compiled for Apple Silicon - exclude them on arm64 macOS.
+								'OS == "mac" and target_arch == "arm64"',
+								{
+									'sources/':
+									[
+										['exclude', '-sse2\\.c$'],
+										['exclude', '^src/pixman-mmx\\.c$'],
+										['exclude', '^src/pixman-x86\\.c$'],
+									],
+								},
+							],
+							[
 								# Use the FreeType support on Linux
 								'OS == "linux"',
 								{

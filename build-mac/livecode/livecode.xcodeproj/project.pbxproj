@@ -30,10 +30,48 @@
 				BFDF0AAC0A0EC7C6E974773F /* Action "extract-debug-symbols" */,
 			);
 			dependencies = (
-				1D2D524DBF74997D10749F8F /* PBXTargetDependency */,
+				6E315DABDDDF18B00C3D27F1 /* PBXTargetDependency */,
 			);
 			name = "debug-symbols";
 			productName = "debug-symbols";
+		};
+		51E224D4DA18B3C780705D36 /* HyperXTalk-all */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = AAAE8345BEB5118464044B0D /* Build configuration list for PBXAggregateTarget "HyperXTalk-all" */;
+			buildPhases = (
+			);
+			dependencies = (
+				4736E2F21DEBCF2C210F74D1 /* PBXTargetDependency */,
+				12ADD50DF5B06AE4616730B6 /* PBXTargetDependency */,
+				14B8851EADE655F1386E2113 /* PBXTargetDependency */,
+				0DA70472B88496D09F686DBB /* PBXTargetDependency */,
+				37E8B987C7F94D946CF2F762 /* PBXTargetDependency */,
+				BAFA6C53F3AB3CAB4AF529B6 /* PBXTargetDependency */,
+				235170C836E0B51164D0E329 /* PBXTargetDependency */,
+				BE0DB234DD2DF564B76E24E8 /* PBXTargetDependency */,
+				8EAD4158FF378B366B811D72 /* PBXTargetDependency */,
+				C8319D8EDA3E6048CCEE4D39 /* PBXTargetDependency */,
+				E33F4ACD4FD75B47CD2FC3B1 /* PBXTargetDependency */,
+				402FE4AAD40AE7F2D8C23496 /* PBXTargetDependency */,
+				DF03ECAE62862FBB35F02A97 /* PBXTargetDependency */,
+				FBBC5A949DE9360757B2E448 /* PBXTargetDependency */,
+				721FB41CAB0D8B7975262020 /* PBXTargetDependency */,
+				4F11632AFADA34388AD4092B /* PBXTargetDependency */,
+				433171973A08F933ECF23173 /* PBXTargetDependency */,
+				25872FB1BC2DFEA8794794D5 /* PBXTargetDependency */,
+				10C1A6D7635B14CC735068C1 /* PBXTargetDependency */,
+				E7CCC6EF8B0EF0167AC695C5 /* PBXTargetDependency */,
+				6AD70AE4F68466AC52A5BBD1 /* PBXTargetDependency */,
+				66554BAB5FF0971A3D6ED6FB /* PBXTargetDependency */,
+				C13BF3EA5F5C9BA8E1CD89E7 /* PBXTargetDependency */,
+				80DD8FBD677638ED46279AF1 /* PBXTargetDependency */,
+				6E7D74C2970C8B034113D091 /* PBXTargetDependency */,
+				DD13DE0FEEECF95F9413221B /* PBXTargetDependency */,
+				ECE01F3D13E26D60CBD2B4FE /* PBXTargetDependency */,
+				76BD334EE81F11DFDF1AF66C /* PBXTargetDependency */,
+			);
+			name = "HyperXTalk-all";
+			productName = "HyperXTalk-all";
 		};
 		60459FBC10CEE991DD6B8B4B /* binzip-copy */ = {
 			isa = PBXAggregateTarget;
@@ -42,7 +80,7 @@
 				0E44E1D608C877DA8F4BF8D4 /* Copy to mac-bin */,
 			);
 			dependencies = (
-				81C709131B7250F3F1D5009D /* PBXTargetDependency */,
+				4C8CD31F4720EF6067D59F70 /* PBXTargetDependency */,
 				ADB47F329D57CD56F4042D13 /* PBXTargetDependency */,
 			);
 			name = "binzip-copy";
@@ -78,7 +116,7 @@
 			dependencies = (
 				1F3DE2FD7123BFB7FD6B5AC9 /* PBXTargetDependency */,
 				A2A7644BD5D4F9EED4B0B758 /* PBXTargetDependency */,
-				55906273E155A7D34658BCA0 /* PBXTargetDependency */,
+				14F26915C98415821C05E33A /* PBXTargetDependency */,
 				6FE05BF57DE3259746889320 /* PBXTargetDependency */,
 				76D4B17E8F7FAEEEA85124FA /* PBXTargetDependency */,
 				ECDC3520C69E3A61BD442D13 /* PBXTargetDependency */,
@@ -86,44 +124,6 @@
 			);
 			name = All;
 			productName = All;
-		};
-		D20A3ED380F1D2EFBD878920 /* LiveCode-all */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = 1FC37EA3D29EA8F25EAA0E90 /* Build configuration list for PBXAggregateTarget "LiveCode-all" */;
-			buildPhases = (
-			);
-			dependencies = (
-				DB0D2373D58CD67FC53B6BD0 /* PBXTargetDependency */,
-				C7DB9DCFFF4B8844EB27CA28 /* PBXTargetDependency */,
-				F7F42025AF2910CA19B499E7 /* PBXTargetDependency */,
-				F29AD46A252E63536830735A /* PBXTargetDependency */,
-				8CE4FBE4C3C8107193390094 /* PBXTargetDependency */,
-				88DEA8FF7DC6509296977BAD /* PBXTargetDependency */,
-				0AB1A906953158106039C8F8 /* PBXTargetDependency */,
-				E51D2791494EB6A5BD30F364 /* PBXTargetDependency */,
-				9BB862FA80DBDA5B3B31B7C4 /* PBXTargetDependency */,
-				38B7E3BD2BA900894F4CFA55 /* PBXTargetDependency */,
-				4433A88BF0AA74FAF03B4AFE /* PBXTargetDependency */,
-				8E8B6843AC3D9339326F24D3 /* PBXTargetDependency */,
-				78AFF8247ACBE08F146C2B4C /* PBXTargetDependency */,
-				EC32761DCD7240DB89264594 /* PBXTargetDependency */,
-				F00CD937343D562ABDC9D83F /* PBXTargetDependency */,
-				E0C62153591392172BA11522 /* PBXTargetDependency */,
-				26B2632CD28A32469E53F90F /* PBXTargetDependency */,
-				B96BD5C4E394F48C2D8A7BE5 /* PBXTargetDependency */,
-				640A946A195CFE3002422B1C /* PBXTargetDependency */,
-				380E851C8EB0171ECF1D65A5 /* PBXTargetDependency */,
-				C365DCFB1C268F67EE8A2BE7 /* PBXTargetDependency */,
-				BAD05066C8DDCD9C159BB51C /* PBXTargetDependency */,
-				1374A63B19F44F613174880B /* PBXTargetDependency */,
-				B411ACD18E340CC34A9A84E2 /* PBXTargetDependency */,
-				4DF2818F65B1A9E4D3955CDA /* PBXTargetDependency */,
-				0E0750650D08CECFDDB4F10B /* PBXTargetDependency */,
-				6BDE4C98CECCDF6C1A9638CD /* PBXTargetDependency */,
-				BBFFEB963159B18ABD25009C /* PBXTargetDependency */,
-			);
-			name = "LiveCode-all";
-			productName = "LiveCode-all";
 		};
 		E5D6594C9B090F90579D7AB7 /* thirdparty-prebuilts */ = {
 			isa = PBXAggregateTarget;
@@ -161,64 +161,64 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		06B7A2D4E9DD8ACA2EA112F4 /* server-dbodbc.dylib in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 28ACF81D4EA0D3E179358E18 /* server-dbodbc.dylib */; };
-		07F27C5A2C2478C30AA9D97E /* dbpostgresql.bundle in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 31E753297C3042BC27550A37 /* dbpostgresql.bundle */; };
-		0AF40042BF439C41E0EB92C7 /* lc-run.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 7B808EFBD3BFBFBF87289B64 /* lc-run.dSYM */; };
-		0D48AFA3099B2076242FBAE5 /* server-dbpostgresql.dylib.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = E8559BCEC573A2B6FA177F3F /* server-dbpostgresql.dylib.dSYM */; };
-		0EEF8B9502CE726A4528B8CA /* lc-compile-ffi-java in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 813425784375B33FDD197979 /* lc-compile-ffi-java */; };
-		10065A782CEFDD2AE4947EEA /* server-dbmysql.dylib.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 2D33DCC9136C27EF6A61F4F9 /* server-dbmysql.dylib.dSYM */; };
-		19ACD70C6B87BD742EBD8DC1 /* revandroid.bundle in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 73692BEA356FC9D96BAB6C6F /* revandroid.bundle */; };
-		1DCD5E111EF16F6689647C56 /* server-dbsqlite.dylib in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 6A6FE3050CAB99B57002B0EF /* server-dbsqlite.dylib */; };
-		27A8915CE764FCD515BE7F17 /* installer-stub.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 77309A6A1B3601C55AD7EA3E /* installer-stub.dSYM */; };
-		314BE9D85F1892C7F6741633 /* packaged_extensions in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 8698E6CAB35F513CB539241F /* packaged_extensions */; };
-		32880AD75488A9B4AF694EA6 /* lc-compile in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = C855E6841E54902E320F73FB /* lc-compile */; };
-		361DF275713DFEA66695ED04 /* lc-run in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 04E07C6C61311488EC819A91 /* lc-run */; };
-		3BF2FCA5F3164A3C6961F2A3 /* dbmysql.bundle in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = CFFA4B1E07C64C3BE05E078E /* dbmysql.bundle */; };
-		3FB42299B5CE53B5091BBA41 /* HyperXTalk-Standalone.app in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 5D50E8854EE42DC24F50E41C /* HyperXTalk-Standalone.app */; };
-		4651E610629282F13AE13C68 /* revspeech.bundle.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = E1A8E68E83E32CF41578519D /* revspeech.bundle.dSYM */; };
-		4B071A009FEDDC9670EBDFB1 /* revandroid.bundle.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 3CA285A8F9A1C3A4000301D8 /* revandroid.bundle.dSYM */; };
-		4DAACF7917C6FDC95EE3FB58 /* server-revxml.dylib in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 61ED241C8E1B262F21D7E50E /* server-revxml.dylib */; };
-		5B127893F7FAD723AF3032AD /* server-revdb.dylib in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = EBEE25462176B4A3CAC9D9EA /* server-revdb.dylib */; };
-		65CDE9CEF7A8F4D2AB09C727 /* HyperXTalk.app.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 93114916858F00B8456BD020 /* HyperXTalk.app.dSYM */; };
-		6AA4AB689B648313E1DAADEB /* modules in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 8F0466D39C69B9BA81C77742 /* modules */; };
-		6DDC3A4235FD1F1A9020AD37 /* server-revxml.dylib.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 6D65C78E5DB4E8E146A66F4A /* server-revxml.dylib.dSYM */; };
-		6E6E8950194D2DBCE1516152 /* revspeech.bundle in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = FFFA4F5D5C0EE1FF51E1A6C6 /* revspeech.bundle */; };
-		6F12E28D8769556C9300C898 /* reviphone.bundle in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = D6AD6A225B668101D7CE3126 /* reviphone.bundle */; };
-		708DDD36176BF70966B54A39 /* server-revdb.dylib.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 4E4DB45269DA74B385B19A59 /* server-revdb.dylib.dSYM */; };
-		72D6DC14DEF3079839AA567E /* revsecurity.dylib in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 115299E5A59D9ACF15DDCB08 /* revsecurity.dylib */; };
-		774EA2AD4E11736A2094EC19 /* reviphone.bundle.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 0E6666D7C3353C1A068BEB7D /* reviphone.bundle.dSYM */; };
-		83E3748667BCD75B95FD8A94 /* revxml.bundle in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 46B831F6ACADD75EDEF91157 /* revxml.bundle */; };
-		8ED2E83B8A1430EDC4B52E30 /* HyperXTalk-Standalone.app.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 665602F58BA8D61FCBF5BDB6 /* HyperXTalk-Standalone.app.dSYM */; };
-		90736CE85F81CF4FCFACFEBF /* server-revzip.dylib.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 782354144D1E96E0CC407B68 /* server-revzip.dylib.dSYM */; };
-		99AC1CBB348493668D6809BA /* dbpostgresql.bundle.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = A73DF16D3985EBBD5D93D3A6 /* dbpostgresql.bundle.dSYM */; };
-		99E2AABABC27474167EC6B4F /* revxml.bundle.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = BBFB21F7723ED5E596095DCD /* revxml.bundle.dSYM */; };
-		9B59606F1FAE197B3B816347 /* server-dbsqlite.dylib.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 56F6D8731E4E94D68B81739B /* server-dbsqlite.dylib.dSYM */; };
-		9CE686A8D30950796168736C /* revpdfprinter.bundle in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 9B54D86380F7546C0FB0EF79 /* revpdfprinter.bundle */; };
-		A084F8193C85BE32A6FF4969 /* server-dbmysql.dylib in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 86400FE3B8342DBD2D899BCE /* server-dbmysql.dylib */; };
-		A08E29AF41629C831196032E /* revdb.bundle in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = E7AC560279855523011DE155 /* revdb.bundle */; };
-		A0961A737FF0F717AD0187F3 /* revdb.bundle.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 78DF4C8E7CA716C2AA1E0B90 /* revdb.bundle.dSYM */; };
-		A22F71E90AC55A8DBFC1C9B4 /* installer-stub in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 9595FF53F2D692EA299C4B19 /* installer-stub */; };
-		A91877D75AC4EE2614F1587E /* revsecurity.dylib.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = E6A4DD400BA5457414194F6C /* revsecurity.dylib.dSYM */; };
-		AC284FC783A3A4EB2C55C612 /* server-community.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 3C8F05D2F5EF600B9ABE5776 /* server-community.dSYM */; };
-		B016E4CF133793B833F14E61 /* dbsqlite.bundle.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 971879A2E63D95E67E4CDB27 /* dbsqlite.bundle.dSYM */; };
-		B4BECD30DB5FED492B97BFF4 /* revzip.bundle.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = F5C0552E14AD8B57EAC8B0D6 /* revzip.bundle.dSYM */; };
-		C3BE392A7B71C20EE52F2CD8 /* HyperXTalk.app in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = FF99EA602349925D7DAB02E9 /* HyperXTalk.app */; };
-		C78AEF2CA8747B7BAA82C0F2 /* revpdfprinter.bundle.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = E3A6AF370961C6C0A0CF1A8B /* revpdfprinter.bundle.dSYM */; };
-		CCDA2E22F37D32276BCA0FCF /* dbmysql.bundle.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 292729ED57E91A5C11CC87EA /* dbmysql.bundle.dSYM */; };
-		D074515084F5CF5E67062385 /* dbodbc.bundle.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = E3E570E8228B0C9E9530950C /* dbodbc.bundle.dSYM */; };
-		D84715B3CE5893D9FC4D4DF3 /* revzip.bundle in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 3E49BA4236AEE3BCCE91D0D2 /* revzip.bundle */; };
-		DADB05B959C42A28DBA08928 /* server-community in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 1C34DE29BEC346FCD45888B6 /* server-community */; };
-		DD5CC5B4375C3B0B280C8E19 /* dbsqlite.bundle in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = B782E58A1B918E6E2BD07A82 /* dbsqlite.bundle */; };
-		E1B9B18C183B41DC0BCC9928 /* server-dbodbc.dylib.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 5741906D0AA9BA1245A48067 /* server-dbodbc.dylib.dSYM */; };
-		E30FB143668FB8AF2FCC1D84 /* revbrowser.bundle in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = CA5D7FFF3C02C1D24B6F3D28 /* revbrowser.bundle */; };
-		E4446BCF9042E0A473F48505 /* lc-compile.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 8F4EF17E549C8100D51ADAF7 /* lc-compile.dSYM */; };
-		EA578A1FE39EED9DAB542583 /* server-revzip.dylib in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = A6360B68A4F98FF4BC15E1E9 /* server-revzip.dylib */; };
-		ECC01E7140CE4E45F7EC4CFE /* server-dbpostgresql.dylib in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 5287D1164AD22F21E680E5B2 /* server-dbpostgresql.dylib */; };
-		ED70E70EC67B1B5767A73A50 /* lc-compile-ffi-java.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 11F4E1F43E42FD6DA5BB0BAA /* lc-compile-ffi-java.dSYM */; };
-		EDB109C4FCAE01A885FA856D /* dbodbc.bundle in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = BAAE32E57313B3E18E70BEC2 /* dbodbc.bundle */; };
-		F062BF1AF6501FE6D344BB80 /* revbrowser.bundle.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 80E3C39B96E52B4CA663A761 /* revbrowser.bundle.dSYM */; };
-		F408625EBC03551C4853760E /* Installer.app.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 2AF83F789870843B61931AC0 /* Installer.app.dSYM */; };
-		FBA6D44401739A06DBB36FF4 /* Installer.app in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = ABD02F3DB3C09B505BF732BB /* Installer.app */; };
+		05FE02E33ECFC083E598C0B3 /* packaged_extensions in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 8698E6CAB35F513CB539241F /* packaged_extensions */; };
+		1CCBD891E49F632991A95F6B /* Installer.app in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = ABD02F3DB3C09B505BF732BB /* Installer.app */; };
+		1D3EF51E87386B54BB454664 /* revxml.bundle in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 46B831F6ACADD75EDEF91157 /* revxml.bundle */; };
+		1F119452B4D33C9C1650FCDC /* lc-run.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 7B808EFBD3BFBFBF87289B64 /* lc-run.dSYM */; };
+		1FFA511DB135D65406CE206C /* dbodbc.bundle in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = BAAE32E57313B3E18E70BEC2 /* dbodbc.bundle */; };
+		20CDFFADB65747332AA121DE /* revsecurity.dylib.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = E6A4DD400BA5457414194F6C /* revsecurity.dylib.dSYM */; };
+		22024FB87800F8435E5A8BF1 /* server-revdb.dylib.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 4E4DB45269DA74B385B19A59 /* server-revdb.dylib.dSYM */; };
+		2D8EC8560AFF42F8D9FF35B5 /* server-dbsqlite.dylib.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 56F6D8731E4E94D68B81739B /* server-dbsqlite.dylib.dSYM */; };
+		304E6E2779CB63CFA9A71D9C /* dbodbc.bundle.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = E3E570E8228B0C9E9530950C /* dbodbc.bundle.dSYM */; };
+		30D6A63FCBFDE49E6179994F /* lc-compile.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 8F4EF17E549C8100D51ADAF7 /* lc-compile.dSYM */; };
+		39A17A855A8FB13ADC70652B /* installer-stub.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 77309A6A1B3601C55AD7EA3E /* installer-stub.dSYM */; };
+		411C53C9838E95424D3583EC /* revdb.bundle in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = E7AC560279855523011DE155 /* revdb.bundle */; };
+		4243ED476E9B68E0FA06860A /* server-revdb.dylib in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = EBEE25462176B4A3CAC9D9EA /* server-revdb.dylib */; };
+		4A5DC59292F7F9329893EC7D /* revxml.bundle.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = BBFB21F7723ED5E596095DCD /* revxml.bundle.dSYM */; };
+		4ABC4779FAEF16309FAC0F0B /* reviphone.bundle in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = D6AD6A225B668101D7CE3126 /* reviphone.bundle */; };
+		4EF97C07EFE17CD87FA1BE7E /* lc-run in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 04E07C6C61311488EC819A91 /* lc-run */; };
+		5426217B57C1457D6765B7FD /* HyperXTalk.app.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 77D1D9ADBCA187893AF68BCB /* HyperXTalk.app.dSYM */; };
+		592AAD964A48F8CF9320D856 /* lc-compile in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = C855E6841E54902E320F73FB /* lc-compile */; };
+		5A23AEE27F86322FA80AED5F /* server-revxml.dylib in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 61ED241C8E1B262F21D7E50E /* server-revxml.dylib */; };
+		5CC6D8EBF725B3ED4ED82155 /* revsecurity.dylib in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 115299E5A59D9ACF15DDCB08 /* revsecurity.dylib */; };
+		5D8E4AA1C83E4BD213700FDB /* revzip.bundle.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = F5C0552E14AD8B57EAC8B0D6 /* revzip.bundle.dSYM */; };
+		65710C2193AE0D359A5D10A1 /* revandroid.bundle.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 3CA285A8F9A1C3A4000301D8 /* revandroid.bundle.dSYM */; };
+		6A92E7B2723331E84D2CC505 /* server-dbmysql.dylib.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 2D33DCC9136C27EF6A61F4F9 /* server-dbmysql.dylib.dSYM */; };
+		6B14B819E06BE5E0C8BDA058 /* server-revzip.dylib in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = A6360B68A4F98FF4BC15E1E9 /* server-revzip.dylib */; };
+		6F182D033457802ECEAC2621 /* revandroid.bundle in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 73692BEA356FC9D96BAB6C6F /* revandroid.bundle */; };
+		7104003972B94F550DD7982F /* revpdfprinter.bundle.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = E3A6AF370961C6C0A0CF1A8B /* revpdfprinter.bundle.dSYM */; };
+		7A252B955EA43D6031B16383 /* dbsqlite.bundle in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = B782E58A1B918E6E2BD07A82 /* dbsqlite.bundle */; };
+		80BAAD6D4E121A4517213280 /* revbrowser.bundle.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 80E3C39B96E52B4CA663A761 /* revbrowser.bundle.dSYM */; };
+		846984055C99318310C692B6 /* lc-compile-ffi-java.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 11F4E1F43E42FD6DA5BB0BAA /* lc-compile-ffi-java.dSYM */; };
+		8698E8C1CDD530C546A0E9A0 /* Installer.app.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 2AF83F789870843B61931AC0 /* Installer.app.dSYM */; };
+		89F69675E93C8C7323C9ACA3 /* lc-compile-ffi-java in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 813425784375B33FDD197979 /* lc-compile-ffi-java */; };
+		91E0FF337C6415B0B11A8984 /* HyperXTalk.app in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = D911C45F3D1BCFF226153DFE /* HyperXTalk.app */; };
+		9484C471C2A425E2D1C04F75 /* server-dbsqlite.dylib in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 6A6FE3050CAB99B57002B0EF /* server-dbsqlite.dylib */; };
+		96C9BCA4007EAD7367572212 /* revpdfprinter.bundle in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 9B54D86380F7546C0FB0EF79 /* revpdfprinter.bundle */; };
+		97F85555CAB31B7DBD6C9AF3 /* server-dbmysql.dylib in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 86400FE3B8342DBD2D899BCE /* server-dbmysql.dylib */; };
+		9ACA623D6AEF8A14D4C9DC8D /* revdb.bundle.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 78DF4C8E7CA716C2AA1E0B90 /* revdb.bundle.dSYM */; };
+		A9852E77520EBECBB8DD77E6 /* dbmysql.bundle in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = CFFA4B1E07C64C3BE05E078E /* dbmysql.bundle */; };
+		ADEEA3DD16ED38AEECA9DC1E /* dbsqlite.bundle.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 971879A2E63D95E67E4CDB27 /* dbsqlite.bundle.dSYM */; };
+		AF8395CD6A8CCD4415A8353E /* server-dbpostgresql.dylib.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = E8559BCEC573A2B6FA177F3F /* server-dbpostgresql.dylib.dSYM */; };
+		B73DB17F11436308D7B4203E /* modules in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 8F0466D39C69B9BA81C77742 /* modules */; };
+		BD1A523007987D5566FC6218 /* server-community.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 3C8F05D2F5EF600B9ABE5776 /* server-community.dSYM */; };
+		BFAFB299520CC4D58F312BAE /* server-dbodbc.dylib in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 28ACF81D4EA0D3E179358E18 /* server-dbodbc.dylib */; };
+		C131258090C8DCC111086FB9 /* revbrowser.bundle in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = CA5D7FFF3C02C1D24B6F3D28 /* revbrowser.bundle */; };
+		C1D77FBCEA7CF58752D92EEE /* server-revzip.dylib.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 782354144D1E96E0CC407B68 /* server-revzip.dylib.dSYM */; };
+		C4E2471D165B17DEE49713D6 /* dbpostgresql.bundle.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = A73DF16D3985EBBD5D93D3A6 /* dbpostgresql.bundle.dSYM */; };
+		C72721CA988502D547691423 /* HyperXTalk-Standalone.app.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 258E4043DA115642D051B63E /* HyperXTalk-Standalone.app.dSYM */; };
+		CE39033F4E7ADEFC837C4B36 /* dbmysql.bundle.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 292729ED57E91A5C11CC87EA /* dbmysql.bundle.dSYM */; };
+		D07B59D437300EB41E114ED8 /* revspeech.bundle in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = FFFA4F5D5C0EE1FF51E1A6C6 /* revspeech.bundle */; };
+		D2C486A8DE3DEFDBEA983D37 /* server-community in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 1C34DE29BEC346FCD45888B6 /* server-community */; };
+		D9A0FE4AE59245A947763F00 /* dbpostgresql.bundle in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 31E753297C3042BC27550A37 /* dbpostgresql.bundle */; };
+		DF6D991F62D6C471C691CA43 /* server-revxml.dylib.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 6D65C78E5DB4E8E146A66F4A /* server-revxml.dylib.dSYM */; };
+		E3DEF12405BB8B77FB563EB4 /* HyperXTalk-Standalone.app in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = D410D4C507137091C7EAD442 /* HyperXTalk-Standalone.app */; };
+		E47358095C3DAB62A3936E0C /* revspeech.bundle.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = E1A8E68E83E32CF41578519D /* revspeech.bundle.dSYM */; };
+		E70F0D73CED2BBACAD16D7CF /* server-dbodbc.dylib.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 5741906D0AA9BA1245A48067 /* server-dbodbc.dylib.dSYM */; };
+		E97F966C95ECCD9E2BD106F1 /* revzip.bundle in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 3E49BA4236AEE3BCCE91D0D2 /* revzip.bundle */; };
+		F42199F00F2290628E174BFE /* installer-stub in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 9595FF53F2D692EA299C4B19 /* installer-stub */; };
+		FA97AB12855A1D067EED59A7 /* server-dbpostgresql.dylib in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 5287D1164AD22F21E680E5B2 /* server-dbpostgresql.dylib */; };
+		FE4EB37B55FF166E6C6484A2 /* reviphone.bundle.dSYM in Copy to mac-bin */ = {isa = PBXBuildFile; fileRef = 0E6666D7C3353C1A068BEB7D /* reviphone.bundle.dSYM */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -236,6 +236,13 @@
 			remoteGlobalIDString = 9D297C1BDF86C59B6FC09DD9;
 			remoteInfo = "test-kernel-development";
 		};
+		040A60AA81192C38A45A6C52 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D79E2084AE99624B22FC541D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 51E224D4DA18B3C780705D36;
+			remoteInfo = "HyperXTalk-all";
+		};
 		048D97A9A9A3D037485653CB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 588E6147C4AA946CE07C5ABA /* libskia.xcodeproj */;
@@ -250,12 +257,12 @@
 			remoteGlobalIDString = 96D846355A0DECB36966BC88;
 			remoteInfo = libskia_opt_sse2;
 		};
-		0A262C087D302B5F467B266C /* PBXContainerItemProxy */ = {
+		076E2FDF0F1CC4CED4DA5907 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = E9917CB8BFAD45BCB17C39A2 /* revmobile.xcodeproj */;
+			containerPortal = 550F73E1A9C5547EA7C2B0D0 /* revdb.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 86F26521EFE5196165BD1907;
-			remoteInfo = "external-revandroid";
+			remoteGlobalIDString = 9BD8A4F5D80F6E3CD2155271;
+			remoteInfo = "external-revdb";
 		};
 		0C3012BE3BC782A34C233AA2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -299,12 +306,19 @@
 			remoteGlobalIDString = 79E935DA00738824719CF3E6;
 			remoteInfo = "dbpostgresql-server";
 		};
-		1F19C4AB3AA343B8863946FC /* PBXContainerItemProxy */ = {
+		1D2E73CC9FE07FAE25B8C594 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 550F73E1A9C5547EA7C2B0D0 /* revdb.xcodeproj */;
+			containerPortal = 631EDAA4870DF046A47365F2 /* engine.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 1E3B23ACFCD50A993001C9C9;
-			remoteInfo = dbpostgresql;
+			remoteGlobalIDString = 524C03DDAE1FF34EAA5469B9;
+			remoteInfo = development;
+		};
+		1D3A0677B25AFE60123892D2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 631EDAA4870DF046A47365F2 /* engine.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = ADFE0A0C9A417EB0BC7CB852;
+			remoteInfo = server;
 		};
 		1FFE21C09AA2A50A6A669F98 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -312,13 +326,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 1B5AAEC1C6BF84468C3CCD41;
 			remoteInfo = libskia_opt_sse42;
-		};
-		2004916A3196AD8303D8CAEC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4B23D6ADC2B55D503BD7D1ED /* revspeech.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = F74A221C13A8D58475E1A9DA;
-			remoteInfo = "external-revspeech";
 		};
 		20B9B4DBF79BCCEE41419AF9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -355,6 +362,13 @@
 			remoteGlobalIDString = 20F8EE089A3BF5437195864B;
 			remoteInfo = "external-revzip-server";
 		};
+		2334C73EF81F775410DE8215 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07CDB71EF1197126650BC3FC /* extensions.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C4FB33E150DD8D54720A170;
+			remoteInfo = extensions;
+		};
 		25B0BBAD51429872BA53FB57 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 588E6147C4AA946CE07C5ABA /* libskia.xcodeproj */;
@@ -362,12 +376,26 @@
 			remoteGlobalIDString = 1E4834DE3AB62314D8300B16;
 			remoteInfo = libskia_opt_avx;
 		};
+		2763E1691F524390FCCACDFC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 30148F66B1221687685AE9E4 /* revbrowser.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 6E55CE839579E8747BB85AEA;
+			remoteInfo = "external-revbrowser";
+		};
 		2A611B3905214B44458001EE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 05C50FF3D2EEAF163BAB0258 /* osx-installer-stub.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = EB4E5E417AA134A5846BA8CB;
 			remoteInfo = "osx-installer-stub";
+		};
+		2A7850EDA4E133C169B26B9C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 550F73E1A9C5547EA7C2B0D0 /* revdb.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 83830BED1DD36CDB156D2335;
+			remoteInfo = dbmysql;
 		};
 		2CB276666A3EDD5869F244DF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -383,12 +411,12 @@
 			remoteGlobalIDString = D3825D3C2B77D4F105107276;
 			remoteInfo = "libffi (host)";
 		};
-		2F979D78184EF3C6A1372407 /* PBXContainerItemProxy */ = {
+		2EAC8C3E66F1820378896F6F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 5D4445BE62AB094D878B7487 /* revxml.xcodeproj */;
+			containerPortal = 550F73E1A9C5547EA7C2B0D0 /* revdb.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 20010E9C8F0106A6D66F45DD;
-			remoteInfo = "external-revxml-server";
+			remoteGlobalIDString = E295F761C7088CA92DF12FC0;
+			remoteInfo = "external-revdb-server";
 		};
 		2FB72FFABC506517C8711FDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -396,13 +424,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 7C337A9763975A7E903559B4;
 			remoteInfo = "libgif (host)";
-		};
-		306F34C07EFA2C7D340097DE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5D4445BE62AB094D878B7487 /* revxml.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 0E3FD8F31FA44F39F2E9E4AB;
-			remoteInfo = "external-revxml";
 		};
 		3115669289F7F28581A458E7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -439,12 +460,12 @@
 			remoteGlobalIDString = DC7A40C99637BA1C20486C54;
 			remoteInfo = reviphoneproxy;
 		};
-		36F3DA0EC75E623D9AECC225 /* PBXContainerItemProxy */ = {
+		3529CACE5AE0A2CFC88DBC24 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 631EDAA4870DF046A47365F2 /* engine.xcodeproj */;
+			containerPortal = 5D4445BE62AB094D878B7487 /* revxml.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 481775551A5FA691096778B6;
-			remoteInfo = installer;
+			remoteGlobalIDString = 0E3FD8F31FA44F39F2E9E4AB;
+			remoteInfo = "external-revxml";
 		};
 		375E0582D3E7AFC8EA358A18 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -452,13 +473,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 8CC2F8E1ECA7BB8105D213E7;
 			remoteInfo = libskia_opt_sse3;
-		};
-		3850BF9586D75BF73FB96C92 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 550F73E1A9C5547EA7C2B0D0 /* revdb.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 90FF89D0969361CE9CA1F464;
-			remoteInfo = "dbsqlite-server";
 		};
 		3D0AFFD8BB09F4089A6C6847 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -495,19 +509,26 @@
 			remoteGlobalIDString = 7A61BAE1E26343581AFF9916;
 			remoteInfo = dbodbc;
 		};
+		44A5521EF6D2710DD17D27F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 550F73E1A9C5547EA7C2B0D0 /* revdb.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D64CEA6EF940152015449146;
+			remoteInfo = dbodbc;
+		};
+		45BACF127B9B0D593D9DE468 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6068F6D7ABE87FFFC1ED37EF /* lcidlc.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 14B49089D98E3D9589EEFD35;
+			remoteInfo = lcidlc;
+		};
 		46E52DCE620322685B65499B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CBBEC53A9689CF9CC05DE877 /* kernel-server.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = C155DAE18BBD95D57C92C13C;
 			remoteInfo = "run-test-kernel-server";
-		};
-		47CE0A72138530293FD389A7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 631EDAA4870DF046A47365F2 /* engine.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 62DB8B91FBA6B16BF9E37E83;
-			remoteInfo = development;
 		};
 		4825B19D77218BAA303163B6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -522,6 +543,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 945C35E86B802DFD8986B294;
 			remoteInfo = libsqlite;
+		};
+		4AF9F8417994AB2A44377796 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8629CADE7609E18E3B439431 /* libopenssl.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = FEC45DAC320224A91E16BC6F;
+			remoteInfo = revsecurity;
 		};
 		4B0246AED311841391333EDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -551,20 +579,6 @@
 			remoteGlobalIDString = CF275681F740B5C990C22162;
 			remoteInfo = libskia;
 		};
-		531BEC271FDEA6D594DE2B73 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 550F73E1A9C5547EA7C2B0D0 /* revdb.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 13A8195ECA20A5E167ECF829;
-			remoteInfo = "dbmysql-server";
-		};
-		53FAC29E8EB4B87443542253 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 587DF4750CCE92F62900F90B /* toolchain.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 32B75DF0FB6529AFF521DC07;
-			remoteInfo = "toolchain-all";
-		};
 		54B595BEE232E1A3DDBF0EBA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 588E6147C4AA946CE07C5ABA /* libskia.xcodeproj */;
@@ -593,12 +607,19 @@
 			remoteGlobalIDString = B39CBE2B00CB2A0BB29E0B32;
 			remoteInfo = "libskia_opt_sse3 (host)";
 		};
-		5CD462EF3784DD4F82347E57 /* PBXContainerItemProxy */ = {
+		59545C05DC2C3DC062E17706 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 05C50FF3D2EEAF163BAB0258 /* osx-installer-stub.xcodeproj */;
+			containerPortal = 631EDAA4870DF046A47365F2 /* engine.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6C5399A9C32242083EA6EFF9;
+			remoteInfo = standalone;
+		};
+		5994612DF2597F31B6E08021 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 550F73E1A9C5547EA7C2B0D0 /* revdb.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = C8224C79C0224F7AE7695C1C;
-			remoteInfo = "osx-installer-stub";
+			remoteGlobalIDString = BC1033ADCBCC3F33101F2319;
+			remoteInfo = "dbodbc-server";
 		};
 		60151E9E1E209F5F019D4C6B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -628,13 +649,6 @@
 			remoteGlobalIDString = 48F4D861D8A55FE3308DDAED;
 			remoteInfo = "cpptest-run-all";
 		};
-		653988185DF976E48C0F439F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8629CADE7609E18E3B439431 /* libopenssl.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = FEC45DAC320224A91E16BC6F;
-			remoteInfo = revsecurity;
-		};
 		655066A37CD4568A2403622F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2CD944F2AB0FCED007FFBA5E /* libgif.xcodeproj */;
@@ -656,12 +670,12 @@
 			remoteGlobalIDString = 673898D948186948179C8300;
 			remoteInfo = libskia_opt_sse3;
 		};
-		68EA55DEF4E3A217C0D72D49 /* PBXContainerItemProxy */ = {
+		69BB8624D09BA62EFA84E371 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 550F73E1A9C5547EA7C2B0D0 /* revdb.xcodeproj */;
+			containerPortal = 4B23D6ADC2B55D503BD7D1ED /* revspeech.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 83830BED1DD36CDB156D2335;
-			remoteInfo = dbmysql;
+			remoteGlobalIDString = F74A221C13A8D58475E1A9DA;
+			remoteInfo = "external-revspeech";
 		};
 		6AFD1F1FBF66417399DA4ED8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -691,19 +705,12 @@
 			remoteGlobalIDString = 32B2516A9ABCD00A5F6978F3;
 			remoteInfo = libxml;
 		};
-		73894C3618A0AF052B5CC5B5 /* PBXContainerItemProxy */ = {
+		7614D2E09B36F668356CCCB5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 550F73E1A9C5547EA7C2B0D0 /* revdb.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = A1E6EB0C17EB47ED79E7C1A6;
-			remoteInfo = "dbpostgresql-server";
-		};
-		763A5CD6044DA89BCA52B081 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 631EDAA4870DF046A47365F2 /* engine.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 524C03DDAE1FF34EAA5469B9;
-			remoteInfo = development;
+			remoteGlobalIDString = 13A8195ECA20A5E167ECF829;
+			remoteInfo = "dbmysql-server";
 		};
 		78878890226A01C43611493E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -719,13 +726,6 @@
 			remoteGlobalIDString = 9C074181357F624C9B92A9FC;
 			remoteInfo = "run-test-libcpptest";
 		};
-		7AA7C06D5F91BE145D238DAC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D79E2084AE99624B22FC541D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D20A3ED380F1D2EFBD878920;
-			remoteInfo = "LiveCode-all";
-		};
 		7B7D7C035127B907B5179D2A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 588E6147C4AA946CE07C5ABA /* libskia.xcodeproj */;
@@ -739,13 +739,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 1A000B2C1D8735D4B0A48B3D;
 			remoteInfo = libzip;
-		};
-		7F3BC07E4668E9BC28C67190 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D79E2084AE99624B22FC541D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D20A3ED380F1D2EFBD878920;
-			remoteInfo = "LiveCode-all";
 		};
 		7F898E1712E6004BC614EF56 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -775,13 +768,6 @@
 			remoteGlobalIDString = 14D689EB437E0382D6037361;
 			remoteInfo = "libjpeg (host)";
 		};
-		847D79E852341003BD3BDC63 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 550F73E1A9C5547EA7C2B0D0 /* revdb.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = BC1033ADCBCC3F33101F2319;
-			remoteInfo = "dbodbc-server";
-		};
 		86C91C3D5B5816F82BB92587 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8E7875A8F51214671C686883 /* libffi.xcodeproj */;
@@ -789,19 +775,19 @@
 			remoteGlobalIDString = 9E061AC5F76A9BD3B01EBD7F;
 			remoteInfo = libffi;
 		};
-		88F9954F1B25F643F4D2E604 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6068F6D7ABE87FFFC1ED37EF /* lcidlc.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 14B49089D98E3D9589EEFD35;
-			remoteInfo = lcidlc;
-		};
 		8B400F835683B58304777D97 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4B23D6ADC2B55D503BD7D1ED /* revspeech.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 501E47CAF91009DCA367ACCE;
 			remoteInfo = "external-revspeech";
+		};
+		8C0E64DD82C9E7C7EBD13C71 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 631EDAA4870DF046A47365F2 /* engine.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 481775551A5FA691096778B6;
+			remoteInfo = installer;
 		};
 		8C7951384D1742E3B8394FBA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -922,6 +908,13 @@
 			remoteGlobalIDString = A24C092262B9300D63512464;
 			remoteInfo = dbsqlite;
 		};
+		9CEE0BB2E719DA980F831FFB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D79E2084AE99624B22FC541D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 51E224D4DA18B3C780705D36;
+			remoteInfo = "HyperXTalk-all";
+		};
 		9F9FD774624745DBA6F98EBC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 76A71BE33766C1181E039E48 /* libjpeg.xcodeproj */;
@@ -935,6 +928,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = AE8C9EBD1129A4B5BCD9088F;
 			remoteInfo = libpcre;
+		};
+		A238EEBE6B18FAC7E97EC0DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05C50FF3D2EEAF163BAB0258 /* osx-installer-stub.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = C8224C79C0224F7AE7695C1C;
+			remoteInfo = "osx-installer-stub";
+		};
+		A35EF0C9F366869506CC708E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E9917CB8BFAD45BCB17C39A2 /* revmobile.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 86F26521EFE5196165BD1907;
+			remoteInfo = "external-revandroid";
 		};
 		A376219C64EC038E4EA022B5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -957,13 +964,6 @@
 			remoteGlobalIDString = AC78EB4A032EDCB3C3172A01;
 			remoteInfo = "dbsqlite-server";
 		};
-		AB0ABB4A9B3DE64674BC96C6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07CDB71EF1197126650BC3FC /* extensions.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8C4FB33E150DD8D54720A170;
-			remoteInfo = extensions;
-		};
 		AB3647F238505B4E8C42FC3D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D50EE95A7B443CADE891AD87 /* libpcre.xcodeproj */;
@@ -978,13 +978,6 @@
 			remoteGlobalIDString = DB2AD360401E12496DD395E4;
 			remoteInfo = libxml;
 		};
-		AD42F88CE17753EA8179CF6D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 550F73E1A9C5547EA7C2B0D0 /* revdb.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = F1A44E096FAED6FA68831B54;
-			remoteInfo = dbsqlite;
-		};
 		AE325D133ABAF74E77357247 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 688132AD64FDB5C240A9C2F8 /* libfoundation.xcodeproj */;
@@ -992,12 +985,12 @@
 			remoteGlobalIDString = 463AF9F679A6EE2BB8915F8B;
 			remoteInfo = "libFoundation (host)";
 		};
-		B5EF7BE399069A16DF5030B0 /* PBXContainerItemProxy */ = {
+		AE804735168871225ED8547A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 631EDAA4870DF046A47365F2 /* engine.xcodeproj */;
+			containerPortal = 550F73E1A9C5547EA7C2B0D0 /* revdb.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = ADFE0A0C9A417EB0BC7CB852;
-			remoteInfo = server;
+			remoteGlobalIDString = 90FF89D0969361CE9CA1F464;
+			remoteInfo = "dbsqlite-server";
 		};
 		B63FA42C449E21EE85AB1015 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1012,13 +1005,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 767DFB8435A651483D953EDE;
 			remoteInfo = "server (host)";
-		};
-		B8D3E1F4D39B1D8F69F37BF7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E100214ADF5C62211D542519 /* revpdfprinter.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 3CA43BB6D94D98075558BDBB;
-			remoteInfo = "external-revpdfprinter";
 		};
 		B95A6D0C37F1782EC21B69DD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1055,6 +1041,27 @@
 			remoteGlobalIDString = CCB613352A797BFCCDB63F6D;
 			remoteInfo = "libskia_opt_arm (host)";
 		};
+		BDBFC1A574CF1FCE43C64284 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E9917CB8BFAD45BCB17C39A2 /* revmobile.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A43389FD75B5270BEB0FD151;
+			remoteInfo = "external-reviphone";
+		};
+		BDF29E58A27FEFBD39788564 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5D4445BE62AB094D878B7487 /* revxml.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 20010E9C8F0106A6D66F45DD;
+			remoteInfo = "external-revxml-server";
+		};
+		BE1DC7746DCB1D57178A58B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D79E2084AE99624B22FC541D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 51E224D4DA18B3C780705D36;
+			remoteInfo = "HyperXTalk-all";
+		};
 		BE97E7B134E990CC1413897F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E9917CB8BFAD45BCB17C39A2 /* revmobile.xcodeproj */;
@@ -1069,33 +1076,12 @@
 			remoteGlobalIDString = 41B152D51F41337D49758FCF;
 			remoteInfo = libcairo;
 		};
-		C1D018318F4F9AF07859A29C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 550F73E1A9C5547EA7C2B0D0 /* revdb.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = D64CEA6EF940152015449146;
-			remoteInfo = dbodbc;
-		};
-		C2CB5E7CC5CD1BD490DECBF1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 550F73E1A9C5547EA7C2B0D0 /* revdb.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9BD8A4F5D80F6E3CD2155271;
-			remoteInfo = "external-revdb";
-		};
 		C3342E47DD9CE68B2D25F2FE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 421D2D5E2BC1D7C002E548E8 /* libmysql.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = E07EAA009E70E63E792A53FE;
 			remoteInfo = libmysql;
-		};
-		C6965BB4EFBCD265C1DF4A17 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E9917CB8BFAD45BCB17C39A2 /* revmobile.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = A43389FD75B5270BEB0FD151;
-			remoteInfo = "external-reviphone";
 		};
 		C75C6BC6E6A8785E1CAF5F45 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1110,6 +1096,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 6C566F90733128B0F4C9DF47;
 			remoteInfo = libzip;
+		};
+		CDDE7A81EA27359A9D2191C3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 550F73E1A9C5547EA7C2B0D0 /* revdb.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A1E6EB0C17EB47ED79E7C1A6;
+			remoteInfo = "dbpostgresql-server";
 		};
 		CE01A5E728ADBFD1A1F60481 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1139,13 +1132,6 @@
 			remoteGlobalIDString = 476CCD2121787642E4719CED;
 			remoteInfo = dbmysql;
 		};
-		D50DBB40C88E30D7B6B67B5D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 631EDAA4870DF046A47365F2 /* engine.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 96A4A071F3D2619F28F42506;
-			remoteInfo = standalone;
-		};
 		D5AB9E94A830F7D95D2F10B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2CD944F2AB0FCED007FFBA5E /* libgif.xcodeproj */;
@@ -1153,12 +1139,12 @@
 			remoteGlobalIDString = FA5ECE9095E05166E22E019B;
 			remoteInfo = libgif;
 		};
-		D71E9C53375D9EED962394D1 /* PBXContainerItemProxy */ = {
+		D72BC38245FAD364B794D28E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = D964711657F321B1ADF423A8 /* revzip.xcodeproj */;
+			containerPortal = 587DF4750CCE92F62900F90B /* toolchain.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 72B669D6C28092E099C54A06;
-			remoteInfo = "external-revzip-server";
+			remoteGlobalIDString = 32B75DF0FB6529AFF521DC07;
+			remoteInfo = "toolchain-all";
 		};
 		DF46C4E843CFF23157524DC7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1174,12 +1160,12 @@
 			remoteGlobalIDString = 60459FBC10CEE991DD6B8B4B;
 			remoteInfo = "binzip-copy";
 		};
-		E3A316B8F173FCA95E99FEA7 /* PBXContainerItemProxy */ = {
+		E522AA98562B9CA93B031CDD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 550F73E1A9C5547EA7C2B0D0 /* revdb.xcodeproj */;
+			containerPortal = D964711657F321B1ADF423A8 /* revzip.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = E295F761C7088CA92DF12FC0;
-			remoteInfo = "external-revdb-server";
+			remoteGlobalIDString = 67CFBDA4CD6283294ECBD392;
+			remoteInfo = "external-revzip";
 		};
 		E74DC79E55AF6DAE186E4935 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1195,6 +1181,13 @@
 			remoteGlobalIDString = FCD11362B49AF900ABF567DA;
 			remoteInfo = libmysql;
 		};
+		E9F872347837E6AC6E49B11A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D964711657F321B1ADF423A8 /* revzip.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 72B669D6C28092E099C54A06;
+			remoteInfo = "external-revzip-server";
+		};
 		EF075F96C7BD10AC3DBE2364 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 321A4BA8F5FDA2929170C8F0 /* libcpptest.xcodeproj */;
@@ -1209,12 +1202,12 @@
 			remoteGlobalIDString = B716141BFEF6AD980E19AA1D;
 			remoteInfo = libxslt;
 		};
-		F0A9586FB429021F4C349E93 /* PBXContainerItemProxy */ = {
+		F0D29228C7B56EA3A5E541DA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = D79E2084AE99624B22FC541D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D20A3ED380F1D2EFBD878920;
-			remoteInfo = "LiveCode-all";
+			containerPortal = 631EDAA4870DF046A47365F2 /* engine.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4B5DF9A0F127CA174F41714B;
+			remoteInfo = development;
 		};
 		F25AEA02C1EFA8792B21C198 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1223,26 +1216,12 @@
 			remoteGlobalIDString = 9006F1FE6146CA05EE6DB6F5;
 			remoteInfo = check;
 		};
-		F2DE84081865155CA7039072 /* PBXContainerItemProxy */ = {
+		F5F5BA1DDF07B1D826ABDBB4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 631EDAA4870DF046A47365F2 /* engine.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 17B4A71571D0DFF589ECC199;
-			remoteInfo = standalone;
-		};
-		F3318577FF897340DA69A1FB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 30148F66B1221687685AE9E4 /* revbrowser.xcodeproj */;
+			containerPortal = 550F73E1A9C5547EA7C2B0D0 /* revdb.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 6E55CE839579E8747BB85AEA;
-			remoteInfo = "external-revbrowser";
-		};
-		F5CAA14FA8E7008F01423F6A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D964711657F321B1ADF423A8 /* revzip.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 67CFBDA4CD6283294ECBD392;
-			remoteInfo = "external-revzip";
+			remoteGlobalIDString = 1E3B23ACFCD50A993001C9C9;
+			remoteInfo = dbpostgresql;
 		};
 		F6F7041BC40B2590827A6A8C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1250,6 +1229,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = F4057E2BDD126A2B0D7F9F1C;
 			remoteInfo = libskia_opt_hsw;
+		};
+		F7D24B84E7EEA5E449820AA3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E100214ADF5C62211D542519 /* revpdfprinter.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 3CA43BB6D94D98075558BDBB;
+			remoteInfo = "external-revpdfprinter";
+		};
+		F8BDB7CB26BE50088305EBAD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 631EDAA4870DF046A47365F2 /* engine.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 96A4A071F3D2619F28F42506;
+			remoteInfo = standalone;
 		};
 		FB5D70053B919A2FFB9B0547 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1264,6 +1257,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = D5E9F9FFC4D40555FCC2E43D;
 			remoteInfo = libFoundation;
+		};
+		FFA84088AD23720F8829654A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 550F73E1A9C5547EA7C2B0D0 /* revdb.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F1A44E096FAED6FA68831B54;
+			remoteInfo = dbsqlite;
 		};
 		FFE8B3A6FADAC82697F8D951 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1281,64 +1281,64 @@
 			dstPath = "$(SRCROOT)/mac-bin";
 			dstSubfolderSpec = 0;
 			files = (
-				3FB42299B5CE53B5091BBA41 /* HyperXTalk-Standalone.app in Copy to mac-bin */,
-				32880AD75488A9B4AF694EA6 /* lc-compile in Copy to mac-bin */,
-				0EEF8B9502CE726A4528B8CA /* lc-compile-ffi-java in Copy to mac-bin */,
-				361DF275713DFEA66695ED04 /* lc-run in Copy to mac-bin */,
-				DADB05B959C42A28DBA08928 /* server-community in Copy to mac-bin */,
-				EA578A1FE39EED9DAB542583 /* server-revzip.dylib in Copy to mac-bin */,
-				4DAACF7917C6FDC95EE3FB58 /* server-revxml.dylib in Copy to mac-bin */,
-				72D6DC14DEF3079839AA567E /* revsecurity.dylib in Copy to mac-bin */,
-				A08E29AF41629C831196032E /* revdb.bundle in Copy to mac-bin */,
-				3BF2FCA5F3164A3C6961F2A3 /* dbmysql.bundle in Copy to mac-bin */,
-				DD5CC5B4375C3B0B280C8E19 /* dbsqlite.bundle in Copy to mac-bin */,
-				83E3748667BCD75B95FD8A94 /* revxml.bundle in Copy to mac-bin */,
-				D84715B3CE5893D9FC4D4DF3 /* revzip.bundle in Copy to mac-bin */,
-				C3BE392A7B71C20EE52F2CD8 /* HyperXTalk.app in Copy to mac-bin */,
-				9CE686A8D30950796168736C /* revpdfprinter.bundle in Copy to mac-bin */,
-				FBA6D44401739A06DBB36FF4 /* Installer.app in Copy to mac-bin */,
-				E30FB143668FB8AF2FCC1D84 /* revbrowser.bundle in Copy to mac-bin */,
-				EDB109C4FCAE01A885FA856D /* dbodbc.bundle in Copy to mac-bin */,
-				07F27C5A2C2478C30AA9D97E /* dbpostgresql.bundle in Copy to mac-bin */,
-				19ACD70C6B87BD742EBD8DC1 /* revandroid.bundle in Copy to mac-bin */,
-				6F12E28D8769556C9300C898 /* reviphone.bundle in Copy to mac-bin */,
-				6E6E8950194D2DBCE1516152 /* revspeech.bundle in Copy to mac-bin */,
-				5B127893F7FAD723AF3032AD /* server-revdb.dylib in Copy to mac-bin */,
-				A22F71E90AC55A8DBFC1C9B4 /* installer-stub in Copy to mac-bin */,
-				A084F8193C85BE32A6FF4969 /* server-dbmysql.dylib in Copy to mac-bin */,
-				06B7A2D4E9DD8ACA2EA112F4 /* server-dbodbc.dylib in Copy to mac-bin */,
-				ECC01E7140CE4E45F7EC4CFE /* server-dbpostgresql.dylib in Copy to mac-bin */,
-				1DCD5E111EF16F6689647C56 /* server-dbsqlite.dylib in Copy to mac-bin */,
-				6AA4AB689B648313E1DAADEB /* modules in Copy to mac-bin */,
-				314BE9D85F1892C7F6741633 /* packaged_extensions in Copy to mac-bin */,
-				8ED2E83B8A1430EDC4B52E30 /* HyperXTalk-Standalone.app.dSYM in Copy to mac-bin */,
-				E4446BCF9042E0A473F48505 /* lc-compile.dSYM in Copy to mac-bin */,
-				ED70E70EC67B1B5767A73A50 /* lc-compile-ffi-java.dSYM in Copy to mac-bin */,
-				0AF40042BF439C41E0EB92C7 /* lc-run.dSYM in Copy to mac-bin */,
-				AC284FC783A3A4EB2C55C612 /* server-community.dSYM in Copy to mac-bin */,
-				90736CE85F81CF4FCFACFEBF /* server-revzip.dylib.dSYM in Copy to mac-bin */,
-				6DDC3A4235FD1F1A9020AD37 /* server-revxml.dylib.dSYM in Copy to mac-bin */,
-				A91877D75AC4EE2614F1587E /* revsecurity.dylib.dSYM in Copy to mac-bin */,
-				A0961A737FF0F717AD0187F3 /* revdb.bundle.dSYM in Copy to mac-bin */,
-				CCDA2E22F37D32276BCA0FCF /* dbmysql.bundle.dSYM in Copy to mac-bin */,
-				B016E4CF133793B833F14E61 /* dbsqlite.bundle.dSYM in Copy to mac-bin */,
-				99E2AABABC27474167EC6B4F /* revxml.bundle.dSYM in Copy to mac-bin */,
-				B4BECD30DB5FED492B97BFF4 /* revzip.bundle.dSYM in Copy to mac-bin */,
-				65CDE9CEF7A8F4D2AB09C727 /* HyperXTalk.app.dSYM in Copy to mac-bin */,
-				C78AEF2CA8747B7BAA82C0F2 /* revpdfprinter.bundle.dSYM in Copy to mac-bin */,
-				F408625EBC03551C4853760E /* Installer.app.dSYM in Copy to mac-bin */,
-				F062BF1AF6501FE6D344BB80 /* revbrowser.bundle.dSYM in Copy to mac-bin */,
-				D074515084F5CF5E67062385 /* dbodbc.bundle.dSYM in Copy to mac-bin */,
-				99AC1CBB348493668D6809BA /* dbpostgresql.bundle.dSYM in Copy to mac-bin */,
-				4B071A009FEDDC9670EBDFB1 /* revandroid.bundle.dSYM in Copy to mac-bin */,
-				774EA2AD4E11736A2094EC19 /* reviphone.bundle.dSYM in Copy to mac-bin */,
-				4651E610629282F13AE13C68 /* revspeech.bundle.dSYM in Copy to mac-bin */,
-				708DDD36176BF70966B54A39 /* server-revdb.dylib.dSYM in Copy to mac-bin */,
-				27A8915CE764FCD515BE7F17 /* installer-stub.dSYM in Copy to mac-bin */,
-				10065A782CEFDD2AE4947EEA /* server-dbmysql.dylib.dSYM in Copy to mac-bin */,
-				E1B9B18C183B41DC0BCC9928 /* server-dbodbc.dylib.dSYM in Copy to mac-bin */,
-				0D48AFA3099B2076242FBAE5 /* server-dbpostgresql.dylib.dSYM in Copy to mac-bin */,
-				9B59606F1FAE197B3B816347 /* server-dbsqlite.dylib.dSYM in Copy to mac-bin */,
+				E3DEF12405BB8B77FB563EB4 /* HyperXTalk-Standalone.app in Copy to mac-bin */,
+				592AAD964A48F8CF9320D856 /* lc-compile in Copy to mac-bin */,
+				89F69675E93C8C7323C9ACA3 /* lc-compile-ffi-java in Copy to mac-bin */,
+				4EF97C07EFE17CD87FA1BE7E /* lc-run in Copy to mac-bin */,
+				D2C486A8DE3DEFDBEA983D37 /* server-community in Copy to mac-bin */,
+				6B14B819E06BE5E0C8BDA058 /* server-revzip.dylib in Copy to mac-bin */,
+				5A23AEE27F86322FA80AED5F /* server-revxml.dylib in Copy to mac-bin */,
+				5CC6D8EBF725B3ED4ED82155 /* revsecurity.dylib in Copy to mac-bin */,
+				411C53C9838E95424D3583EC /* revdb.bundle in Copy to mac-bin */,
+				A9852E77520EBECBB8DD77E6 /* dbmysql.bundle in Copy to mac-bin */,
+				7A252B955EA43D6031B16383 /* dbsqlite.bundle in Copy to mac-bin */,
+				1D3EF51E87386B54BB454664 /* revxml.bundle in Copy to mac-bin */,
+				E97F966C95ECCD9E2BD106F1 /* revzip.bundle in Copy to mac-bin */,
+				91E0FF337C6415B0B11A8984 /* HyperXTalk.app in Copy to mac-bin */,
+				96C9BCA4007EAD7367572212 /* revpdfprinter.bundle in Copy to mac-bin */,
+				1CCBD891E49F632991A95F6B /* Installer.app in Copy to mac-bin */,
+				C131258090C8DCC111086FB9 /* revbrowser.bundle in Copy to mac-bin */,
+				1FFA511DB135D65406CE206C /* dbodbc.bundle in Copy to mac-bin */,
+				D9A0FE4AE59245A947763F00 /* dbpostgresql.bundle in Copy to mac-bin */,
+				6F182D033457802ECEAC2621 /* revandroid.bundle in Copy to mac-bin */,
+				4ABC4779FAEF16309FAC0F0B /* reviphone.bundle in Copy to mac-bin */,
+				D07B59D437300EB41E114ED8 /* revspeech.bundle in Copy to mac-bin */,
+				4243ED476E9B68E0FA06860A /* server-revdb.dylib in Copy to mac-bin */,
+				F42199F00F2290628E174BFE /* installer-stub in Copy to mac-bin */,
+				97F85555CAB31B7DBD6C9AF3 /* server-dbmysql.dylib in Copy to mac-bin */,
+				BFAFB299520CC4D58F312BAE /* server-dbodbc.dylib in Copy to mac-bin */,
+				FA97AB12855A1D067EED59A7 /* server-dbpostgresql.dylib in Copy to mac-bin */,
+				9484C471C2A425E2D1C04F75 /* server-dbsqlite.dylib in Copy to mac-bin */,
+				B73DB17F11436308D7B4203E /* modules in Copy to mac-bin */,
+				05FE02E33ECFC083E598C0B3 /* packaged_extensions in Copy to mac-bin */,
+				C72721CA988502D547691423 /* HyperXTalk-Standalone.app.dSYM in Copy to mac-bin */,
+				30D6A63FCBFDE49E6179994F /* lc-compile.dSYM in Copy to mac-bin */,
+				846984055C99318310C692B6 /* lc-compile-ffi-java.dSYM in Copy to mac-bin */,
+				1F119452B4D33C9C1650FCDC /* lc-run.dSYM in Copy to mac-bin */,
+				BD1A523007987D5566FC6218 /* server-community.dSYM in Copy to mac-bin */,
+				C1D77FBCEA7CF58752D92EEE /* server-revzip.dylib.dSYM in Copy to mac-bin */,
+				DF6D991F62D6C471C691CA43 /* server-revxml.dylib.dSYM in Copy to mac-bin */,
+				20CDFFADB65747332AA121DE /* revsecurity.dylib.dSYM in Copy to mac-bin */,
+				9ACA623D6AEF8A14D4C9DC8D /* revdb.bundle.dSYM in Copy to mac-bin */,
+				CE39033F4E7ADEFC837C4B36 /* dbmysql.bundle.dSYM in Copy to mac-bin */,
+				ADEEA3DD16ED38AEECA9DC1E /* dbsqlite.bundle.dSYM in Copy to mac-bin */,
+				4A5DC59292F7F9329893EC7D /* revxml.bundle.dSYM in Copy to mac-bin */,
+				5D8E4AA1C83E4BD213700FDB /* revzip.bundle.dSYM in Copy to mac-bin */,
+				5426217B57C1457D6765B7FD /* HyperXTalk.app.dSYM in Copy to mac-bin */,
+				7104003972B94F550DD7982F /* revpdfprinter.bundle.dSYM in Copy to mac-bin */,
+				8698E8C1CDD530C546A0E9A0 /* Installer.app.dSYM in Copy to mac-bin */,
+				80BAAD6D4E121A4517213280 /* revbrowser.bundle.dSYM in Copy to mac-bin */,
+				304E6E2779CB63CFA9A71D9C /* dbodbc.bundle.dSYM in Copy to mac-bin */,
+				C4E2471D165B17DEE49713D6 /* dbpostgresql.bundle.dSYM in Copy to mac-bin */,
+				65710C2193AE0D359A5D10A1 /* revandroid.bundle.dSYM in Copy to mac-bin */,
+				FE4EB37B55FF166E6C6484A2 /* reviphone.bundle.dSYM in Copy to mac-bin */,
+				E47358095C3DAB62A3936E0C /* revspeech.bundle.dSYM in Copy to mac-bin */,
+				22024FB87800F8435E5A8BF1 /* server-revdb.dylib.dSYM in Copy to mac-bin */,
+				39A17A855A8FB13ADC70652B /* installer-stub.dSYM in Copy to mac-bin */,
+				6A92E7B2723331E84D2CC505 /* server-dbmysql.dylib.dSYM in Copy to mac-bin */,
+				E70F0D73CED2BBACAD16D7CF /* server-dbodbc.dylib.dSYM in Copy to mac-bin */,
+				AF8395CD6A8CCD4415A8353E /* server-dbpostgresql.dylib.dSYM in Copy to mac-bin */,
+				2D8EC8560AFF42F8D9FF35B5 /* server-dbsqlite.dylib.dSYM in Copy to mac-bin */,
 			);
 			name = "Copy to mac-bin";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1357,6 +1357,7 @@
 		22BE7B10C22002541E8983FA /* emscripten.gypi */ = {isa = PBXFileReference; explicitFileType = sourcecode; name = emscripten.gypi; path = config/emscripten.gypi; sourceTree = "<group>"; };
 		238F9D92035E86B15F1ABC3A /* libxml.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libxml.xcodeproj; path = "build-mac/livecode/thirdparty/libxml/libxml.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		23F48B56BDCFAA999B02B27A /* version.gypi */ = {isa = PBXFileReference; explicitFileType = sourcecode; name = version.gypi; path = config/version.gypi; sourceTree = "<group>"; };
+		258E4043DA115642D051B63E /* HyperXTalk-Standalone.app.dSYM */ = {isa = PBXFileReference; lastKnownFileType = text; path = "HyperXTalk-Standalone.app.dSYM"; sourceTree = "<group>"; };
 		28ACF81D4EA0D3E179358E18 /* server-dbodbc.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "server-dbodbc.dylib"; sourceTree = "<group>"; };
 		292729ED57E91A5C11CC87EA /* dbmysql.bundle.dSYM */ = {isa = PBXFileReference; lastKnownFileType = text; path = dbmysql.bundle.dSYM; sourceTree = "<group>"; };
 		2988FA3FB7CFCC45945312A6 /* win32.gypi */ = {isa = PBXFileReference; explicitFileType = sourcecode; name = win32.gypi; path = config/win32.gypi; sourceTree = "<group>"; };
@@ -1389,13 +1390,11 @@
 		5A011A65EE1DD91964A55AA3 /* livecode.gyp */ = {isa = PBXFileReference; explicitFileType = sourcecode; path = livecode.gyp; sourceTree = "<group>"; };
 		5B2600BE02EB3601A402F1A8 /* libpq.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libpq.xcodeproj; path = "build-mac/livecode/thirdparty/libpq/libpq.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		5D4445BE62AB094D878B7487 /* revxml.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = revxml.xcodeproj; path = "build-mac/livecode/revxml/revxml.xcodeproj"; sourceTree = SOURCE_ROOT; };
-		5D50E8854EE42DC24F50E41C /* HyperXTalk-Standalone.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "HyperXTalk-Standalone.app"; sourceTree = "<group>"; };
 		5E61869325CEBC8E6510EE6E /* extract-debug-symbols.sh */ = {isa = PBXFileReference; lastKnownFileType = text; path = "extract-debug-symbols.sh"; sourceTree = "<group>"; };
 		6068F6D7ABE87FFFC1ED37EF /* lcidlc.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = lcidlc.xcodeproj; path = "build-mac/livecode/lcidlc/lcidlc.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		61ED241C8E1B262F21D7E50E /* server-revxml.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "server-revxml.dylib"; sourceTree = "<group>"; };
 		631EDAA4870DF046A47365F2 /* engine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = engine.xcodeproj; path = "build-mac/livecode/engine/engine.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		66170A2A7CB3B007E3294F40 /* libcairo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libcairo.xcodeproj; path = "build-mac/livecode/thirdparty/libcairo/libcairo.xcodeproj"; sourceTree = SOURCE_ROOT; };
-		665602F58BA8D61FCBF5BDB6 /* HyperXTalk-Standalone.app.dSYM */ = {isa = PBXFileReference; lastKnownFileType = text; path = "HyperXTalk-Standalone.app.dSYM"; sourceTree = "<group>"; };
 		688132AD64FDB5C240A9C2F8 /* libfoundation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libfoundation.xcodeproj; path = "build-mac/livecode/libfoundation/libfoundation.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		6A6FE3050CAB99B57002B0EF /* server-dbsqlite.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "server-dbsqlite.dylib"; sourceTree = "<group>"; };
 		6D65C78E5DB4E8E146A66F4A /* server-revxml.dylib.dSYM */ = {isa = PBXFileReference; lastKnownFileType = text; path = "server-revxml.dylib.dSYM"; sourceTree = "<group>"; };
@@ -1403,6 +1402,7 @@
 		76A71BE33766C1181E039E48 /* libjpeg.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libjpeg.xcodeproj; path = "build-mac/livecode/thirdparty/libjpeg/libjpeg.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		77309A6A1B3601C55AD7EA3E /* installer-stub.dSYM */ = {isa = PBXFileReference; lastKnownFileType = text; path = "installer-stub.dSYM"; sourceTree = "<group>"; };
 		77D091215504FFC5D8327B3C /* libiodbc.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libiodbc.xcodeproj; path = "build-mac/livecode/thirdparty/libiodbc/libiodbc.xcodeproj"; sourceTree = SOURCE_ROOT; };
+		77D1D9ADBCA187893AF68BCB /* HyperXTalk.app.dSYM */ = {isa = PBXFileReference; lastKnownFileType = text; path = HyperXTalk.app.dSYM; sourceTree = "<group>"; };
 		782354144D1E96E0CC407B68 /* server-revzip.dylib.dSYM */ = {isa = PBXFileReference; lastKnownFileType = text; path = "server-revzip.dylib.dSYM"; sourceTree = "<group>"; };
 		78DF4C8E7CA716C2AA1E0B90 /* revdb.bundle.dSYM */ = {isa = PBXFileReference; lastKnownFileType = text; path = revdb.bundle.dSYM; sourceTree = "<group>"; };
 		7ACD2F2D09738E90FD54F1B8 /* libz.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libz.xcodeproj; path = "build-mac/livecode/thirdparty/libz/libz.xcodeproj"; sourceTree = SOURCE_ROOT; };
@@ -1419,7 +1419,6 @@
 		8F4EF17E549C8100D51ADAF7 /* lc-compile.dSYM */ = {isa = PBXFileReference; lastKnownFileType = text; path = "lc-compile.dSYM"; sourceTree = "<group>"; };
 		9125B595FF597CFFC8B9BFFE /* common.gypi */ = {isa = PBXFileReference; explicitFileType = sourcecode; path = common.gypi; sourceTree = "<group>"; };
 		92E57C8BA3047C562B7EEBA1 /* exclusions.gypi */ = {isa = PBXFileReference; explicitFileType = sourcecode; name = exclusions.gypi; path = config/exclusions.gypi; sourceTree = "<group>"; };
-		93114916858F00B8456BD020 /* HyperXTalk.app.dSYM */ = {isa = PBXFileReference; lastKnownFileType = text; path = "HyperXTalk.app.dSYM"; sourceTree = "<group>"; };
 		9595FF53F2D692EA299C4B19 /* installer-stub */ = {isa = PBXFileReference; lastKnownFileType = text; path = "installer-stub"; sourceTree = "<group>"; };
 		971879A2E63D95E67E4CDB27 /* dbsqlite.bundle.dSYM */ = {isa = PBXFileReference; lastKnownFileType = text; path = dbsqlite.bundle.dSYM; sourceTree = "<group>"; };
 		9820CE8E69A1F7F1891DFFFB /* emscripten-settings.gypi */ = {isa = PBXFileReference; explicitFileType = sourcecode; name = "emscripten-settings.gypi"; path = "config/emscripten-settings.gypi"; sourceTree = "<group>"; };
@@ -1440,8 +1439,10 @@
 		CA5D7FFF3C02C1D24B6F3D28 /* revbrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = wrapper.cfbundle; path = revbrowser.bundle; sourceTree = "<group>"; };
 		CBBEC53A9689CF9CC05DE877 /* kernel-server.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "kernel-server.xcodeproj"; path = "build-mac/livecode/engine/kernel-server.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		CFFA4B1E07C64C3BE05E078E /* dbmysql.bundle */ = {isa = PBXFileReference; lastKnownFileType = wrapper.cfbundle; path = dbmysql.bundle; sourceTree = "<group>"; };
+		D410D4C507137091C7EAD442 /* HyperXTalk-Standalone.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "HyperXTalk-Standalone.app"; sourceTree = "<group>"; };
 		D50EE95A7B443CADE891AD87 /* libpcre.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libpcre.xcodeproj; path = "build-mac/livecode/thirdparty/libpcre/libpcre.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		D6AD6A225B668101D7CE3126 /* reviphone.bundle */ = {isa = PBXFileReference; lastKnownFileType = wrapper.cfbundle; path = reviphone.bundle; sourceTree = "<group>"; };
+		D911C45F3D1BCFF226153DFE /* HyperXTalk.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = HyperXTalk.app; sourceTree = "<group>"; };
 		D964711657F321B1ADF423A8 /* revzip.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = revzip.xcodeproj; path = "build-mac/livecode/revzip/revzip.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		E100214ADF5C62211D542519 /* revpdfprinter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = revpdfprinter.xcodeproj; path = "build-mac/livecode/revpdfprinter/revpdfprinter.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		E1A8E68E83E32CF41578519D /* revspeech.bundle.dSYM */ = {isa = PBXFileReference; lastKnownFileType = text; path = revspeech.bundle.dSYM; sourceTree = "<group>"; };
@@ -1459,7 +1460,6 @@
 		FBAED9942197D1F96740F5FD /* configurations.gypi */ = {isa = PBXFileReference; explicitFileType = sourcecode; name = configurations.gypi; path = config/configurations.gypi; sourceTree = "<group>"; };
 		FF47D75349E271B29140DB08 /* yacc.gypi */ = {isa = PBXFileReference; explicitFileType = sourcecode; name = yacc.gypi; path = config/yacc.gypi; sourceTree = "<group>"; };
 		FF607CA367B4C732B821E04F /* debug_syms.gypi */ = {isa = PBXFileReference; explicitFileType = sourcecode; name = debug_syms.gypi; path = config/debug_syms.gypi; sourceTree = "<group>"; };
-		FF99EA602349925D7DAB02E9 /* HyperXTalk.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "HyperXTalk.app"; sourceTree = "<group>"; };
 		FFFA4F5D5C0EE1FF51E1A6C6 /* revspeech.bundle */ = {isa = PBXFileReference; lastKnownFileType = wrapper.cfbundle; path = revspeech.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1532,74 +1532,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3A88D1AC8F5F4F8444FE63E3 = {
+		2D268D53E50932D969AB133A /* BUILT_PRODUCTS_DIR */ = {
 			isa = PBXGroup;
 			children = (
-				ACC8E9EDF828D4C42BA20EBD /* Source */,
-				29B893CDC1646C2040E67EC1 /* Projects */,
-				B89BD2744A95B5BB4FF0804B /* Build */,
-			);
-			sourceTree = "<group>";
-		};
-		445D8C74111AFC34CCB455CC /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				5344B4BE1B68913990ECD130 /* libxml.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		4C29868735D090F73080733F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D40323692CD907D662BEA069 /* libffi.a */,
-				F8AEAE61C4D3FBE0070D82B6 /* libffi-host.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		50D253D741DB23C61CE525EE /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				2912ABC5648F121446060D1F /* libpng.a */,
-				7B82667F71B0A799FF302612 /* libpng (host).a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		620A99948C29A33A95F24D57 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				90AAE5DBCC8099CEF5A081D3 /* libmysql.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		65F84061F8EEE98B8A455D53 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				DEEF6FFE7C5BCF601F67C49E /* libopenssl_stubs.a */,
-				48DA8A8BC6D2D96D208010A3 /* revsecurity.dylib */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		68573B4C16469F9264CFCFA7 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		699DED38E0730AB6CC66F655 /* BUILT_PRODUCTS_DIR */ = {
-			isa = PBXGroup;
-			children = (
+				D410D4C507137091C7EAD442 /* HyperXTalk-Standalone.app */,
+				258E4043DA115642D051B63E /* HyperXTalk-Standalone.app.dSYM */,
+				D911C45F3D1BCFF226153DFE /* HyperXTalk.app */,
+				77D1D9ADBCA187893AF68BCB /* HyperXTalk.app.dSYM */,
 				ABD02F3DB3C09B505BF732BB /* Installer.app */,
 				2AF83F789870843B61931AC0 /* Installer.app.dSYM */,
-				FF99EA602349925D7DAB02E9 /* HyperXTalk.app */,
-				93114916858F00B8456BD020 /* HyperXTalk.app.dSYM */,
-				5D50E8854EE42DC24F50E41C /* HyperXTalk-Standalone.app */,
-				665602F58BA8D61FCBF5BDB6 /* HyperXTalk-Standalone.app.dSYM */,
 				CFFA4B1E07C64C3BE05E078E /* dbmysql.bundle */,
 				292729ED57E91A5C11CC87EA /* dbmysql.bundle.dSYM */,
 				BAAE32E57313B3E18E70BEC2 /* dbodbc.bundle */,
@@ -1655,6 +1596,77 @@
 			);
 			name = BUILT_PRODUCTS_DIR;
 			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3A88D1AC8F5F4F8444FE63E3 = {
+			isa = PBXGroup;
+			children = (
+				ACC8E9EDF828D4C42BA20EBD /* Source */,
+				29B893CDC1646C2040E67EC1 /* Projects */,
+				B89BD2744A95B5BB4FF0804B /* Build */,
+			);
+			sourceTree = "<group>";
+		};
+		445D8C74111AFC34CCB455CC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5344B4BE1B68913990ECD130 /* libxml.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		45E8A02C7A688F154D7793BA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7822C9CB0AEA3300E32D9EDE /* server-community */,
+				C9826B1BCF3A665263501918 /* server-community-host */,
+				F22D974A255C3432BA1641ED /* HyperXTalk-Standalone.app */,
+				DF467990D94D1E25EED85CF1 /* Installer.app */,
+				E6DCCCA59733BD6ECBB66FBC /* HyperXTalk.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4C29868735D090F73080733F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D40323692CD907D662BEA069 /* libffi.a */,
+				F8AEAE61C4D3FBE0070D82B6 /* libffi-host.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		50D253D741DB23C61CE525EE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2912ABC5648F121446060D1F /* libpng.a */,
+				7B82667F71B0A799FF302612 /* libpng (host).a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		620A99948C29A33A95F24D57 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				90AAE5DBCC8099CEF5A081D3 /* libmysql.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		65F84061F8EEE98B8A455D53 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DEEF6FFE7C5BCF601F67C49E /* libopenssl_stubs.a */,
+				48DA8A8BC6D2D96D208010A3 /* revsecurity.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		68573B4C16469F9264CFCFA7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
 		};
 		6E4579A9A1233CB31296163A /* Products */ = {
 			isa = PBXGroup;
@@ -1793,7 +1805,7 @@
 		ACC8E9EDF828D4C42BA20EBD /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				699DED38E0730AB6CC66F655 /* BUILT_PRODUCTS_DIR */,
+				2D268D53E50932D969AB133A /* BUILT_PRODUCTS_DIR */,
 				EA821383B5095CDDD4A3CB4B /* tools */,
 				AFB1152FEDCFCFDF8F3A5D59 /* version */,
 			);
@@ -1913,18 +1925,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F499A952AE6F90AC4BD2518B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				7822C9CB0AEA3300E32D9EDE /* server-community */,
-				C9826B1BCF3A665263501918 /* server-community-host */,
-				058414EDF3A4170F619A67BF /* HyperXTalk-Standalone.app */,
-				DF467990D94D1E25EED85CF1 /* Installer.app */,
-				3C2F16F5044764E43F95DDE5 /* HyperXTalk.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		F7216B0D5CADBB34ADDF94B8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1960,7 +1960,7 @@
 			projectDirPath = ../..;
 			projectReferences = (
 				{
-					ProductGroup = F499A952AE6F90AC4BD2518B /* Products */;
+					ProductGroup = 45E8A02C7A688F154D7793BA /* Products */;
 					ProjectRef = 631EDAA4870DF046A47365F2 /* engine.xcodeproj */;
 				},
 				{
@@ -2101,7 +2101,7 @@
 				BD505105C1034398527D0BCE /* All */,
 				6D395284F7927560A28D763B /* default */,
 				9006F1FE6146CA05EE6DB6F5 /* check */,
-				D20A3ED380F1D2EFBD878920 /* LiveCode-all */,
+				51E224D4DA18B3C780705D36 /* HyperXTalk-all */,
 				4D867CDA15204359AD6F00FB /* debug-symbols */,
 				60459FBC10CEE991DD6B8B4B /* binzip-copy */,
 				48F4D861D8A55FE3308DDAED /* cpptest-run-all */,
@@ -2158,13 +2158,6 @@
 			fileType = wrapper.cfbundle;
 			path = revpdfprinter.bundle;
 			remoteRef = 2145AEBDE9960A7A7BCF3D93 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		058414EDF3A4170F619A67BF /* HyperXTalk-Standalone.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = "HyperXTalk-Standalone.app";
-			remoteRef = F2DE84081865155CA7039072 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		096A7284F198756F4F3C6F7D /* libskia_opt_arm.a */ = {
@@ -2270,13 +2263,6 @@
 			fileType = wrapper.cfbundle;
 			path = revxml.bundle;
 			remoteRef = 9909EA3B170A379E2C2D8329 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3C2F16F5044764E43F95DDE5 /* HyperXTalk.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = "HyperXTalk.app";
-			remoteRef = 47CE0A72138530293FD389A7 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		4226B59D9A5B12E9AFA0BB5D /* server-dbmysql.dylib */ = {
@@ -2622,6 +2608,13 @@
 			remoteRef = A4E766AFF4213801D8A768EE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		E6DCCCA59733BD6ECBB66FBC /* HyperXTalk.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = HyperXTalk.app;
+			remoteRef = F0D29228C7B56EA3A5E541DA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		E7BD38CE2882F9F37B34B72A /* libz-host.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -2655,6 +2648,13 @@
 			fileType = archive.ar;
 			path = "libkernel-installer.a";
 			remoteRef = 3D0AFFD8BB09F4089A6C6847 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F22D974A255C3432BA1641ED /* HyperXTalk-Standalone.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "HyperXTalk-Standalone.app";
+			remoteRef = 59545C05DC2C3DC062E17706 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		F708B24357A3EA999AE9D1C9 /* libskia (host).a */ = {
@@ -2771,25 +2771,20 @@
 			name = libiodbc;
 			targetProxy = 907DBC6887ABA8BB0CBD74A5 /* PBXContainerItemProxy */;
 		};
-		0AB1A906953158106039C8F8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = dbmysql;
-			targetProxy = 68EA55DEF4E3A217C0D72D49 /* PBXContainerItemProxy */;
-		};
 		0D4EEAC018FB8F60F7CD33D7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = libskia_opt_hsw;
 			targetProxy = F6F7041BC40B2590827A6A8C /* PBXContainerItemProxy */;
 		};
+		0DA70472B88496D09F686DBB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = lcidlc;
+			targetProxy = 45BACF127B9B0D593D9DE468 /* PBXContainerItemProxy */;
+		};
 		0DC4CF659D9486AEBCF8F2B7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = libjpeg;
 			targetProxy = 9F9FD774624745DBA6F98EBC /* PBXContainerItemProxy */;
-		};
-		0E0750650D08CECFDDB4F10B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "external-revxml-server";
-			targetProxy = 2F979D78184EF3C6A1372407 /* PBXContainerItemProxy */;
 		};
 		0E7ADDCC43B1A4E7379BB1C4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2801,50 +2796,70 @@
 			name = "run-test-kernel-development";
 			targetProxy = 6EA65AEF246B6569D9902DF1 /* PBXContainerItemProxy */;
 		};
-		1374A63B19F44F613174880B /* PBXTargetDependency */ = {
+		10C1A6D7635B14CC735068C1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "dbodbc-server";
-			targetProxy = 847D79E852341003BD3BDC63 /* PBXContainerItemProxy */;
+			name = "external-revspeech";
+			targetProxy = 69BB8624D09BA62EFA84E371 /* PBXContainerItemProxy */;
 		};
-		1D2D524DBF74997D10749F8F /* PBXTargetDependency */ = {
+		12ADD50DF5B06AE4616730B6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D20A3ED380F1D2EFBD878920 /* LiveCode-all */;
-			targetProxy = 7AA7C06D5F91BE145D238DAC /* PBXContainerItemProxy */;
+			name = "toolchain-all";
+			targetProxy = D72BC38245FAD364B794D28E /* PBXContainerItemProxy */;
+		};
+		14B8851EADE655F1386E2113 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = extensions;
+			targetProxy = 2334C73EF81F775410DE8215 /* PBXContainerItemProxy */;
+		};
+		14F26915C98415821C05E33A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 51E224D4DA18B3C780705D36 /* HyperXTalk-all */;
+			targetProxy = BE1DC7746DCB1D57178A58B4 /* PBXContainerItemProxy */;
 		};
 		1F3DE2FD7123BFB7FD6B5AC9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 6D395284F7927560A28D763B /* default */;
 			targetProxy = 1A00C728E974789F608A0F65 /* PBXContainerItemProxy */;
 		};
-		26B2632CD28A32469E53F90F /* PBXTargetDependency */ = {
+		235170C836E0B51164D0E329 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "external-revandroid";
-			targetProxy = 0A262C087D302B5F467B266C /* PBXContainerItemProxy */;
+			name = dbmysql;
+			targetProxy = 2A7850EDA4E133C169B26B9C /* PBXContainerItemProxy */;
+		};
+		25872FB1BC2DFEA8794794D5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "external-reviphone";
+			targetProxy = BDBFC1A574CF1FCE43C64284 /* PBXContainerItemProxy */;
 		};
 		2F875AADD3C8467F8E98C50C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "run-test-kernel-server";
 			targetProxy = 46E52DCE620322685B65499B /* PBXContainerItemProxy */;
 		};
-		380E851C8EB0171ECF1D65A5 /* PBXTargetDependency */ = {
+		37E8B987C7F94D946CF2F762 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "external-revdb-server";
-			targetProxy = E3A316B8F173FCA95E99FEA7 /* PBXContainerItemProxy */;
-		};
-		38B7E3BD2BA900894F4CFA55 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "external-revzip";
-			targetProxy = F5CAA14FA8E7008F01423F6A /* PBXContainerItemProxy */;
+			name = revsecurity;
+			targetProxy = 4AF9F8417994AB2A44377796 /* PBXContainerItemProxy */;
 		};
 		3D87082CBF599A9392FE26BF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 60459FBC10CEE991DD6B8B4B /* binzip-copy */;
 			targetProxy = 95B6B3295D0A7E82DB1176C0 /* PBXContainerItemProxy */;
 		};
-		4433A88BF0AA74FAF03B4AFE /* PBXTargetDependency */ = {
+		402FE4AAD40AE7F2D8C23496 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = development;
-			targetProxy = 763A5CD6044DA89BCA52B081 /* PBXContainerItemProxy */;
+			name = installer;
+			targetProxy = 8C0E64DD82C9E7C7EBD13C71 /* PBXContainerItemProxy */;
+		};
+		433171973A08F933ECF23173 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "external-revandroid";
+			targetProxy = A35EF0C9F366869506CC708E /* PBXContainerItemProxy */;
+		};
+		4736E2F21DEBCF2C210F74D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = standalone;
+			targetProxy = F8BDB7CB26BE50088305EBAD /* PBXContainerItemProxy */;
 		};
 		48625BE2B37A3B33F502FADA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2861,40 +2876,50 @@
 			name = libskia_opt_sse3;
 			targetProxy = 375E0582D3E7AFC8EA358A18 /* PBXContainerItemProxy */;
 		};
-		4DF2818F65B1A9E4D3955CDA /* PBXTargetDependency */ = {
+		4C8CD31F4720EF6067D59F70 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "dbsqlite-server";
-			targetProxy = 3850BF9586D75BF73FB96C92 /* PBXContainerItemProxy */;
+			target = 51E224D4DA18B3C780705D36 /* HyperXTalk-all */;
+			targetProxy = 9CEE0BB2E719DA980F831FFB /* PBXContainerItemProxy */;
+		};
+		4F11632AFADA34388AD4092B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = dbpostgresql;
+			targetProxy = F5F5BA1DDF07B1D826ABDBB4 /* PBXContainerItemProxy */;
 		};
 		534E7FB72B020CC26A200AC1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = libgif;
 			targetProxy = D5AB9E94A830F7D95D2F10B4 /* PBXContainerItemProxy */;
 		};
-		55906273E155A7D34658BCA0 /* PBXTargetDependency */ = {
+		66554BAB5FF0971A3D6ED6FB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D20A3ED380F1D2EFBD878920 /* LiveCode-all */;
-			targetProxy = F0A9586FB429021F4C349E93 /* PBXContainerItemProxy */;
-		};
-		640A946A195CFE3002422B1C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "external-revspeech";
-			targetProxy = 2004916A3196AD8303D8CAEC /* PBXContainerItemProxy */;
+			name = "dbmysql-server";
+			targetProxy = 7614D2E09B36F668356CCCB5 /* PBXContainerItemProxy */;
 		};
 		680CEAAC86366ED340CD724A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = libcairo;
 			targetProxy = C151284A11F1520B2F84C640 /* PBXContainerItemProxy */;
 		};
+		6AD70AE4F68466AC52A5BBD1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "osx-installer-stub";
+			targetProxy = A238EEBE6B18FAC7E97EC0DC /* PBXContainerItemProxy */;
+		};
 		6B72F2A106EE9E5294169080 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = libskia_opt_avx;
 			targetProxy = 25B0BBAD51429872BA53FB57 /* PBXContainerItemProxy */;
 		};
-		6BDE4C98CECCDF6C1A9638CD /* PBXTargetDependency */ = {
+		6E315DABDDDF18B00C3D27F1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "external-revzip-server";
-			targetProxy = D71E9C53375D9EED962394D1 /* PBXContainerItemProxy */;
+			target = 51E224D4DA18B3C780705D36 /* HyperXTalk-all */;
+			targetProxy = 040A60AA81192C38A45A6C52 /* PBXContainerItemProxy */;
+		};
+		6E7D74C2970C8B034113D091 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "dbsqlite-server";
+			targetProxy = AE804735168871225ED8547A /* PBXContainerItemProxy */;
 		};
 		6FE05BF57DE3259746889320 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2906,15 +2931,20 @@
 			name = libskia_opt_sse42;
 			targetProxy = 0C3012BE3BC782A34C233AA2 /* PBXContainerItemProxy */;
 		};
+		721FB41CAB0D8B7975262020 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = dbodbc;
+			targetProxy = 44A5521EF6D2710DD17D27F6 /* PBXContainerItemProxy */;
+		};
+		76BD334EE81F11DFDF1AF66C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "external-revpdfprinter";
+			targetProxy = F7D24B84E7EEA5E449820AA3 /* PBXContainerItemProxy */;
+		};
 		76D4B17E8F7FAEEEA85124FA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 60459FBC10CEE991DD6B8B4B /* binzip-copy */;
 			targetProxy = E2CA88046289044FBADDC252 /* PBXContainerItemProxy */;
-		};
-		78AFF8247ACBE08F146C2B4C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = server;
-			targetProxy = B5EF7BE399069A16DF5030B0 /* PBXContainerItemProxy */;
 		};
 		78C446FE64CFC6DF1365BDBB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2926,35 +2956,20 @@
 			name = libzip;
 			targetProxy = 7BBF9FDE1A0BCCF42AF56BCE /* PBXContainerItemProxy */;
 		};
-		81C709131B7250F3F1D5009D /* PBXTargetDependency */ = {
+		80DD8FBD677638ED46279AF1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D20A3ED380F1D2EFBD878920 /* LiveCode-all */;
-			targetProxy = 7F3BC07E4668E9BC28C67190 /* PBXContainerItemProxy */;
+			name = "dbpostgresql-server";
+			targetProxy = CDDE7A81EA27359A9D2191C3 /* PBXContainerItemProxy */;
 		};
 		878A6D9B38B9F9DC9A0FF7A8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = libz;
 			targetProxy = 2CB276666A3EDD5869F244DF /* PBXContainerItemProxy */;
 		};
-		88DEA8FF7DC6509296977BAD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "external-revdb";
-			targetProxy = C2CB5E7CC5CD1BD490DECBF1 /* PBXContainerItemProxy */;
-		};
-		8CE4FBE4C3C8107193390094 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = revsecurity;
-			targetProxy = 653988185DF976E48C0F439F /* PBXContainerItemProxy */;
-		};
-		8E8B6843AC3D9339326F24D3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = installer;
-			targetProxy = 36F3DA0EC75E623D9AECC225 /* PBXContainerItemProxy */;
-		};
-		9BB862FA80DBDA5B3B31B7C4 /* PBXTargetDependency */ = {
+		8EAD4158FF378B366B811D72 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "external-revxml";
-			targetProxy = 306F34C07EFA2C7D340097DE /* PBXContainerItemProxy */;
+			targetProxy = 3529CACE5AE0A2CFC88DBC24 /* PBXContainerItemProxy */;
 		};
 		A2A7644BD5D4F9EED4B0B758 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2981,40 +2996,30 @@
 			name = libskia_opt_arm;
 			targetProxy = B95A6D0C37F1782EC21B69DD /* PBXContainerItemProxy */;
 		};
-		B411ACD18E340CC34A9A84E2 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "dbpostgresql-server";
-			targetProxy = 73894C3618A0AF052B5CC5B5 /* PBXContainerItemProxy */;
-		};
 		B707F295FA6085A659E7FAE8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "run-test-libFoundation";
 			targetProxy = 97B646D9DA2EAA9F814FA5F6 /* PBXContainerItemProxy */;
 		};
-		B96BD5C4E394F48C2D8A7BE5 /* PBXTargetDependency */ = {
+		BAFA6C53F3AB3CAB4AF529B6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "external-reviphone";
-			targetProxy = C6965BB4EFBCD265C1DF4A17 /* PBXContainerItemProxy */;
+			name = "external-revdb";
+			targetProxy = 076E2FDF0F1CC4CED4DA5907 /* PBXContainerItemProxy */;
 		};
-		BAD05066C8DDCD9C159BB51C /* PBXTargetDependency */ = {
+		BE0DB234DD2DF564B76E24E8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "dbmysql-server";
-			targetProxy = 531BEC271FDEA6D594DE2B73 /* PBXContainerItemProxy */;
+			name = dbsqlite;
+			targetProxy = FFA84088AD23720F8829654A /* PBXContainerItemProxy */;
 		};
-		BBFFEB963159B18ABD25009C /* PBXTargetDependency */ = {
+		C13BF3EA5F5C9BA8E1CD89E7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "external-revpdfprinter";
-			targetProxy = B8D3E1F4D39B1D8F69F37BF7 /* PBXContainerItemProxy */;
+			name = "dbodbc-server";
+			targetProxy = 5994612DF2597F31B6E08021 /* PBXContainerItemProxy */;
 		};
-		C365DCFB1C268F67EE8A2BE7 /* PBXTargetDependency */ = {
+		C8319D8EDA3E6048CCEE4D39 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "osx-installer-stub";
-			targetProxy = 5CD462EF3784DD4F82347E57 /* PBXContainerItemProxy */;
-		};
-		C7DB9DCFFF4B8844EB27CA28 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "toolchain-all";
-			targetProxy = 53FAC29E8EB4B87443542253 /* PBXContainerItemProxy */;
+			name = "external-revzip";
+			targetProxy = E522AA98562B9CA93B031CDD /* PBXContainerItemProxy */;
 		};
 		CA5E31C546446BC53F9617E7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -3036,10 +3041,10 @@
 			name = libxml;
 			targetProxy = 6F8760EA9C84291B7B663270 /* PBXContainerItemProxy */;
 		};
-		DB0D2373D58CD67FC53B6BD0 /* PBXTargetDependency */ = {
+		DD13DE0FEEECF95F9413221B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = standalone;
-			targetProxy = D50DBB40C88E30D7B6B67B5D /* PBXContainerItemProxy */;
+			name = "external-revxml-server";
+			targetProxy = BDF29E58A27FEFBD39788564 /* PBXContainerItemProxy */;
 		};
 		DE38154849655203D7EB7B01 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -3051,45 +3056,35 @@
 			target = 48F4D861D8A55FE3308DDAED /* cpptest-run-all */;
 			targetProxy = 3397CA42DA49BCE20EFC8B5F /* PBXContainerItemProxy */;
 		};
-		E0C62153591392172BA11522 /* PBXTargetDependency */ = {
+		DF03ECAE62862FBB35F02A97 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = dbpostgresql;
-			targetProxy = 1F19C4AB3AA343B8863946FC /* PBXContainerItemProxy */;
+			name = server;
+			targetProxy = 1D3A0677B25AFE60123892D2 /* PBXContainerItemProxy */;
 		};
 		E1BFD0E6C05AA1BB499AA1BE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = libsqlite;
 			targetProxy = 78878890226A01C43611493E /* PBXContainerItemProxy */;
 		};
-		E51D2791494EB6A5BD30F364 /* PBXTargetDependency */ = {
+		E33F4ACD4FD75B47CD2FC3B1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = dbsqlite;
-			targetProxy = AD42F88CE17753EA8179CF6D /* PBXContainerItemProxy */;
+			name = development;
+			targetProxy = 1D2E73CC9FE07FAE25B8C594 /* PBXContainerItemProxy */;
 		};
-		EC32761DCD7240DB89264594 /* PBXTargetDependency */ = {
+		E7CCC6EF8B0EF0167AC695C5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "external-revbrowser";
-			targetProxy = F3318577FF897340DA69A1FB /* PBXContainerItemProxy */;
+			name = "external-revdb-server";
+			targetProxy = 2EAC8C3E66F1820378896F6F /* PBXContainerItemProxy */;
 		};
 		ECDC3520C69E3A61BD442D13 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 48F4D861D8A55FE3308DDAED /* cpptest-run-all */;
 			targetProxy = 64A505A04B9A337B0ECC3287 /* PBXContainerItemProxy */;
 		};
-		F00CD937343D562ABDC9D83F /* PBXTargetDependency */ = {
+		ECE01F3D13E26D60CBD2B4FE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = dbodbc;
-			targetProxy = C1D018318F4F9AF07859A29C /* PBXContainerItemProxy */;
-		};
-		F29AD46A252E63536830735A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = lcidlc;
-			targetProxy = 88F9954F1B25F643F4D2E604 /* PBXContainerItemProxy */;
-		};
-		F7F42025AF2910CA19B499E7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = extensions;
-			targetProxy = AB0ABB4A9B3DE64674BC96C6 /* PBXContainerItemProxy */;
+			name = "external-revzip-server";
+			targetProxy = E9F872347837E6AC6E49B11A /* PBXContainerItemProxy */;
 		};
 		F80C26305111AD2F73C55126 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -3100,6 +3095,11 @@
 			isa = PBXTargetDependency;
 			name = libpq;
 			targetProxy = 671CC661397110EF3AA5CB2E /* PBXContainerItemProxy */;
+		};
+		FBBC5A949DE9360757B2E448 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "external-revbrowser";
+			targetProxy = 2763E1691F524390FCCACDFC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -3308,7 +3308,7 @@
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					/opt/homebrew/Cellar/libffi/3.5.2/include,
+					thirdparty/libffi/include_darwin,
 					thirdparty/libpng/include,
 					thirdparty/libz/include,
 					thirdparty/libgif/include,
@@ -3492,7 +3492,7 @@
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					/opt/homebrew/Cellar/libffi/3.5.2/include,
+					thirdparty/libffi/include_darwin,
 					thirdparty/libpng/include,
 					thirdparty/libz/include,
 					thirdparty/libgif/include,
@@ -3882,77 +3882,6 @@
 			};
 			name = Fast;
 		};
-		365CAF0BA7FDC2507FB82778 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_WARN_ASSIGN_ENUM = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"U_STATIC_IMPLEMENTATION=1",
-					CROSS_COMPILE_TARGET,
-					TARGET_PLATFORM_MACOS_X,
-					_MACOSX,
-					_DEBUG,
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
-				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNKNOWN_PRAGMAS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_PARAMETER = NO;
-				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = prebuilt/include;
-				OTHER_LDFLAGS = (
-					"-Wl,-platform_version",
-					"-Wl,macos",
-					"-Wl,11.0",
-					"-Wl,11.0",
-				);
-				PRODUCT_NAME = "LiveCode-all";
-				WARNING_CFLAGS = (
-					"-Wall",
-					"-Wextra",
-					"-Wno-conversion",
-					"-Wno-shorten-64-to-32",
-					"-Wno-enum-constexpr-conversion",
-					"-Werror=declaration-after-statement",
-					"-Werror=delete-non-virtual-dtor",
-					"-Werror=overloaded-virtual",
-					"-Wno-unused-parameter",
-					"-Werror=return-type",
-					"-Werror=tautological-compare",
-					"-Werror=logical-not-parentheses",
-					"-Werror=conversion-null",
-					"-Werror=mismatched-new-delete",
-					"-Werror=parentheses",
-					"-Werror=constant-logical-operand",
-					"-Werror=unknown-pragmas",
-					"-Werror=objc-literal-compare",
-					"-Werror=shadow",
-					"-Werror=unreachable-code",
-					"-Werror=enum-compare",
-					"-Werror=switch",
-				);
-			};
-			name = Debug;
-		};
 		4F90DCBDF25A60286576901B /* Fast */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AFB1152FEDCFCFDF8F3A5D59 /* version */;
@@ -3983,78 +3912,6 @@
 				SYMROOT = "$(SOLUTION_DIR)/_build/mac";
 			};
 			name = Fast;
-		};
-		6098FCFEE3330C7FC73C50B6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_WARN_ASSIGN_ENUM = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"U_STATIC_IMPLEMENTATION=1",
-					CROSS_COMPILE_TARGET,
-					TARGET_PLATFORM_MACOS_X,
-					_MACOSX,
-					_RELEASE,
-					NDEBUG,
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
-				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNKNOWN_PRAGMAS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_PARAMETER = NO;
-				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = prebuilt/include;
-				OTHER_LDFLAGS = (
-					"-Wl,-platform_version",
-					"-Wl,macos",
-					"-Wl,11.0",
-					"-Wl,11.0",
-				);
-				PRODUCT_NAME = "LiveCode-all";
-				WARNING_CFLAGS = (
-					"-Wall",
-					"-Wextra",
-					"-Wno-conversion",
-					"-Wno-shorten-64-to-32",
-					"-Wno-enum-constexpr-conversion",
-					"-Werror=declaration-after-statement",
-					"-Werror=delete-non-virtual-dtor",
-					"-Werror=overloaded-virtual",
-					"-Wno-unused-parameter",
-					"-Werror=return-type",
-					"-Werror=tautological-compare",
-					"-Werror=logical-not-parentheses",
-					"-Werror=conversion-null",
-					"-Werror=mismatched-new-delete",
-					"-Werror=parentheses",
-					"-Werror=constant-logical-operand",
-					"-Werror=unknown-pragmas",
-					"-Werror=objc-literal-compare",
-					"-Werror=shadow",
-					"-Werror=unreachable-code",
-					"-Werror=enum-compare",
-					"-Werror=switch",
-				);
-			};
-			name = Release;
 		};
 		6504FBF3759E1CA4C38F8F75 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -4158,21 +4015,7 @@
 			};
 			name = Release;
 		};
-		7ACDF7F0E4D62DF0B104958A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = All;
-			};
-			name = Debug;
-		};
-		8C66515581F5CB0CFC10F9CA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = All;
-			};
-			name = Release;
-		};
-		915B06AA81DB7DCCE5A4B06E /* Fast */ = {
+		76EE6FBFCFBFEEF440A2AA50 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_WARN_ASSIGN_ENUM = YES;
@@ -4187,8 +4030,7 @@
 					CROSS_COMPILE_TARGET,
 					TARGET_PLATFORM_MACOS_X,
 					_MACOSX,
-					_RELEASE,
-					NDEBUG,
+					_DEBUG,
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
@@ -4216,7 +4058,7 @@
 					"-Wl,11.0",
 					"-Wl,11.0",
 				);
-				PRODUCT_NAME = "LiveCode-all";
+				PRODUCT_NAME = "HyperXTalk-all";
 				WARNING_CFLAGS = (
 					"-Wall",
 					"-Wextra",
@@ -4242,7 +4084,21 @@
 					"-Werror=switch",
 				);
 			};
-			name = Fast;
+			name = Debug;
+		};
+		7ACDF7F0E4D62DF0B104958A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = All;
+			};
+			name = Debug;
+		};
+		8C66515581F5CB0CFC10F9CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = All;
+			};
+			name = Release;
 		};
 		A58B87577CC3453E90750527 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -4472,6 +4328,78 @@
 			};
 			name = Debug;
 		};
+		ABB97373DD824E9DAAA80079 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_ASSIGN_ENUM = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"U_STATIC_IMPLEMENTATION=1",
+					CROSS_COMPILE_TARGET,
+					TARGET_PLATFORM_MACOS_X,
+					_MACOSX,
+					_RELEASE,
+					NDEBUG,
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MISSING_PARENTHESES = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = NO;
+				GCC_WARN_UNUSED_VALUE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = prebuilt/include;
+				OTHER_LDFLAGS = (
+					"-Wl,-platform_version",
+					"-Wl,macos",
+					"-Wl,11.0",
+					"-Wl,11.0",
+				);
+				PRODUCT_NAME = "HyperXTalk-all";
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Wextra",
+					"-Wno-conversion",
+					"-Wno-shorten-64-to-32",
+					"-Wno-enum-constexpr-conversion",
+					"-Werror=declaration-after-statement",
+					"-Werror=delete-non-virtual-dtor",
+					"-Werror=overloaded-virtual",
+					"-Wno-unused-parameter",
+					"-Werror=return-type",
+					"-Werror=tautological-compare",
+					"-Werror=logical-not-parentheses",
+					"-Werror=conversion-null",
+					"-Werror=mismatched-new-delete",
+					"-Werror=parentheses",
+					"-Werror=constant-logical-operand",
+					"-Werror=unknown-pragmas",
+					"-Werror=objc-literal-compare",
+					"-Werror=shadow",
+					"-Werror=unreachable-code",
+					"-Werror=enum-compare",
+					"-Werror=switch",
+				);
+			};
+			name = Release;
+		};
 		AD073B3238898A05A8F46BBF /* Fast */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -4519,7 +4447,7 @@
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					/opt/homebrew/Cellar/libffi/3.5.2/include,
+					thirdparty/libffi/include_darwin,
 					thirdparty/libpng/include,
 					thirdparty/libz/include,
 					thirdparty/libgif/include,
@@ -4655,6 +4583,78 @@
 				);
 			};
 			name = Release;
+		};
+		E85560B4BD42C2ED5E84A604 /* Fast */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_ASSIGN_ENUM = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"U_STATIC_IMPLEMENTATION=1",
+					CROSS_COMPILE_TARGET,
+					TARGET_PLATFORM_MACOS_X,
+					_MACOSX,
+					_RELEASE,
+					NDEBUG,
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MISSING_PARENTHESES = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = NO;
+				GCC_WARN_UNUSED_VALUE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = prebuilt/include;
+				OTHER_LDFLAGS = (
+					"-Wl,-platform_version",
+					"-Wl,macos",
+					"-Wl,11.0",
+					"-Wl,11.0",
+				);
+				PRODUCT_NAME = "HyperXTalk-all";
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Wextra",
+					"-Wno-conversion",
+					"-Wno-shorten-64-to-32",
+					"-Wno-enum-constexpr-conversion",
+					"-Werror=declaration-after-statement",
+					"-Werror=delete-non-virtual-dtor",
+					"-Werror=overloaded-virtual",
+					"-Wno-unused-parameter",
+					"-Werror=return-type",
+					"-Werror=tautological-compare",
+					"-Werror=logical-not-parentheses",
+					"-Werror=conversion-null",
+					"-Werror=mismatched-new-delete",
+					"-Werror=parentheses",
+					"-Werror=constant-logical-operand",
+					"-Werror=unknown-pragmas",
+					"-Werror=objc-literal-compare",
+					"-Werror=shadow",
+					"-Werror=unreachable-code",
+					"-Werror=enum-compare",
+					"-Werror=switch",
+				);
+			};
+			name = Fast;
 		};
 		E9EC88B72CD55481506EA7C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -4898,16 +4898,6 @@
 			defaultConfigurationIsVisible = 1;
 			defaultConfigurationName = Debug;
 		};
-		1FC37EA3D29EA8F25EAA0E90 /* Build configuration list for PBXAggregateTarget "LiveCode-all" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				365CAF0BA7FDC2507FB82778 /* Debug */,
-				915B06AA81DB7DCCE5A4B06E /* Fast */,
-				6098FCFEE3330C7FC73C50B6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 1;
-			defaultConfigurationName = Debug;
-		};
 		3B37CEE612A7C209573F1A5A /* Build configuration list for PBXAggregateTarget "cpptest-run-all" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -4954,6 +4944,16 @@
 				A58B87577CC3453E90750527 /* Debug */,
 				213C0514162BA57599F76643 /* Fast */,
 				F4C36231F5C60AEF2D79F33F /* Release */,
+			);
+			defaultConfigurationIsVisible = 1;
+			defaultConfigurationName = Debug;
+		};
+		AAAE8345BEB5118464044B0D /* Build configuration list for PBXAggregateTarget "HyperXTalk-all" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				76EE6FBFCFBFEEF440A2AA50 /* Debug */,
+				E85560B4BD42C2ED5E84A604 /* Fast */,
+				ABB97373DD824E9DAAA80079 /* Release */,
 			);
 			defaultConfigurationIsVisible = 1;
 			defaultConfigurationName = Debug;

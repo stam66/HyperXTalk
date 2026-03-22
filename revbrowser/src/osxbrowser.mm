@@ -376,8 +376,10 @@ TAltBrowser::~TAltBrowser()
 
 - (void)resizeWithOldSuperviewSize: (NSSize)oldsize;
 
-- (unsigned int)com_runrev_livecode_nativeViewId;
-- (void)com_runrev_livecode_setNativeViewId:(int)new_id;
+/* Rebranded from com_runrev_livecode_nativeViewId to match the selector
+   name that mac-window.mm now queries after the HyperXTalk rebranding. */
+- (unsigned int)com_hyperxtalk_hyperxtalk_nativeViewId;
+- (void)com_hyperxtalk_hyperxtalk_setNativeViewId:(int)new_id;
 @end
 
 @implementation NativeWebView
@@ -386,20 +388,20 @@ TAltBrowser::~TAltBrowser()
 {
 	NSRect t_frame;
 	t_frame = [self frame];
-	
+
 	NSRect t_new_frame;
 	t_new_frame = t_frame;
 	t_new_frame . origin . y -= oldsize . height - [[self superview] frame] . size . height;
-	
+
 	[self setFrame: t_new_frame];
 }
 
-- (unsigned int)com_runrev_livecode_nativeViewId
+- (unsigned int)com_hyperxtalk_hyperxtalk_nativeViewId
 {
 	return 0xffffffff;
 }
 
-- (void)com_runrev_livecode_setNativeViewId:(int)new_id
+- (void)com_hyperxtalk_hyperxtalk_setNativeViewId:(int)new_id
 {
 	native_id = new_id;
 }

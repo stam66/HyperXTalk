@@ -103,14 +103,20 @@ protected:
 	bool SetMediaPlaybackRequiresUserAction(bool p_value);
 
 private:
-	bool GetContainerView(UIView *&r_view);
-	
+#if defined(TARGET_SUBPLATFORM_IPHONE)
+	typedef UIView MCPlatformView;
+#else
+	typedef NSView MCPlatformView;
+#endif
+
+	bool GetContainerView(MCPlatformView *&r_view);
+
 	bool Reconfigure(void);
-	
+
 	bool SyncJavaScriptHandlers(NSArray *p_handlers);
-	
+
 	WKWebView *m_view;
-	UIView *m_container_view;
+	MCPlatformView *m_container_view;
 	com_livecode_libbrowser_MCWKWebViewNavigationDelegate *m_delegate;
 	MCWKWebViewScriptMessageHandler *m_message_handler;
 	WKUserContentController *m_content_controller;

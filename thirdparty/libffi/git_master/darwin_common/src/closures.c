@@ -768,6 +768,46 @@ dlmmap (void *start, size_t length, int prot,
       return ptr;
     }
 
+#if defined(__APPLE__) && defined(__aarch64__) && !defined(TARGET_SUBPLATFORM_IPHONE)
+  /* macOS arm64 / hardened runtime: mmap(PROT_RWX, MAP_ANON) always fails
+   * with EPERM, which would otherwise fall through to the temp-file path in
+   * dlmmap_locked.  That path mmap's an unsigned /tmp file as executable,
+   * causing AppleSystemPolicy/syspolicyd to pause for ~4 seconds on every
+   * first closure allocation while it evaluates the unsigned mapping.
+   *
+   * Use MAP_JIT with anonymous memory instead.  On Apple Silicon the
+   * per-thread JIT write-protection must be lowered before writing;
+   * dlmalloc's internal bookkeeping writes happen right here on the same
+   * thread so wrapping them is sufficient.  After the mmap the rest of the
+   * write-protect dance is handled by the ffi_prep_closure call site.
+   * Requires the com.apple.security.cs.allow-jit process entitlement. */
+  if (execfd == -1)
+    {
+#  if defined(__has_builtin) && __has_builtin(__builtin_available)
+      if (__builtin_available(macOS 10.14, *))
+        {
+          extern void pthread_jit_write_protect_np(int) __attribute__((weak_import));
+          if (pthread_jit_write_protect_np)
+            pthread_jit_write_protect_np(0);
+        }
+#  endif
+      ptr = mmap (start, length, prot | PROT_EXEC,
+		  flags | MAP_JIT, fd, offset);
+#  if defined(__has_builtin) && __has_builtin(__builtin_available)
+      if (__builtin_available(macOS 10.14, *))
+        {
+          extern void pthread_jit_write_protect_np(int) __attribute__((weak_import));
+          if (pthread_jit_write_protect_np)
+            pthread_jit_write_protect_np(1);
+        }
+#  endif
+      if (ptr != MFAIL)
+	return ptr;
+      /* MAP_JIT not available (e.g. entitlement absent); fall through to
+       * the temp-file path which will work, just with a one-time delay. */
+    }
+#endif /* __APPLE__ && __aarch64__ && !TARGET_SUBPLATFORM_IPHONE */
+
   if (execfd == -1 && !is_selinux_enabled ())
     {
       ptr = mmap (start, length, prot | PROT_EXEC, flags, fd, offset);
