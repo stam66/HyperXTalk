@@ -102,7 +102,7 @@ find "$MACBIN" -not -name "*.dSYM" | while read F; do
         codesign --force --sign - "$F" 2>/dev/null && echo "Signed: $(basename $F)"
     fi
 done
-find "$MACBIN" -name "*.app" -exec codesign --force --deep --sign - {} \;
+find "$MACBIN" -name "*.app" -exec codesign --force --options runtime --entitlements ./HyperXTalk.entitlements --sign - {} \;
 echo "Done signing."
 ```
 
