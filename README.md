@@ -3,7 +3,7 @@ Cross-platform x-talk development environment
 
 Here are more things that need to be done before the steps below, thanks to Stam for documenting these:
 
-```
+***
 PS: The changes required to get this to build are below. Some of this may just be AI confabulating, but was the only way I could get 'Success' on make compile-mac:
 
 1. Build libffi from source for ARM64
@@ -24,8 +24,8 @@ ffi.h, ffitarget.h, ffi_arm64.h, and related headers from thirdparty/libffi/git_
 The prebuilt .a libraries were OpenSSL 3.x but the headers still declared OpenSSL 1.x names. Fixed by renaming declarations and adding backward-compat macros:
 prebuilt/include/openssl/evp.h — renamed declarations and appended:
 c# define EVP_CIPHER_CTX_block_size EVP_CIPHER_CTX_get_block_size
-# define EVP_CIPHER_CTX_key_length EVP_CIPHER_CTX_get_key_length
-# define EVP_CIPHER_key_length EVP_CIPHER_get_key_length
+c# define EVP_CIPHER_CTX_key_length EVP_CIPHER_CTX_get_key_length
+c# define EVP_CIPHER_key_length EVP_CIPHER_get_key_length
 prebuilt/include/openssl/ssl.h — renamed declaration and appended:
 c# define SSL_get_peer_certificate SSL_get1_peer_certificate
 
@@ -49,7 +49,7 @@ thirdparty/libsqlite/src/qry_dat.cpp
 thirdparty/libsqlite/src/sqlitedataset.cpp
 thirdparty/libsqlite/src/sqlitedecode.cpp
 Rebuilt the archive cleanly by deleting the old one first and using ar rcs from scratch.
-```
+***
 
 To reproduce from a clean checkout, these steps must be run before make compile-mac:
 
