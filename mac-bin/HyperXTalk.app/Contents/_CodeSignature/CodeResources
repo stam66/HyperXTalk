@@ -719,7 +719,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			DK160DCZogZ0MFk+9wCedDIbjN5t8A63Cjhyb/oz0EQ=
+			LJ2CI5ajulUAwX9ZZHMokCo1Kg2p9DEtbfnTnNrfhv8=
 			</data>
 		</dict>
 		<key>Tools/Extensions/com.livecode.library.ini/ini.lcb</key>
@@ -950,7 +950,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			0aqnUQ/Dq3t3MfM03LFKJ7uyWWL7QzjWM7JqFNLrndo=
+			uYBf+isU/lA5P6tpSN1UiNuRYqyJBFxm2hygts+Yd2o=
 			</data>
 		</dict>
 		<key>Tools/Extensions/com.livecode.library.timezone/manifest.xml</key>
@@ -5507,7 +5507,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			L67fvRsGBQ4icMdHsLwEoAVUXpuaYsQMOxDQrjAkWTs=
+			3fXB6LKMNk+vxM51Q67Y/ESpGo55GNQmcFP5cXCW8Hk=
 			</data>
 		</dict>
 		<key>Tools/Externals/Database Drivers/dbmysql.bundle/Contents/_CodeSignature/CodeResources</key>
@@ -5528,7 +5528,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ML8qSg05OA1UpE+duoITf26aNyYirTT8RJQw/eid5ak=
+			fL7YHDHftJ7Dvn8ZsSSQ8pYY1Hsbou6DV7Wzs5XsaEw=
 			</data>
 		</dict>
 		<key>Tools/Externals/Database Drivers/dbodbc.bundle/Contents/_CodeSignature/CodeResources</key>
@@ -5549,7 +5549,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			wUF+XbBZ0x+QFHOZafLeKxTphOmsny+/kad6jXsXAUM=
+			FgNZUBeMD5YIdIAz32w7qPP+npi/y6QoLigH4OnscRo=
 			</data>
 		</dict>
 		<key>Tools/Externals/Database Drivers/dbpostgresql.bundle/Contents/_CodeSignature/CodeResources</key>
@@ -5570,7 +5570,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			3/tuLOFEyBmvSV3/rrNmTyke8TgTwj8PbFU0KSBl1Sk=
+			AILUyeGyT03PdgKwQECkzlKzU6Cy9uON6NZFiHEpjiw=
 			</data>
 		</dict>
 		<key>Tools/Externals/Database Drivers/dbsqlite.bundle/Contents/_CodeSignature/CodeResources</key>
@@ -5591,7 +5591,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			TLsu+tu19Univ7IXBe/5XmS3WMjxbwiuHSfxa86CZvM=
+			zmVGOfWECCi0Mt5qL7obCnTbiiuo/p/IfG6alnkje4g=
 			</data>
 		</dict>
 		<key>Tools/Externals/revbrowser.bundle/Contents/_CodeSignature/CodeResources</key>
@@ -5612,7 +5612,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			NTqZJ/KyxJTF2md+BkMeEYgsvK4tiOVtD/oLgOLXpsE=
+			qoqiYPtvNhTWsYPpghVfyjrVkUL1Ejitn/5VQhMvOTw=
 			</data>
 		</dict>
 		<key>Tools/Externals/revdb.bundle/Contents/_CodeSignature/CodeResources</key>
@@ -5633,7 +5633,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			DsUOuhnEEwX91A0DbcbsLQZ56rRxyb3bTmi0V3XoJL4=
+			2hoQUL/OYWmbxE4kkupHFRFlcv8KqaTJqsU+kkan0NU=
 			</data>
 		</dict>
 		<key>Tools/Externals/revspeech.bundle/Contents/_CodeSignature/CodeResources</key>
@@ -5654,7 +5654,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			/0IyhGjDBLkwkW/MBKIdC9SjLnoKw5+Cdksh+bGasbU=
+			dd2yyLwXn1xWnY5xO1HVNcL7UrKWZaHUHrdkL+1eKYg=
 			</data>
 		</dict>
 		<key>Tools/Externals/revxml.bundle/Contents/_CodeSignature/CodeResources</key>
@@ -5675,7 +5675,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			3Rd6NcTk/Di7Y4Spz5HFv1VYq6ZjwDvFgbGAKNMOxHA=
+			HqzsCJA2QUNV0ykmC7AS+szoQ4XBrddlARovcnPaWMY=
 			</data>
 		</dict>
 		<key>Tools/Externals/revzip.bundle/Contents/_CodeSignature/CodeResources</key>
@@ -5773,7 +5773,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			1cDehLVN3A4eKiqXkbCNb1xP8CQCWkOw9kOMZaAZQc4=
+			p0C2oS0AHTBULJDqm0U4rQQSivhovsx+pm1Wzu8qmQc=
 			</data>
 		</dict>
 		<key>Tools/Runtime/Mac OS X/arm64/Standalone.app/Contents/PkgInfo</key>
@@ -5955,7 +5955,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			IF11O5hD3K/iTPWqWkwy4bx9xNFyjn5jdA9RpcDqGJA=
+			u4IAV2S6KH7y1Uo8IOKjk9cT5lSDUOho1TwhjYcp6fk=
 			</data>
 		</dict>
 		<key>Tools/Runtime/Mac OS X/arm64/Support/revpdfprinter.bundle/Contents/_CodeSignature/CodeResources</key>
@@ -5969,28 +5969,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			EBgJnEZKyXdW6kw9Rg7ROORxvEijbpsJ7gQEeNEeggk=
+			fffs4nKHMQZq/ksGCJ1nRge4RWE7G8FUXV2TM9zPsCQ=
 			</data>
 		</dict>
 		<key>Tools/Toolchain/lc-compile</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			q1pPwyIT6mj2252y/CfXCw0lih1fcSwFMc8JaGzNut0=
+			lGgFUZd+Y+Er1FViK9h0NQjr4VzSddrhDh4MOSsDVck=
 			</data>
 		</dict>
 		<key>Tools/Toolchain/lc-compile-ffi-java</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			bGHDFvv3yk+2lBLXgXQZAPYZJiv1WDInP2kPuLzFDtI=
+			2s6BACPU1w7KvbHsJ0lmPMAyX9HX2vFCOE0ZK/iE8eU=
 			</data>
 		</dict>
 		<key>Tools/Toolchain/lc-run</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			G+Al0hTQl0n1/VUMDqrhApa04gMiJZnkIN0H69Yw4rI=
+			sBUNxieZYuMwb0DRaxPQYqTriDVt4CkN6s689T6Mby0=
 			</data>
 		</dict>
 		<key>Tools/Toolchain/modules/lci/__builtin__.lci</key>

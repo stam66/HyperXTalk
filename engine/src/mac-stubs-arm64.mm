@@ -73,11 +73,15 @@ static NSView *GetDummyView(void)
     {
         // Off-screen borderless window — never shown, but gives NSViews a
         // proper backing store, appearance, and colorspace.
+        // defer:NO (not defer:YES) is critical: a deferred window never
+        // receives a proper window-server connection, so NSCell drawing
+        // falls back to the old Aqua gradient style instead of the modern
+        // flat appearance.
         s_dummy_window = [[NSWindow alloc]
                 initWithContentRect:NSMakeRect(-16000, -16000, 4096, 4096)
                           styleMask:NSWindowStyleMaskBorderless
                             backing:NSBackingStoreBuffered
-                              defer:YES];
+                              defer:NO];
         s_dummy_view = [s_dummy_window contentView];   // retained by window
     }
     return s_dummy_view;
@@ -384,7 +388,14 @@ bool MCThemeDraw(MCGContextRef p_context, MCThemeDrawType p_type, MCThemeDrawInf
                       ((p_info->state & WTHEME_STATE_SUPPRESSDEFAULT) == 0);
 
     // Draw inside the app's current appearance (light / dark mode).
+    // NSButtonCell drawWithFrame:inView: uses the inView's *window* appearance
+    // to choose rendering style — not only the current drawing appearance.
+    // Sync the dummy window's appearance here so NSCell rendering uses the
+    // modern flat style instead of falling back to the old Aqua gradient.
     NSAppearance *t_appearance = [NSApp effectiveAppearance];
+    if (t_appearance == nil)
+        t_appearance = [NSAppearance appearanceNamed:NSAppearanceNameAqua];
+    [t_view.window setAppearance:t_appearance];
 
     switch (p_type)
     {
@@ -444,25 +455,80 @@ bool MCThemeDraw(MCGContextRef p_context, MCThemeDrawType p_type, MCThemeDrawInf
                 }
                 default:   // push button, bevel button, pulldown, combo button
                 {
-                    NSButtonCell *t_cell = [[NSButtonCell alloc] init];
-                    [t_cell setButtonType:NSButtonTypeMomentaryPushIn];
-                    [t_cell setBezelStyle:NSBezelStyleRounded];
-                    [t_cell setTitle:@""];
-                    [t_cell setEnabled:!t_disabled];
-                    [t_cell setHighlighted:t_pressed || t_hilited];
-                    if (t_default)
-                        [t_cell setKeyEquivalent:@"\r"];
+                    // NSButtonCell with NSBezelStyleRounded uses Core Animation /
+                    // Metal for its modern flat rendering; it silently falls back
+                    // to the old Aqua gradient when given a plain CGBitmapContext.
+                    // Draw the bezel directly with NSBezierPath + semantic colours
+                    // instead — these work correctly in any graphics context and
+                    // automatically adapt to light / dark mode.
                     NSRect t_r = t_frame;
-                    // On modern macOS NSBezelStyleRounded renders a top inner
-                    // border/highlight that bleeds into row 0 of the draw rect.
-                    // Inset the rect 1px from the top so it clips cleanly; keep
-                    // 2px at the bottom for the native drop-shadow.
                     t_r.origin.y    += 1.0;
-                    t_r.size.height -= 3.0;
+                    t_r.size.height -= 3.0;   // 1pt top gap + 2pt for drop-shadow
+                    CGFloat t_radius = t_r.size.height / 2.0;
+
                     [t_appearance performAsCurrentDrawingAppearance:^{
-                        [t_cell drawWithFrame:t_r inView:t_view];
+                        NSBezierPath *t_path =
+                            [NSBezierPath bezierPathWithRoundedRect:t_r
+                                                           xRadius:t_radius
+                                                           yRadius:t_radius];
+
+                        // Resolve the user's accent colour to a concrete sRGB
+                        // value *inside* this appearance block.  Dynamic colours
+                        // like controlAccentColor carry an app-active-state
+                        // dimension: they desaturate to grey when the app loses
+                        // focus.  colorUsingColorSpace: collapses the dynamic
+                        // colour into a plain RGBA value in the current appearance
+                        // context — stable in both foreground and background.
+                        NSColor *t_accent =
+                            [[NSColor controlAccentColor]
+                                colorUsingColorSpace:[NSColorSpace sRGBColorSpace]]
+                            ?: [NSColor systemBlueColor];
+
+                        // Background colour for each state.
+                        // Priority: disabled → pressed/hilited → default → normal.
+                        // Pressed is checked BEFORE default so that clicking a
+                        // default button produces a visible darkening.
+                        NSColor *t_fill;
+                        if (t_disabled) {
+                            t_fill = [[NSColor controlColor]
+                                          colorWithAlphaComponent:0.5];
+                        } else if (t_pressed || t_hilited) {
+                            t_fill = t_default
+                                ? [t_accent shadowWithLevel:0.15]
+                                : [[NSColor controlColor] shadowWithLevel:0.12];
+                        } else if (t_default) {
+                            t_fill = t_accent;
+                        } else {
+                            t_fill = [NSColor controlColor];
+                        }
+
+                        // First pass: fill + drop-shadow.
+                        // NSShadow offset uses unflipped coordinates regardless
+                        // of the context; (0,-1) places the shadow 1pt below.
+                        [NSGraphicsContext saveGraphicsState];
+                        NSShadow *t_shadow = [[NSShadow alloc] init];
+                        [t_shadow setShadowOffset:NSMakeSize(0.0, -1.0)];
+                        [t_shadow setShadowBlurRadius:1.5];
+                        [t_shadow setShadowColor:
+                            [NSColor colorWithWhite:0.0 alpha:0.20]];
+                        [t_shadow set];
+                        [t_fill setFill];
+                        [t_path fill];
+                        [t_shadow release];
+                        [NSGraphicsContext restoreGraphicsState];
+
+                        // Second pass: solid fill on top so the shadow blur
+                        // doesn't bleed into the button face.
+                        [t_fill setFill];
+                        [t_path fill];
+
+                        // Thin border (skipped when disabled).
+                        if (!t_disabled) {
+                            [[NSColor separatorColor] setStroke];
+                            [t_path setLineWidth:0.5];
+                            [t_path stroke];
+                        }
                     }];
-                    [t_cell release];
                     break;
                 }
             }
@@ -540,59 +606,59 @@ bool MCThemeDraw(MCGContextRef p_context, MCThemeDrawType p_type, MCThemeDrawInf
         }
 
         // ── Tab button ────────────────────────────────────────────────
-        // Selected (hilited) tab: filled solid with the system accent/hilite
-        // colour so the text rendered on top by buttondraw.cpp (white, via
-        // DI_PSEUDO_BUTTON_TEXT_SEL) is legible.
-        // Unselected tab: plain textured-square button in the off state.
+        // Both selected and unselected tabs are drawn with NSBezierPath:
+        // NSButtonCell (any bezel style) goes transparent in a CGBitmapContext
+        // because modern rendering requires a Metal/CA backing store.
         case THEME_DRAW_TYPE_TAB:
         {
             // Tab buttons are always 22 px high per the Aqua HIG.
             NSRect t_r = t_frame;
             t_r.size.height = 22.0;
 
-            if (t_hilited)
-            {
-                // Use the system accent colour (= controlAccentColor on 10.14+,
-                // selectedControlColor on older releases) as the "hilite colour".
-                NSColor *t_accent;
-                if ([NSColor respondsToSelector:@selector(controlAccentColor)])
-                    t_accent = [NSColor performSelector:@selector(controlAccentColor)];
-                else
-                    t_accent = [NSColor selectedControlColor];
+            [t_appearance performAsCurrentDrawingAppearance:^{
+                NSBezierPath *t_path =
+                    [NSBezierPath bezierPathWithRoundedRect:t_r
+                                                   xRadius:4.0
+                                                   yRadius:4.0];
 
-                [t_appearance performAsCurrentDrawingAppearance:^{
-                    // Fill the tab area with the accent colour.
+                if (t_hilited)
+                {
+                    // Selected tab: filled with the user's accent colour.
+                    // Resolve to a concrete sRGB value inside the appearance
+                    // block so the colour stays stable when the app is in the
+                    // background (same fix applied to default push buttons).
+                    NSColor *t_accent =
+                        [[NSColor controlAccentColor]
+                            colorUsingColorSpace:[NSColorSpace sRGBColorSpace]]
+                        ?: [NSColor systemBlueColor];
+
                     [t_accent setFill];
-                    NSBezierPath *t_path =
-                        [NSBezierPath bezierPathWithRoundedRect:t_r
-                                                       xRadius:4.0
-                                                       yRadius:4.0];
                     [t_path fill];
 
-                    // Subtle top highlight (semi-transparent white stripe)
-                    // gives the tab a slight 3-D lift.
-                    NSRect t_highlight = NSMakeRect(t_r.origin.x + 1.0,
-                                                    t_r.origin.y + 1.0,
-                                                    t_r.size.width - 2.0,
-                                                    3.0);
+                    // Subtle white highlight stripe at the top for a slight lift.
+                    NSRect t_hi = NSMakeRect(t_r.origin.x + 1.0,
+                                             t_r.origin.y + 1.0,
+                                             t_r.size.width  - 2.0,
+                                             3.0);
                     [[NSColor colorWithCalibratedWhite:1.0 alpha:0.25] setFill];
-                    NSRectFillUsingOperation(t_highlight, NSCompositingOperationSourceOver);
-                }];
-            }
-            else
-            {
-                // Unselected tab: textured-square push-button in the off state.
-                NSButtonCell *t_cell = [[NSButtonCell alloc] init];
-                [t_cell setButtonType:NSButtonTypePushOnPushOff];
-                [t_cell setBezelStyle:NSBezelStyleTexturedSquare];
-                [t_cell setTitle:@""];
-                [t_cell setEnabled:!t_disabled];
-                [t_cell setState:NSControlStateValueOff];
-                [t_appearance performAsCurrentDrawingAppearance:^{
-                    [t_cell drawWithFrame:t_r inView:t_view];
-                }];
-                [t_cell release];
-            }
+                    NSRectFillUsingOperation(t_hi,
+                                             NSCompositingOperationSourceOver);
+                }
+                else
+                {
+                    // Unselected tab: same light-grey fill as a normal button,
+                    // with a subtle border.  Disabled tabs are more transparent.
+                    NSColor *t_fill = t_disabled
+                        ? [[NSColor controlColor] colorWithAlphaComponent:0.5]
+                        : [NSColor controlColor];
+                    [t_fill setFill];
+                    [t_path fill];
+
+                    [[NSColor separatorColor] setStroke];
+                    [t_path setLineWidth:0.5];
+                    [t_path stroke];
+                }
+            }];
             break;
         }
 
