@@ -2473,8 +2473,9 @@ function revIDEPlatform
    if the platform begins with "mac" then return "mac"
    else if the platform begins with "win" then return "win"
    else if the platform begins with "linux" then return "linux"
-   else if the platform begins with "iphone" then return "ios"
-   else if the platform begins with "android" then return "android"
+   //eh
+   --   else if the platform begins with "iphone" then return "ios"
+   --   else if the platform begins with "android" then return "android"
    return __revIDEError("Unknown Platform")
 end revIDEPlatform
 
