@@ -394,6 +394,21 @@ package-mac-bin:
 	@mkdir -p "$(MACBIN_TOOLS)/Extensions"
 	@mkdir -p "$(MACBIN_TOOLS)/Toolchain"
 	@mkdir -p "$(MACBIN_SUPPORT)"
+	@# Sign all loose executables in mac-bin with hardened runtime
+	@for f in server-community lc-compile lc-run lc-compile-ffi-java installer-stub; do \
+	  [ -f "$(MACBIN_BIN)/$$f" ] && \
+	    codesign --force --sign "$(CODESIGN_IDENTITY)" \
+	        --options runtime \
+	        --entitlements HyperXTalk.entitlements \
+	        "$(MACBIN_BIN)/$$f" || true; \
+	done
+	@for f in server-dbmysql.dylib server-dbodbc.dylib server-dbpostgresql.dylib server-dbsqlite.dylib server-revdb.dylib server-revxml.dylib server-revzip.dylib revsecurity.dylib; do \
+	  [ -f "$(MACBIN_BIN)/$$f" ] && \
+	    codesign --force --sign "$(CODESIGN_IDENTITY)" \
+	        --options runtime \
+	        --entitlements HyperXTalk.entitlements \
+	        "$(MACBIN_BIN)/$$f" || true; \
+	done
 	@# ----------------------------------------------------------------
 	@# Edition marker
 	@# ----------------------------------------------------------------
@@ -520,13 +535,23 @@ package-mac-bin:
 	@# ----------------------------------------------------------------
 	@# Re-sign the bundle now that new files have been added
 	@# ----------------------------------------------------------------
-	@echo "Re-signing bundle contents..."
+	@echo "Re-signing bundle contents with hardened runtime..."
 	@find "$(MACBIN_BUNDLE)" \( -name "*.framework" -o -name "*.dylib" \) | \
 	    sort -r | while read F; do \
-	  codesign --force --sign "$(CODESIGN_IDENTITY)" "$$F" 2>/dev/null || true; \
+	  codesign --force --sign "$(CODESIGN_IDENTITY)" \
+	      --options runtime \
+	      --entitlements HyperXTalk.entitlements "$$F" 2>/dev/null || true; \
 	done
 	@find "$(MACBIN_BUNDLE)" -name "*.bundle" | while read F; do \
-	  codesign --force --sign "$(CODESIGN_IDENTITY)" "$$F" 2>/dev/null || true; \
+	  codesign --force --sign "$(CODESIGN_IDENTITY)" \
+	      --options runtime \
+	      --entitlements HyperXTalk.entitlements "$$F" 2>/dev/null || true; \
+	done
+	@# Sign executables inside bundles and in MacOS folder
+	@find "$(MACBIN_BUNDLE)" -type f -name "lc-compile" | while read F; do \
+	  codesign --force --sign "$(CODESIGN_IDENTITY)" \
+	      --options runtime \
+	      --entitlements HyperXTalk.entitlements "$$F" 2>/dev/null || true; \
 	done
 	@codesign --force --sign "$(CODESIGN_IDENTITY)" \
 	    --options runtime \
