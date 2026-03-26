@@ -141,55 +141,68 @@ public:
         // For scrollbars, determine which part was clicked
         if (winfo.type == WTHEME_TYPE_SCROLLBAR || winfo.type == WTHEME_TYPE_SMALLSCROLLBAR)
         {
-            if (winfo.datatype == WTHEME_DATA_SCROLLBAR && winfo.data != nil)
+            // Use default behavior if we can't determine specific parts
+            // This allows the fallback code in scrolbar.cpp to handle it
+            if (winfo.datatype != WTHEME_DATA_SCROLLBAR || winfo.data == nil)
             {
-                MCWidgetScrollBarInfo *sb = (MCWidgetScrollBarInfo *)winfo.data;
-                bool t_horizontal = (drect.width > drect.height);
-                
-                CGFloat t_length = t_horizontal ? drect.width : drect.height;
-                CGFloat t_thickness = t_horizontal ? drect.height : drect.width;
-                
-                double t_range = sb->endvalue - sb->startvalue;
-                CGFloat t_thumb_x = 0, t_thumb_w = t_length;
-                
-                if (t_range > 0.0 && sb->thumbsize < t_range)
+                return WTHEME_PART_THUMB;
+            }
+            
+            MCWidgetScrollBarInfo *sb = (MCWidgetScrollBarInfo *)winfo.data;
+            
+            // Guard against invalid values
+            if (sb->endvalue <= sb->startvalue || sb->thumbsize <= 0)
+            {
+                return WTHEME_PART_THUMB;
+            }
+            
+            bool t_horizontal = (drect.width > drect.height);
+            
+            CGFloat t_length = t_horizontal ? drect.width : drect.height;
+            CGFloat t_thickness = t_horizontal ? drect.height : drect.width;
+            
+            double t_range = sb->endvalue - sb->startvalue;
+            CGFloat t_thumb_x = 0, t_thumb_w = t_length;
+            
+            if (t_range > 0.0 && sb->thumbsize < t_range)
+            {
+                double t_scrollable = t_range - sb->thumbsize;
+                if (t_scrollable > 0)
                 {
-                    double t_scrollable = t_range - sb->thumbsize;
                     CGFloat t_norm = (CGFloat)((sb->thumbpos - sb->startvalue) / t_scrollable);
                     CGFloat t_thumb_len = (CGFloat)(sb->thumbsize / t_range) * t_length;
                     if (t_thumb_len < 8.0f) t_thumb_len = 8.0f;
                     t_thumb_x = t_norm * (t_length - t_thumb_len);
                     t_thumb_w = t_thumb_len;
                 }
-                
-                // Check if mouse is in thumb area
-                if (t_horizontal) {
-                    if (mx >= drect.x + t_thumb_x && mx <= drect.x + t_thumb_x + t_thumb_w &&
-                        my >= drect.y && my <= drect.y + t_thickness) {
-                        return WTHEME_PART_THUMB;
-                    }
-                    // Check track
-                    if (my >= drect.y && my <= drect.y + t_thickness) {
-                        if (mx < drect.x + t_thumb_x)
-                            return WTHEME_PART_TRACK_DEC;
-                        else if (mx > drect.x + t_thumb_x + t_thumb_w)
-                            return WTHEME_PART_TRACK_INC;
-                    }
-                } else {
-                    if (mx >= drect.x && mx <= drect.x + t_thickness &&
-                        my >= drect.y + t_thumb_x && my <= drect.y + t_thumb_x + t_thumb_w) {
-                        return WTHEME_PART_THUMB;
-                    }
-                    // Check track
-                    if (mx >= drect.x && mx <= drect.x + t_thickness) {
-                        if (my < drect.y + t_thumb_x)
-                            return WTHEME_PART_TRACK_DEC;
-                        else if (my > drect.y + t_thumb_x + t_thumb_w)
-                            return WTHEME_PART_TRACK_INC;
-                    }
+            }
+            
+            // Check if mouse is in thumb area
+            if (t_horizontal) {
+                if (mx >= drect.x + t_thumb_x && mx <= drect.x + t_thumb_x + t_thumb_w &&
+                    my >= drect.y && my <= drect.y + t_thickness) {
+                    return WTHEME_PART_THUMB;
+                }
+                // Check track
+                if (my >= drect.y && my <= drect.y + t_thickness) {
+                    if (mx < drect.x + t_thumb_x)
+                        return WTHEME_PART_TRACK_DEC;
+                    else if (mx > drect.x + t_thumb_x + t_thumb_w)
+                        return WTHEME_PART_TRACK_INC;
+                }
+            } else {
+                if (mx >= drect.x && mx <= drect.x + t_thickness &&
+                    my >= drect.y + t_thumb_x && my <= drect.y + t_thumb_x + t_thumb_w) {
+                    return WTHEME_PART_THUMB;
+                }
+                // Check track
+                if (mx >= drect.x && mx <= drect.x + t_thickness) {
+                    if (my < drect.y + t_thumb_x)
+                        return WTHEME_PART_TRACK_DEC;
+                    else if (my > drect.y + t_thumb_x + t_thumb_w)
+                        return WTHEME_PART_TRACK_INC;
                 }
             }
-            // Default to thumb if we can't determine
             return WTHEME_PART_THUMB;
         }
         
