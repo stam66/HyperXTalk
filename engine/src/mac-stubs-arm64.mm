@@ -38,6 +38,7 @@ struct MCThemeDrawInfo
 {
     MCRectangle dest;          // target widget bounds
     Widget_Type widget_type;   // which widget to draw
+    Widget_Part part;          // which part of the widget
     uint32_t    state;         // WTHEME_STATE_* bitmask
     uint32_t    attributes;    // WTHEME_ATT_* bitmask
     union
@@ -138,8 +139,58 @@ public:
 
     virtual Widget_Part hittest(const MCWidgetInfo &winfo, int2 mx, int2 my, const MCRectangle &drect) override
     {
+        // For stepper (small scrollbar) buttons, determine which arrow was clicked
+        if (winfo.type == WTHEME_TYPE_SMALLSCROLLBAR_BUTTON_UP ||
+            winfo.type == WTHEME_TYPE_SMALLSCROLLBAR_BUTTON_DOWN ||
+            winfo.type == WTHEME_TYPE_SMALLSCROLLBAR_BUTTON_LEFT ||
+            winfo.type == WTHEME_TYPE_SMALLSCROLLBAR_BUTTON_RIGHT)
+        {
+            if (MCU_point_in_rect(drect, mx, my))
+            {
+                switch (winfo.type)
+                {
+                    case WTHEME_TYPE_SMALLSCROLLBAR_BUTTON_UP:
+                        return WTHEME_PART_ARROW_INC;
+                    case WTHEME_TYPE_SMALLSCROLLBAR_BUTTON_DOWN:
+                        return WTHEME_PART_ARROW_DEC;
+                    case WTHEME_TYPE_SMALLSCROLLBAR_BUTTON_LEFT:
+                        return WTHEME_PART_ARROW_INC;
+                    case WTHEME_TYPE_SMALLSCROLLBAR_BUTTON_RIGHT:
+                        return WTHEME_PART_ARROW_DEC;
+                    default:
+                        return WTHEME_PART_ALL;
+                }
+            }
+            return WTHEME_PART_UNDEFINED;
+        }
+        
+        // For whole stepper control, determine which arrow button was clicked
+        if (winfo.type == WTHEME_TYPE_SMALLSCROLLBAR)
+        {
+            bool t_vertical = (drect.height > drect.width);
+            
+            if (t_vertical) {
+                // Top half = increment (UP arrow), bottom half = decrement (DOWN arrow)
+                int t_mid = drect.y + drect.height / 2;
+                if (my >= drect.y && my < t_mid) {
+                    return WTHEME_PART_ARROW_INC;
+                } else if (my >= t_mid && my <= drect.y + drect.height) {
+                    return WTHEME_PART_ARROW_DEC;
+                }
+            } else {
+                // Left half = increment (LEFT arrow), right half = decrement (RIGHT arrow)
+                int t_mid = drect.x + drect.width / 2;
+                if (mx >= drect.x && mx < t_mid) {
+                    return WTHEME_PART_ARROW_INC;
+                } else if (mx >= t_mid && mx <= drect.x + drect.width) {
+                    return WTHEME_PART_ARROW_DEC;
+                }
+            }
+            return WTHEME_PART_UNDEFINED;
+        }
+        
         // For scrollbars and sliders, determine which part was clicked
-        bool t_is_scrollbar = (winfo.type == WTHEME_TYPE_SCROLLBAR || winfo.type == WTHEME_TYPE_SMALLSCROLLBAR);
+        bool t_is_scrollbar = (winfo.type == WTHEME_TYPE_SCROLLBAR);
         bool t_is_slider = (winfo.type == WTHEME_TYPE_SLIDER ||
                            winfo.type == WTHEME_TYPE_SLIDER_TRACK_HORIZONTAL ||
                            winfo.type == WTHEME_TYPE_SLIDER_TRACK_VERTICAL ||
@@ -325,6 +376,7 @@ Boolean MCNativeTheme::drawwidget(MCDC *dc, const MCWidgetInfo &winfo, const MCR
     MCThemeDrawInfo t_info = {};
     t_info.dest        = d;
     t_info.widget_type = winfo.type;
+    t_info.part        = winfo.part;
     t_info.state       = winfo.state;
     t_info.attributes  = winfo.attributes;
 
@@ -357,7 +409,6 @@ Boolean MCNativeTheme::drawwidget(MCDC *dc, const MCWidgetInfo &winfo, const MCR
 
         // ── Scrollbar / Slider ────────────────────────────────────────
         case WTHEME_TYPE_SCROLLBAR:
-        case WTHEME_TYPE_SMALLSCROLLBAR:
         case WTHEME_TYPE_SLIDER:
         case WTHEME_TYPE_SLIDER_TRACK_HORIZONTAL:
         case WTHEME_TYPE_SLIDER_TRACK_VERTICAL:
@@ -383,6 +434,14 @@ Boolean MCNativeTheme::drawwidget(MCDC *dc, const MCWidgetInfo &winfo, const MCR
                                  ? THEME_DRAW_TYPE_SLIDER
                                  : THEME_DRAW_TYPE_SCROLLBAR;
             dc->drawtheme(dt, &t_info);
+            break;
+        }
+
+        // ── Stepper (small scrollbar) ───────────────────────────────────
+        case WTHEME_TYPE_SMALLSCROLLBAR:
+        {
+            t_info.scrollbar.horizontal = (winfo.attributes & WTHEME_ATT_SBVERTICAL) == 0;
+            dc->drawtheme(THEME_DRAW_TYPE_SPIN, &t_info);
             break;
         }
 
@@ -430,14 +489,49 @@ Boolean MCNativeTheme::drawwidget(MCDC *dc, const MCWidgetInfo &winfo, const MCR
         case WTHEME_TYPE_SCROLLBAR_THUMB_HORIZONTAL:
         case WTHEME_TYPE_SCROLLBAR_GRIPPER_VERTICAL:
         case WTHEME_TYPE_SCROLLBAR_GRIPPER_HORIZONTAL:
+        {
+            // Regular scrollbar buttons - use NSScroller
+            if (winfo.datatype == WTHEME_DATA_SCROLLBAR && winfo.data != nil)
+            {
+                MCWidgetScrollBarInfo *sb = (MCWidgetScrollBarInfo *)winfo.data;
+                t_info.scrollbar.startvalue = sb->startvalue;
+                t_info.scrollbar.thumbpos = sb->thumbpos;
+                t_info.scrollbar.endvalue = sb->endvalue;
+                t_info.scrollbar.thumbsize = sb->thumbsize;
+            }
+            t_info.scrollbar.horizontal = (winfo.attributes & WTHEME_ATT_SBVERTICAL) == 0;
+            dc->drawtheme(THEME_DRAW_TYPE_SCROLLBAR, &t_info);
+            break;
+        }
+
+        // ── Stepper (spin) arrow buttons ─────────────────────────────────
         case WTHEME_TYPE_SMALLSCROLLBAR_BUTTON_UP:
         case WTHEME_TYPE_SMALLSCROLLBAR_BUTTON_DOWN:
         case WTHEME_TYPE_SMALLSCROLLBAR_BUTTON_LEFT:
         case WTHEME_TYPE_SMALLSCROLLBAR_BUTTON_RIGHT:
-            // Sub-part primitives: no individual rendering needed.
-            // Return True so the software fallback (which needs IsMacEmulatedLF)
-            // is NOT invoked — the parent scrollbar draw handles everything.
+        {
+            t_info.scrollbar.horizontal = (winfo.attributes & WTHEME_ATT_SBVERTICAL) == 0;
+            dc->drawtheme(THEME_DRAW_TYPE_SPIN, &t_info);
             break;
+        }
+
+        // ── Stepper (spin buttons) ────────────────────────────────────────
+        case WTHEME_TYPE_SPIN:
+        {
+            NSLog(@"MCNativeTheme: drawing SPIN widget type");
+            // For now, fall back to scrollbar drawing
+            if (winfo.datatype == WTHEME_DATA_SCROLLBAR && winfo.data != nil)
+            {
+                MCWidgetScrollBarInfo *sb = (MCWidgetScrollBarInfo *)winfo.data;
+                t_info.scrollbar.startvalue = sb->startvalue;
+                t_info.scrollbar.thumbpos   = sb->thumbpos;
+                t_info.scrollbar.endvalue   = sb->endvalue;
+                t_info.scrollbar.thumbsize  = sb->thumbsize;
+            }
+            t_info.scrollbar.horizontal = (winfo.attributes & WTHEME_ATT_SBVERTICAL) == 0;
+            dc->drawtheme(THEME_DRAW_TYPE_SCROLLBAR, &t_info);
+            break;
+        }
 
         // ── All other types: accept but draw nothing ──────────────────
         default:
@@ -999,24 +1093,180 @@ bool MCThemeDraw(MCGContextRef p_context, MCThemeDrawType p_type, MCThemeDrawInf
             break;
         }
 
-        // ── Keyboard focus ring ──────────────────────────────────────
-        case THEME_DRAW_TYPE_FOCUS_RECT:
+        // ── Stepper (spin buttons) ─────────────────────────────────────────
+        case THEME_DRAW_TYPE_SPIN:
         {
-            // Draw the system focus ring using keyboardFocusIndicatorColor.
-            // This colour tracks the user's accent setting and appearance
-            // (light / dark mode) automatically.
-            NSColor *t_ring_color = [NSColor keyboardFocusIndicatorColor];
             [t_appearance performAsCurrentDrawingAppearance:^{
-                [t_ring_color setStroke];
-                // Inset by half the stroke width so the ring stays inside the
-                // destination rect and doesn't clip against the bitmap edge.
-                NSRect t_ring_frame = NSInsetRect(t_frame, 1.5, 1.5);
-                NSBezierPath *t_path =
-                    [NSBezierPath bezierPathWithRoundedRect:t_ring_frame
-                                                   xRadius:3.0
-                                                   yRadius:3.0];
-                [t_path setLineWidth:3.0];
-                [t_path stroke];
+                bool t_vertical = ((p_info->attributes & WTHEME_ATT_SBVERTICAL) != 0);
+                bool t_is_whole_stepper = (p_info->widget_type == WTHEME_TYPE_SMALLSCROLLBAR);
+                
+                // Check which part is being pressed
+                bool t_is_up_pressed = (p_info->part == WTHEME_PART_ARROW_DEC);
+                bool t_is_down_pressed = (p_info->part == WTHEME_PART_ARROW_INC);
+                
+                // Get accent color for pressed state
+                NSColor *t_accent = [NSColor controlAccentColor];
+                NSColor *t_arrow_color = t_disabled ? [[NSColor disabledControlTextColor] colorWithAlphaComponent:0.5] : [NSColor controlTextColor];
+                
+                if (t_is_whole_stepper) {
+                    CGFloat t_height = t_frame.size.height;
+                    CGFloat t_width = t_frame.size.width;
+                    CGFloat t_mid_y = NSMinY(t_frame) + t_height / 2.0;
+                    CGFloat t_mid_x = NSMinX(t_frame) + t_width / 2.0;
+                    CGFloat t_button_height = t_height / 2.0;
+                    
+                    NSRect t_top_button, t_bottom_button;
+                    if (t_vertical) {
+                        t_top_button = NSMakeRect(t_frame.origin.x, t_mid_y, t_width, t_button_height);
+                        t_bottom_button = NSMakeRect(t_frame.origin.x, t_frame.origin.y, t_width, t_button_height);
+                    } else {
+                        t_top_button = NSMakeRect(t_frame.origin.x, t_frame.origin.y, t_button_height, t_height);
+                        t_bottom_button = NSMakeRect(t_mid_x, t_frame.origin.y, t_button_height, t_height);
+                    }
+                    
+                    for (int i = 0; i < 2; i++) {
+                        NSRect t_btn_rect = (i == 0) ? t_top_button : t_bottom_button;
+                        bool t_btn_up = (i == 0);
+                        bool t_btn_pressed = t_btn_up ? t_is_up_pressed : t_is_down_pressed;
+                        
+                        // Fill color based on state
+                        NSColor *t_fill;
+                        if (t_disabled) {
+                            t_fill = [[NSColor controlColor] colorWithAlphaComponent:0.5];
+                        } else if (t_btn_pressed) {
+                            t_fill = t_accent;
+                        } else {
+                            t_fill = [NSColor controlColor];
+                        }
+                        
+                        NSBezierPath *t_btn_path = [NSBezierPath bezierPathWithRoundedRect:t_btn_rect xRadius:3.0 yRadius:3.0];
+                        [t_fill setFill];
+                        [t_btn_path fill];
+                        
+                        if (!t_disabled && !t_btn_pressed) {
+                            [[NSColor separatorColor] setStroke];
+                            [t_btn_path setLineWidth:0.5];
+                            [t_btn_path stroke];
+                        }
+                        
+                        CGFloat t_arrow_size = MIN(t_btn_rect.size.width, t_btn_rect.size.height) - 4.0;
+                        CGFloat t_x = NSMidX(t_btn_rect);
+                        CGFloat t_y = NSMidY(t_btn_rect);
+                        
+                        [t_arrow_color setFill];
+                        
+                        if (t_vertical) {
+                            NSPoint t_tip, t_base_left, t_base_right;
+                            CGFloat t_half = t_arrow_size * 0.35;
+                            if (t_btn_up) {
+                                t_tip = NSMakePoint(t_x, NSMaxY(t_btn_rect) - t_half - 2);
+                                t_base_left = NSMakePoint(t_x - t_half, NSMinY(t_btn_rect) + t_half + 2);
+                                t_base_right = NSMakePoint(t_x + t_half, NSMinY(t_btn_rect) + t_half + 2);
+                            } else {
+                                t_tip = NSMakePoint(t_x, NSMinY(t_btn_rect) + t_half + 2);
+                                t_base_left = NSMakePoint(t_x - t_half, NSMaxY(t_btn_rect) - t_half - 2);
+                                t_base_right = NSMakePoint(t_x + t_half, NSMaxY(t_btn_rect) - t_half - 2);
+                            }
+                            NSPoint t_points[3] = {t_tip, t_base_left, t_base_right};
+                            NSBezierPath *t_arrow_path = [NSBezierPath bezierPath];
+                            [t_arrow_path moveToPoint:t_points[0]];
+                            [t_arrow_path lineToPoint:t_points[1]];
+                            [t_arrow_path lineToPoint:t_points[2]];
+                            [t_arrow_path closePath];
+                            [t_arrow_path fill];
+                        } else {
+                            NSPoint t_tip, t_base_top, t_base_bottom;
+                            CGFloat t_half = t_arrow_size * 0.35;
+                            if (t_btn_up) {
+                                t_tip = NSMakePoint(NSMaxX(t_btn_rect) - t_half - 2, t_y);
+                                t_base_top = NSMakePoint(NSMinX(t_btn_rect) + t_half + 2, t_y + t_half);
+                                t_base_bottom = NSMakePoint(NSMinX(t_btn_rect) + t_half + 2, t_y - t_half);
+                            } else {
+                                t_tip = NSMakePoint(NSMinX(t_btn_rect) + t_half + 2, t_y);
+                                t_base_top = NSMakePoint(NSMaxX(t_btn_rect) - t_half - 2, t_y + t_half);
+                                t_base_bottom = NSMakePoint(NSMaxX(t_btn_rect) - t_half - 2, t_y - t_half);
+                            }
+                            NSPoint t_points[3] = {t_tip, t_base_top, t_base_bottom};
+                            NSBezierPath *t_arrow_path = [NSBezierPath bezierPath];
+                            [t_arrow_path moveToPoint:t_points[0]];
+                            [t_arrow_path lineToPoint:t_points[1]];
+                            [t_arrow_path lineToPoint:t_points[2]];
+                            [t_arrow_path closePath];
+                            [t_arrow_path fill];
+                        }
+                    }
+                } else {
+                    // Individual button drawing
+                    bool t_is_this_up = (p_info->widget_type == WTHEME_TYPE_SMALLSCROLLBAR_BUTTON_UP ||
+                                        p_info->widget_type == WTHEME_TYPE_SMALLSCROLLBAR_BUTTON_LEFT);
+                    bool t_this_pressed = t_is_this_up ? t_is_up_pressed : t_is_down_pressed;
+                    
+                    NSColor *t_fill;
+                    if (t_disabled) {
+                        t_fill = [[NSColor controlColor] colorWithAlphaComponent:0.5];
+                    } else if (t_this_pressed) {
+                        t_fill = t_accent;
+                    } else {
+                        t_fill = [NSColor controlColor];
+                    }
+                    
+                    NSRect t_arrow_rect = t_frame;
+                    CGFloat t_arrow_size = MIN(t_arrow_rect.size.width, t_arrow_rect.size.height) - 4.0;
+                    CGFloat t_x = NSMidX(t_arrow_rect);
+                    CGFloat t_y = NSMidY(t_arrow_rect);
+                    
+                    NSBezierPath *t_path = [NSBezierPath bezierPathWithRoundedRect:t_arrow_rect xRadius:3.0 yRadius:3.0];
+                    [t_fill setFill];
+                    [t_path fill];
+                    
+                    if (!t_disabled && !t_this_pressed) {
+                        [[NSColor separatorColor] setStroke];
+                        [t_path setLineWidth:0.5];
+                        [t_path stroke];
+                    }
+                    
+                    [t_arrow_color setFill];
+                    
+                    if (t_vertical) {
+                        NSPoint t_tip, t_base_left, t_base_right;
+                        CGFloat t_half = t_arrow_size * 0.35;
+                        if (t_is_this_up) {
+                            t_tip = NSMakePoint(t_x, NSMaxY(t_arrow_rect) - t_half - 2);
+                            t_base_left = NSMakePoint(t_x - t_half, NSMinY(t_arrow_rect) + t_half + 2);
+                            t_base_right = NSMakePoint(t_x + t_half, NSMinY(t_arrow_rect) + t_half + 2);
+                        } else {
+                            t_tip = NSMakePoint(t_x, NSMinY(t_arrow_rect) + t_half + 2);
+                            t_base_left = NSMakePoint(t_x - t_half, NSMaxY(t_arrow_rect) - t_half - 2);
+                            t_base_right = NSMakePoint(t_x + t_half, NSMaxY(t_arrow_rect) - t_half - 2);
+                        }
+                        NSPoint t_points[3] = {t_tip, t_base_left, t_base_right};
+                        NSBezierPath *t_arrow_path = [NSBezierPath bezierPath];
+                        [t_arrow_path moveToPoint:t_points[0]];
+                        [t_arrow_path lineToPoint:t_points[1]];
+                        [t_arrow_path lineToPoint:t_points[2]];
+                        [t_arrow_path closePath];
+                        [t_arrow_path fill];
+                    } else {
+                        NSPoint t_tip, t_base_top, t_base_bottom;
+                        CGFloat t_half = t_arrow_size * 0.35;
+                        if (t_is_this_up) {
+                            t_tip = NSMakePoint(NSMaxX(t_arrow_rect) - t_half - 2, t_y);
+                            t_base_top = NSMakePoint(NSMinX(t_arrow_rect) + t_half + 2, t_y + t_half);
+                            t_base_bottom = NSMakePoint(NSMinX(t_arrow_rect) + t_half + 2, t_y - t_half);
+                        } else {
+                            t_tip = NSMakePoint(NSMinX(t_arrow_rect) + t_half + 2, t_y);
+                            t_base_top = NSMakePoint(NSMaxX(t_arrow_rect) - t_half - 2, t_y + t_half);
+                            t_base_bottom = NSMakePoint(NSMaxX(t_arrow_rect) - t_half - 2, t_y - t_half);
+                        }
+                        NSPoint t_points[3] = {t_tip, t_base_top, t_base_bottom};
+                        NSBezierPath *t_arrow_path = [NSBezierPath bezierPath];
+                        [t_arrow_path moveToPoint:t_points[0]];
+                        [t_arrow_path lineToPoint:t_points[1]];
+                        [t_arrow_path lineToPoint:t_points[2]];
+                        [t_arrow_path closePath];
+                        [t_arrow_path fill];
+                    }
+                }
             }];
             break;
         }
