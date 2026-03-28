@@ -1,17 +1,3 @@
-Library: com.hyperxtalk.macoscontacts
-
-Type: library
-
-Summary:
-This library provides access to the macOS contacts.
-
-Tags: macOS, Contacts, Library
-
-version: 1.0.0
-
-author: HyperXTalk
-
-
 Name: contactsGroups
 
 Type: handler
