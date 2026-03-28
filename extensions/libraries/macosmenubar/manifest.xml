@@ -1,8 +1,8 @@
 <package version="0.0">
-  <name>com.hyperxtalk.macosanimateresize</name>
-  <title>macOS Window Animation Library</title>
-  <author>Emily-Elizabeth Howard</author>
-  <version>1.0.0</version>
+  <name>com.hyperxtalk.macosmenubar</name>
+  <title>macOS MenuBar</title>
+  <author>HyperXTalk</author>
+  <version>1.1.0</version>
   <license>community</license>
   <type>library</type>
   <requires name="com.livecode.foreign"/>
@@ -14,5 +14,7 @@
   <requires name="com.livecode.type"/>
   <requires name="com.livecode.system"/>
   <metadata key="platform">mac</metadata>
-  <handler name="windowAnimateResize" parameters="in integer,in integer,in integer,in integer,in integer,in real" return="nothing"/>
+  <handler name="MenuBarHeight" parameters="" return="number"/>
+  <handler name="MenuBarVisible" parameters="" return="boolean"/>
+  <handler name="SetMenuBarVisible" parameters="in boolean" return="any"/>
 </package>

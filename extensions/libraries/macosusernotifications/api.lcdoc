@@ -1,0 +1,92 @@
+Library: com.hyperxtalk.macosusernotifications
+
+Type: library
+
+Summary:
+Allows you to notify the user
+
+Tags: macOS, Notifications, Library
+
+version: 1.0.1
+
+author: HyperXTalk
+
+
+Name: RequestNotificationAuthorization
+Type: command
+Syntax: RequestNotificationAuthorization
+Summary: Requests permission from the user to display notifications.
+Example: RequestNotificationAuthorization
+Description: Use the <RequestNotificationAuthorization> command to request permission from the
+user to display local notifications. This should be called once at app startup, for example in
+an openStack handler, before any calls to <PostUserNotification>.
+On first run, macOS will display a system permission dialog asking the user to allow or deny
+notifications for the app. On subsequent runs the cached decision is used and no dialog is shown.
+The authorization request covers alert banners, sounds, and badge counts. Notifications will
+not be displayed if the user denies permission, or if the app does not have a bundle identifier
+set in its application settings.
+This command has no effect on non-Mac platforms.
+
+Name: CheckNotificationAuthorizationStatus
+Type: command
+Syntax: CheckNotificationAuthorizationStatus
+Summary: Asynchronously checks the current notification authorization status for this app.
+Example:
+on mouseUp
+   CheckNotificationAuthorizationStatus
+end mouseUp
+
+on notificationAuthorizationStatus pStatus
+   switch pStatus
+      case "authorized"
+         PostUserNotification "Hello", "", "", ""
+         break
+      case "denied"
+         answer "Please enable notifications in System Settings → Notifications."
+         break
+      case "notDetermined"
+         RequestNotificationAuthorization
+         break
+      default
+         put pStatus into field "statusField"
+   end switch
+end notificationAuthorizationStatus
+Description: Use the <CheckNotificationAuthorizationStatus> command to query whether the app
+currently has permission to display notifications, without triggering a permission dialog. This
+is useful for checking status before posting a notification, or for directing the user to System
+Settings if permission has been denied.
+The result is delivered asynchronously as a notificationAuthorizationStatus message posted to
+the script object that called this command, with a single parameter pStatus containing one of
+the following values:
+"authorized" - Full notification permission has been granted.
+"denied" - The user has denied permission. Direct them to System Settings → Notifications to re-enable.
+"notDetermined" - Permission has never been requested. Call <RequestNotificationAuthorization>.
+"provisional" - Quiet/non-interrupting delivery granted (macOS 12 and later).
+"ephemeral" - Short-session grant, e.g. App Clips (macOS 11 and later).
+"unknown" - A status value not recognised by this version of the library.
+Calling this command a second time before the first callback has fired is safe — subsequent
+calls are ignored until the in-flight request completes.
+This command has no effect on non-Mac platforms.
+
+Name: PostUserNotification
+Type: command
+Syntax: PostUserNotification <pTitle>, <pSubTitle>, <pInformativeText>, <pIdentifier>
+Summary: Posts a local notification to the macOS notification system.
+Parameters:
+pTitle: The bold heading text displayed at the top of the notification. Required.
+pSubTitle: A secondary heading displayed below the title. Pass empty to omit.
+pInformativeText: The body text of the notification. Pass empty to omit.
+pIdentifier: A unique string identifier for this notification. If a notification with the same
+identifier is already pending, it will be replaced rather than stacked. Pass empty to use a
+fixed default identifier.
+Example: PostUserNotification "Backup Complete", "Your files have been saved", "3 files backed up to /Volumes/Backup", "com.myapp.backup"
+Example: PostUserNotification "Hello", "", "", ""
+Description: Use the <PostUserNotification> command to post a local notification via the macOS
+UNUserNotificationCenter API (macOS 10.14 and later). The notification will appear in the
+system notification area approximately 1 second after being posted.
+<RequestNotificationAuthorization> must be called before using this command, otherwise
+notifications will be silently suppressed by macOS.
+Passing the same identifier in repeated calls will cause each new notification to replace the
+previous one rather than stacking. To stack notifications, pass a unique identifier each time,
+for example by incorporating a timestamp.
+This command has no effect on non-Mac platforms.
