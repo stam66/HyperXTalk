@@ -1,0 +1,224 @@
+Name: contactsGroups
+
+Type: handler
+
+Syntax: contactsGroups()
+
+Summary:
+   * contactsGroups
+   * Returns a List of Arrays, each with keys "name" and "identifier".
+
+
+
+Name: contactsFetchByPhone
+
+Type: handler
+
+Syntax: contactsFetchByPhone(<pPhone>)
+
+Summary:
+   * contactsFetchByPhone pPhone
+   * Returns all contacts and filters locally for phone number containing pPhone.
+   * (The Contacts framework does not expose a public phone predicate in all OS versions.)
+
+Parameters:
+:
+
+
+
+
+Name: contactsRequestAccessGlue
+
+Type: handler
+
+Syntax: contactsRequestAccessGlue()
+
+Summary:
+   * contactsRequestAccessGlue
+   * Uses OXTContactsGlue.m to request Contacts access via native ObjC on the
+   * main thread. This bypasses the LCB ObjC bridge for the permission call.
+   * Fires "accessRequestComplete" on the caller when the user responds.
+
+
+
+Name: contactsFetchByGroup
+
+Type: handler
+
+Syntax: contactsFetchByGroup(<pGroupIdentifier>)
+
+Summary:
+   * contactsFetchByGroup pGroupIdentifier
+   * Returns a List of contact Arrays for all contacts in the given group.
+
+Parameters:
+:
+
+
+
+
+Name: contactsFetchAll
+
+Type: handler
+
+Syntax: contactsFetchAll()
+
+Summary:
+   * contactsFetchAll
+   * Returns a List of Arrays, one per contact, with keys:
+   *   identifier, givenName, familyName, fullName, organizationName,
+   *   emailAddresses (List), phoneNumbers (List), note
+
+
+
+Name: contactsFetchByName
+
+Type: handler
+
+Syntax: contactsFetchByName(<pName>)
+
+Summary:
+   * contactsFetchByName pName
+   * Returns contacts whose full name contains pName (case-insensitive, macOS logic).
+
+Parameters:
+:
+
+
+
+
+Name: contactsAuthorizationStatus
+
+Type: handler
+
+Syntax: contactsAuthorizationStatus()
+
+Summary:
+   * contactsAuthorizationStatus
+   * Returns the current authorization status without prompting the user.
+   * Result: "granted" | "denied" | "restricted" | "not determined"
+
+
+
+Name: contactsInitialize
+
+Type: handler
+
+Syntax: contactsInitialize()
+
+Summary:
+   * contactsInitialize
+   * Must be called once before contactsRequestAccess to set up the block pointer
+   * and prime the CNContactStore instance.
+   * Returns true on success.
+
+
+
+Name: contactsDelete
+
+Type: handler
+
+Syntax: contactsDelete(<pIdentifier>)
+
+Summary:    * contactsDelete pIdentifier
+
+
+Parameters:
+:
+
+
+
+
+Name: contactsDiagnostic
+
+Type: handler
+
+Syntax: contactsDiagnostic()
+
+Summary:
+   * contactsDiagnostic
+   * Posts "contactsDiagnostic" to the caller with a step-by-step status string.
+   * Use this to identify exactly where initialisation or access request fails.
+
+
+
+Name: contactsUpdate
+
+Type: handler
+
+Syntax: contactsUpdate(<pIdentifier>,<pArray>)
+
+Summary:    * contactsUpdate pIdentifier, pArray
+
+
+Parameters:
+:
+
+
+:
+
+
+
+
+Name: contactsCreate
+
+Type: handler
+
+Syntax: contactsCreate(<pArray>)
+
+Summary:
+   * contactsCreate pArray
+   * Creates a new contact.  pArray keys: givenName, familyName,
+   * organizationName, emailAddresses (comma-delimited string or List),
+   * phoneNumbers (comma-delimited string or List), note.
+   * Returns the new contact's identifier string, or empty on failure.
+
+Parameters:
+:
+
+
+
+
+Name: contactsFetchByEmail
+
+Type: handler
+
+Syntax: contactsFetchByEmail(<pEmail>)
+
+Summary:
+   * contactsFetchByEmail pEmail
+   * Returns contacts with an email address matching pEmail.
+
+Parameters:
+:
+
+
+
+
+Name: contactsRequestAccess
+
+Type: handler
+
+Syntax: contactsRequestAccess()
+
+Summary:
+   * contactsRequestAccess
+   * Presents the system permission dialog if not yet determined, then
+   returns
+   end if
+   * immediately. When the user responds, the ObjC block callback posts the
+   * custom message "accessRequestComplete" with a Boolean parameter indicating
+   * whether access was granted. Handle this in your card or stack script:
+   *
+   *   on accessRequestComplete pGranted
+   *     if pGranted then
+   ... else ...
+   end if
+   *   end accessRequestComplete
+   *
+   * If status is already determined, returns the current status string without
+   * showing a dialog and without posting a message.
+   * Result: "granted" | "denied" | "restricted" | "not determined"
+
+
+

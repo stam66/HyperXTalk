@@ -449,17 +449,40 @@ static bool hfs_code_to_string(unsigned long p_code, char *r_string)
 {
 	uint32_t t_new_index;
 	t_new_index =  [[ m_options objectValue ] intValue ];
-	
+
+    MCFileFilter *t_old_filter = m_filter;
 	m_filter = m_filters;
 	for(uint32_t i = 0; i < t_new_index; i++)
 		m_filter = m_filter -> next;
-	
+
+    // Swap the filename extension to match the newly selected format.
+    // Only applies to save panels (NSSavePanel has nameFieldStringValue;
+    // NSOpenPanel inherits it but we only want to do this on save).
+    if ([m_panel isKindOfClass: [NSSavePanel class]] &&
+        m_filter != nil && m_filter->extension_count > 0 &&
+        !MCStringIsEqualTo(m_filter->extensions[0], MCSTR("*"), kMCStringOptionCompareExact))
+    {
+        NSString *t_current_name = [m_panel nameFieldStringValue];
+        if (t_current_name != nil && [t_current_name length] > 0)
+        {
+            // Strip any existing known extension, then append the new one.
+            NSString *t_base = t_current_name;
+            NSRange t_dot = [t_current_name rangeOfString: @"." options: NSBackwardsSearch];
+            if (t_dot.location != NSNotFound && t_dot.location > 0)
+                t_base = [t_current_name substringToIndex: t_dot.location];
+
+            NSString *t_new_ext = MCStringConvertToAutoreleasedNSString(m_filter->extensions[0]);
+            NSString *t_new_name = [t_base stringByAppendingFormat: @".%@", t_new_ext];
+            [m_panel setNameFieldStringValue: t_new_name];
+        }
+    }
+
     if (m_panel_view_hack == nil)
         m_panel_view_hack = [self findPanelViewHack: [[m_panel contentView] subviews]];
-    
+
     if (m_panel_view_hack != nil)
         [m_panel_view_hack reloadData];
-        
+
 	[m_panel validateVisibleColumns];
 }
 

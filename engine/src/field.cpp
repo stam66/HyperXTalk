@@ -2513,7 +2513,7 @@ void MCField::draw(MCDC *dc, const MCRectangle& p_dirty, bool p_isolated, bool p
 			trect.width += scrollbarwidth + offset;
 		if (flags & F_3D)
 		{
-			if (MCcurtheme  && borderwidth == DEFAULT_BORDER && MCcurtheme->iswidgetsupported(WTHEME_TYPE_TEXTFIELD_FRAME))
+			if (MCcurtheme && borderwidth == DEFAULT_BORDER && MCcurtheme->iswidgetsupported(WTHEME_TYPE_TEXTFIELD_FRAME))
 			{
 				MCWidgetInfo winfo;
 				winfo.type = WTHEME_TYPE_TEXTFIELD_FRAME;

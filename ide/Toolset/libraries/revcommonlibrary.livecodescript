@@ -1181,7 +1181,7 @@ function revAnswerFile pType, pPrompt
   -- any corrections can be made in one place
   switch pType
   case "stack"
-    answer file pPrompt with type "LiveCode Stacks|livecode,rev,mc|RSTK,MSTK" or type "All Files|"
+    answer file pPrompt with type "HyperXTalk Stacks|hyperxtalk,hyperxtalkscript,livecode,rev,mc|RSTK,MSTK" or type "All Files|"
     break
   case "image"
     answer file pPrompt with type "All Picture Files|png,gif,jpg,jpeg,bmp,pct,xbm,xpm,xwd,pbm,ppm,pgm" or type "Portable Network Graphics|png" or type "Joint Photographics Experts Group|jpg,jpeg" or type "Graphics Interchange Format|gif" or type "Windows Bitmap|bmp" or type "Unix Formats|xbm,xpm,xwd,pbm,ppm,pgm" or type "Macintosh PICT - displays on MacOS only|pct" or type "All Files|"
@@ -1204,7 +1204,7 @@ end revAnswerFile
 function revAnswerFiles pType, pPrompt
   switch pType
   case "stack"
-    answer files pPrompt with type "LiveCode Stacks|livecode,rev,mc,livecodescript|RSTK,MSTK" or type "All Files|"
+    answer files pPrompt with type "HyperXTalk Stacks|hyperxtalk,hyperxtalkscript,livecode,rev,mc,livecodescript|RSTK,MSTK" or type "All Files|"
     break
   case "image"
     answer files pPrompt with type "All Picture Files|png,gif,jpg,jpeg,bmp,pct,xbm,xpm,xwd,pbm,ppm,pgm" or type "Portable Network Graphics|png" or type "Joint Photographics Experts Group|jpg,jpeg" or type "Graphics Interchange Format|gif" or type "Windows Bitmap|bmp" or type "Unix Formats|xbm,xpm,xwd,pbm,ppm,pgm" or type "Macintosh PICT - displays on MacOS only|pct" or type "All Files|"
@@ -1369,11 +1369,11 @@ private function _revEnvironmentPlatform
          put "Linux" into tPlatform
          break
       case "MacOS"
-         if char 1 of the systemVersion is 1 then
-            put "MacOS X" into tPlatform
-         else
-            put "MacOS Classic" into tPlatform
-         end if
+         --         if char 1 of the systemVersion is 1 then
+         put "MacOS X" into tPlatform
+         --         else
+         --         put "MacOS Classic" into tPlatform
+         --      end if
          break
       case "Win32"
          put "Windows" into tPlatform

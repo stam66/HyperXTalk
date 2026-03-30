@@ -1,0 +1,36 @@
+<package version="0.0">
+  <name>com.hyperxtalk.macostoolbar</name>
+  <title>macOS Toolbar</title>
+  <author>HyperXTalk</author>
+  <version>2.0.0</version>
+  <license>community</license>
+  <type>library</type>
+  <requires name="com.livecode.foreign"/>
+  <requires name="com.livecode.objc"/>
+  <requires name="com.livecode.array"/>
+  <requires name="com.livecode.engine"/>
+  <requires name="com.livecode.list"/>
+  <requires name="com.livecode.arithmetic"/>
+  <requires name="com.livecode.binary"/>
+  <requires name="com.livecode.logic"/>
+  <requires name="com.livecode.string"/>
+  <requires name="com.livecode.type"/>
+  <requires name="com.livecode.system"/>
+  <metadata key="platform">mac</metadata>
+  <handler name="toolbarCreate" parameters="in string,in integer,in string" return="nothing"/>
+  <handler name="toolbarAddItem" parameters="in string,in string,in string,in string,in string" return="nothing"/>
+  <handler name="toolbarReloadItems" parameters="in string" return="nothing"/>
+  <handler name="toolbarRemoveItem" parameters="in string,in string" return="nothing"/>
+  <handler name="toolbarSetItemLabel" parameters="in string,in string,in string" return="nothing"/>
+  <handler name="toolbarSetItemTooltip" parameters="in string,in string,in string" return="nothing"/>
+  <handler name="toolbarSetItemEnabled" parameters="in string,in string,in boolean" return="nothing"/>
+  <handler name="toolbarItemIsEnabled" parameters="in string,in string" return="boolean"/>
+  <handler name="toolbarSetItemImage" parameters="in string,in string,in string" return="nothing"/>
+  <handler name="toolbarSetDisplayMode" parameters="in string,in string" return="nothing"/>
+  <handler name="toolbarSetCustomizable" parameters="in string,in boolean" return="nothing"/>
+  <handler name="toolbarSetVisible" parameters="in string,in boolean" return="nothing"/>
+  <handler name="toolbarIsVisible" parameters="in string" return="boolean"/>
+  <handler name="toolbarItems" parameters="in string" return="string"/>
+  <handler name="toolbarReactivate" parameters="in string" return="nothing"/>
+  <handler name="toolbarDestroy" parameters="in string" return="nothing"/>
+</package>

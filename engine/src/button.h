@@ -185,6 +185,7 @@ public:
 	virtual void open();
 	virtual void close();
 	virtual void kfocus();
+	virtual Boolean kfocusset(MCControl *target);
 	virtual Boolean kfocusnext(Boolean top);
 	virtual Boolean kfocusprev(Boolean bottom);
 	virtual void kunfocus();

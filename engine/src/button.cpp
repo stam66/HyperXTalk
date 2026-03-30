@@ -570,6 +570,19 @@ void MCButton::kfocus()
 	}
 }
 
+Boolean MCButton::kfocusset(MCControl *target)
+{
+	if (target == this)
+		return True;
+	// Allow the card's kfocusset loop to route focus to our embedded entry
+	// field through us. This lets entry->mdown() successfully obtain focus
+	// via getstack()->kfocusset(entry), causing button->kfocus() to be called
+	// which then calls entry->kfocus() to make the entry field active.
+	if (entry != NULL && target == entry)
+		return True;
+	return False;
+}
+
 Boolean MCButton::kfocusnext(Boolean top)
 {
 	if (((IsMacLF() && !(state & CS_SHOW_DEFAULT))
@@ -1216,6 +1229,24 @@ Boolean MCButton::mdown(uint2 which)
 			if (entry != NULL && MCU_point_in_rect(entry->getrect(), mx, my))
 			{
 				state |= CS_FIELD_GRAB;
+				if (!(state & CS_KFOCUSED))
+				{
+					// Pre-clear MCactivefield so MCStack::kfocusset does not
+					// hit its early-return guard (which fires when
+					// MCactivefield is still non-NULL after kunfocus, e.g.
+					// because the previous field had selected text).
+					if (MCactivefield.IsValid())
+						MCactivefield->unselect(True, True);
+					// Route focus through the stack so all focus bookkeeping
+					// is updated: card->kfocused = button, which causes key
+					// events to reach button->kdown() -> entry->kdown().
+					getstack()->kfocusset(this);
+					// Safety fallback: if the routing chain still did not
+					// manage to focus the entry field, do it directly so that
+					// MCactivefield and CS_KFOCUSED are set on entry.
+					if (!(entry->getstate(CS_KFOCUSED)))
+						entry->kfocus();
+				}
 				entry->mdown(which);
 			}
 			else
@@ -1679,7 +1710,7 @@ uint2 MCButton::gettransient() const
 
 
 void MCButton::applyrect(const MCRectangle &nrect)
-{	
+{
 	rect = nrect;
 	MCRectangle trect;
 	if (entry != NULL)
@@ -1700,13 +1731,31 @@ void MCButton::applyrect(const MCRectangle &nrect)
 			// PM-2015-10-12: [[ Bug 16193 ]] Make sure the label stays always within the combobox when resizing
 			trect.y = nrect.y + nrect.height / 2 - trect.height / 2;
 		}
-		else
-		{
-			trect = MCU_reduce_rect(nrect, borderwidth);
-			trect.width -= trect.height;
 
-			if (IsMacEmulatedLF())
-				trect.width -= 5;
+		// If the theme returned zero dimensions (theme unsupported or returned bad
+		// metrics), fall back to geometry-based computation so the entry is always usable.
+		if (trect.width == 0 || trect.height == 0)
+		{
+			if (MClook == LF_MAC && !IsMacEmulatedLF())
+			{
+				// Match the LF_MAC drawing path in drawcombo() exactly:
+				// Text area border drawn at: {x, y, width - height - 2, height}
+				// using drawborder(..., 1) which draws a 1px inside border.
+				// Entry field fills the interior, inset 1px from each border edge.
+				int2 text_area_width = nrect.width - nrect.height - 2;
+				trect.x = nrect.x + 1;
+				trect.y = nrect.y + 1;
+				trect.width = (text_area_width > 2) ? text_area_width - 2 : 0;
+				trect.height = (nrect.height > 2) ? nrect.height - 2 : 0;
+			}
+			else
+			{
+				trect = MCU_reduce_rect(nrect, borderwidth);
+				trect.width -= trect.height;
+
+				if (IsMacEmulatedLF())
+					trect.width -= 5;
+			}
 		}
 		entry->setrect(trect);
 	}

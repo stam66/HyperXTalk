@@ -275,17 +275,24 @@ new_VioSSLFd(const char *key_file, const char *cert_file,
   }
 
   /* Load certs from the trusted ca */
-  if (SSL_CTX_load_verify_locations(ssl_fd->ssl_context, ca_file, ca_path) == 0)
+  if (ca_file != NULL || ca_path != NULL)
   {
-    DBUG_PRINT("warning", ("SSL_CTX_load_verify_locations failed"));
-    if (SSL_CTX_set_default_verify_paths(ssl_fd->ssl_context) == 0)
+    /* CA explicitly specified — must load successfully */
+    if (SSL_CTX_load_verify_locations(ssl_fd->ssl_context, ca_file, ca_path) == 0)
     {
-      DBUG_PRINT("error", ("SSL_CTX_set_default_verify_paths failed"));
+      DBUG_PRINT("error", ("SSL_CTX_load_verify_locations failed"));
       report_errors();
       SSL_CTX_free(ssl_fd->ssl_context);
       my_free((void*)ssl_fd,MYF(0));
       DBUG_RETURN(0);
     }
+  }
+  else
+  {
+    /* No CA specified — try system defaults but don't fail if unavailable
+       (macOS uses the Keychain, not OpenSSL's standard paths).
+       Verification mode will be SSL_VERIFY_NONE in this case anyway. */
+    SSL_CTX_set_default_verify_paths(ssl_fd->ssl_context);
   }
 
   if (vio_set_cert_stuff(ssl_fd->ssl_context, cert_file, key_file))
@@ -325,7 +332,7 @@ new_VioSSLConnectorFd(const char *key_file, const char *cert_file,
     verify= SSL_VERIFY_NONE;
 
   if (!(ssl_fd= new_VioSSLFd(key_file, cert_file, ca_file,
-                             ca_path, cipher, TLSv1_client_method())))
+                             ca_path, cipher, TLS_client_method())))
   {
     return 0;
   }

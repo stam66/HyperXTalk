@@ -9,6 +9,8 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>hyperxtalk</string>
+				<string>hyperxtalkscript</string>
 				<string>rev</string>
 				<string>livecode</string>
 				<string>livecodescript</string>
@@ -71,6 +73,42 @@
 	<string>Copyright 2000-2020, HyperXTalk Ltd., All Rights Reserved.</string>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>HyperXTalk Stack</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.hyperxtalk.hyperxtalk.stack.native</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>com.apple.macos.ostype</key>
+				<string>RSTK</string>
+				<key>public.filename-extension</key>
+				<array>
+					<string>hyperxtalk</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>HyperXTalk Script Only Stack</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.hyperxtalk.hyperxtalk.script.native</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>hyperxtalkscript</string>
+				</array>
+			</dict>
+		</dict>
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>

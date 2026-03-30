@@ -2473,8 +2473,9 @@ function revIDEPlatform
    if the platform begins with "mac" then return "mac"
    else if the platform begins with "win" then return "win"
    else if the platform begins with "linux" then return "linux"
-   else if the platform begins with "iphone" then return "ios"
-   else if the platform begins with "android" then return "android"
+   //eh
+   --   else if the platform begins with "iphone" then return "ios"
+   --   else if the platform begins with "android" then return "android"
    return __revIDEError("Unknown Platform")
 end revIDEPlatform
 
@@ -4378,8 +4379,6 @@ function revIDEPaletteToStackName pPalette
          return "revIDEProjectBrowser"
       case "extension manager"
          return "revIDEExtensionManager"
-      case "start center"
-         return "revStartCenter"
       case "welcome"
          return "revWelcome"
       case "search"
@@ -4612,18 +4611,6 @@ command revIDEOpenPalette pPaletteName
    
    hide stack tStackName
    switch pPaletteName
-      case "Start Center"
-         set the cMode of stack tStackName to "run"
-         modeless stack tStackName
-         break
-      case "Welcome"
-         local tStartCenter
-         put revIDEPaletteToStackName("start center") into tStartCenter
-         if the visible of stack tStartCenter is true then
-            close stack tStartCenter
-         end if
-         modeless stack tStackName
-         break
       case "message box"
          -- The message box needs to be brought to the front as it takes keyboard focus
          palette stack tStackName
@@ -4643,7 +4630,7 @@ command revIDEOpenPalette pPaletteName
       case "extension builder"
       case "plugin preferences"
       case "about"
-      case "resource center"
+         //eh      case "resource center"
          modeless stack tStackName
          break
       case "dictionary"
@@ -7100,7 +7087,7 @@ function revIDEAcceptedTypes pType
       case "media"
          return revIDEAcceptedTypes("audio") & comma & revIDEAcceptedTypes("video")
       case "stack"
-         return "livecode,rev,lc,livecodescript,mc"
+         return "hyperxtalk,hyperxtalkscript,livecode,rev,lc,livecodescript,mc"
       case "text"
          return "txt"
       case "graph"
@@ -7863,7 +7850,7 @@ on revIDEActionSaveStackAs pStackID, pSubstackOnly
    put tShortName into tSubstitutions[1]
 
    local tStackFilter, tStack24Filter, tStack27Filter, tStack55Filter, tStack70Filter, tStack80Filter
-   put (revIDELocalise("LiveCode Stack") & "|livecode,rev|RSTK") into tStackFilter
+   put (revIDELocalise("HyperXTalk Stack") & "|hyperxtalk,hyperxtalkscript,livecode,rev|RSTK") into tStackFilter
    put (revIDELocalise("Legacy LiveCode Stack (2.4)") & "|livecode,rev|RSTK") into tStack24Filter
    put (revIDELocalise("Legacy LiveCode Stack (2.7)") & "|livecode,rev|RSTK") into tStack27Filter
    put (revIDELocalise("Legacy LiveCode Stack (5.5)") & "|livecode,rev|RSTK") into tStack55Filter
@@ -7874,7 +7861,7 @@ on revIDEActionSaveStackAs pStackID, pSubstackOnly
    switch 
       case the scriptOnly of stack tShortName
          put "script" after tStackName
-         ask file revIDELocalise("Save script only stack %1 as:", tSubstitutions) with tStackName with type (revIDELocalise("LiveCode Script Only Stack") & "|livecodescript|RSTK")
+         ask file revIDELocalise("Save script only stack %1 as:", tSubstitutions) with tStackName with type (revIDELocalise("HyperXTalk Script Only Stack") & "|hyperxtalkscript,livecodescript|RSTK")
          break
 	  case tStackFileType is 8.0
 	     ask file revIDELocalise("Save stack %1 as:", tSubstitutions) with tStackName with type tStack80Filter or type tStackFilter or type tStack70Filter or type tStack55Filter or type tStack27Filter or type tStack24Filter
@@ -7926,8 +7913,8 @@ on revIDEActionSaveStackAs pStackID, pSubstackOnly
    
    # MacOS Auotmatically appends the filetype to the filename
    local tFilePath
-   if the platform is not "MacOS" and not (it ends with ".rev" or it ends with ".livecode" or it ends with ".livecodescript") then
-      put ".livecode" after it
+   if the platform is not "MacOS" and not (it ends with ".rev" or it ends with ".livecode" or it ends with ".livecodescript" or it ends with ".hyperxtalk" or it ends with ".hyperxtalkscript") then
+      put ".hyperxtalk" after it
       if the scriptOnly of stack tShortName then
          put "script" after it
       end if
@@ -7991,7 +7978,7 @@ on revIDEActionSaveStackAs pStackID, pSubstackOnly
 
    # RevOnline fingerprint enables the revOnline uploader automatically overwrite the stack if already uploaded.
    # Because you're saving as a new stack, this fingerprint should be removed.
-   revRemoveRevOnlineKey "fingerprint",tShortName
+   //eh revRemoveRevOnlineKey "fingerprint",tShortName
 
    -- Synthesize a "saveStackRequest" message
    if ideDispatchSaveStackRequest(tShortName) is not "handled" then
@@ -8918,52 +8905,52 @@ end revIDEDocumentationLoad
 
 on revIDELaunchResource pName
    switch pName
-      case "Buy"
-         launch url "https://livecode.com/products/livecode-platform/pricing/"
-         break
-      case "Support"
-         launch url "https://livecode.com/resources/support/"
-         break
-      case "License Agreement"
-         launch document (revEnvironmentToolsPath() & slash & "License Agreement.txt")
-         break
-      case "Release Notes"
-         launch document (revEnvironmentToolsPath() & slash & "Release Notes.pdf")
-         break
-      case "User Guide"
-         launch document revEnvironmentDocumentationPath() & "/pdf/LiveCode User Guide.pdf"
-         break
-      case "Sample Stacks"
-         set the _ideoverride of stack "revonline" to true
-         go stack "revOnline"
-         break
-      case "Sample Scripts"
-         launch url "http://lessons.runrev.com/m/2592"
-         break
-      case "Beginners Guide"
-         launch url "https://livecode.com/resources/guides/beginners-guide/"
-         break
-      case "Tutorials"
-         launch url "http://livecode.com/links/livecode/tutorials"
-         break
-      case "All Guides"
-         launch url "http://livecode.com/links/livecode/guides"
-         break
+      --      case "Buy"
+      --         launch url "https://livecode.com/products/livecode-platform/pricing/"
+      --         break
+      --      case "Support"
+      --         launch url "https://livecode.com/resources/support/"
+      --         break
+      --      case "License Agreement"
+      --         launch document (revEnvironmentToolsPath() & slash & "License Agreement.txt")
+      --         break
+      --      case "Release Notes"
+      --         launch document (revEnvironmentToolsPath() & slash & "Release Notes.pdf")
+      --         break
+      --      case "User Guide"
+      --         launch document revEnvironmentDocumentationPath() & "/pdf/LiveCode User Guide.pdf"
+      --         break
+      --      case "Sample Stacks"
+      --         set the _ideoverride of stack "revonline" to true
+      --         go stack "revOnline"
+      --         break
+      --      case "Sample Scripts"
+      --         launch url "http://lessons.runrev.com/m/2592"
+      --         break
+      --      case "Beginners Guide"
+      --         launch url "https://livecode.com/resources/guides/beginners-guide/"
+      --         break
+      --      case "Tutorials"
+      --         launch url "http://livecode.com/links/livecode/tutorials"
+      --         break
+      --      case "All Guides"
+      --         launch url "http://livecode.com/links/livecode/guides"
+      --         break
       case "Forums"
-         launch url "http://livecode.com/links/livecode/forum"
+         launch url "https://hyperxtalk.discourse.group"
          break
       case "Technical Questions"
-         launch url "http://livecode.com/links/stackoverflow"
+         launch url "https://github.com/emily-elizabeth/HyperXTalk"
          break
-      case "Discussion List"
-         launch url "http://livecode.com/links/lists"
-         break
-      case "Newsletters"
-         launch url "http://livecode.com/links/livecode/newsletters"
-         break
-      case "Resources"
-         launch document revEnvironmentToolsPath() & slash & "Resources"
-         break
+         --      case "Discussion List"
+         --         launch url "http://livecode.com/links/lists"
+         --         break
+         --      case "Newsletters"
+         --         launch url "http://livecode.com/links/livecode/newsletters"
+         --         break
+         --      case "Resources"
+         --         launch document revEnvironmentToolsPath() & slash & "Resources"
+         --         break
    end switch
 end revIDELaunchResource
 
@@ -12248,6 +12235,7 @@ on revIDEFindMoreWidgets
    unlock screen
 end revIDEFindMoreWidgets
 
+/*eh
 command ideShowUpgradeOptions
    if ideCanShowUpgradeOptions() then
       lock screen
@@ -12262,6 +12250,7 @@ command ideShowUpgradeOptions
       launch url revEnvironmentEditionProperty("edition_external_url", tUpgradeEdition)
    end if
 end ideShowUpgradeOptions
+*/
 
 function ideCanShowUpgradeOptions
    return ideShouldShowUpgradeOptions() \

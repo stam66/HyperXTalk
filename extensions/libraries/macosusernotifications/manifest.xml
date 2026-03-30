@@ -1,0 +1,25 @@
+<package version="0.0">
+  <name>com.hyperxtalk.macosusernotifications</name>
+  <title>macos User Notification</title>
+  <author>HyperXTalk</author>
+  <version>1.0.1</version>
+  <platforms>mac</platforms>
+  <license>community</license>
+  <type>library</type>
+  <requires name="com.livecode.objc"/>
+  <requires name="com.livecode.foreign"/>
+  <requires name="com.livecode.engine"/>
+  <requires name="com.livecode.arithmetic"/>
+  <requires name="com.livecode.binary"/>
+  <requires name="com.livecode.list"/>
+  <requires name="com.livecode.logic"/>
+  <requires name="com.livecode.string"/>
+  <requires name="com.livecode.type"/>
+  <requires name="com.livecode.system"/>
+  <handler name="AddNotificationCompletion" parameters="in Pointer,in optional ObjcId" return="nothing"/>
+  <handler name="AuthorizationCompletion" parameters="in Pointer,in CBool,in optional ObjcId" return="nothing"/>
+  <handler name="GetNotificationSettingsCompletion" parameters="in Pointer,in ObjcId" return="nothing"/>
+  <handler name="RequestNotificationAuthorization" parameters="" return="nothing"/>
+  <handler name="CheckNotificationAuthorizationStatus" parameters="" return="nothing"/>
+  <handler name="PostUserNotification" parameters="in string,in string,in optional string,in optional string" return="nothing"/>
+</package>

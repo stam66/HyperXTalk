@@ -1,5 +1,6 @@
 /_build
 /_cache
+/mac-bin
 
 # Local secrets — never commit
 .env.local

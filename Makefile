@@ -21,19 +21,6 @@
 # Tools that Make calls
 XCODEBUILD ?= xcodebuild
 WINE ?= wine
-EMMAKE ?= emmake
-
-# Some magic to control which versions of iOS we try to build.  N.b. you may
-# also need to modify the buildbot configuration
-IPHONEOS_VERSIONS ?= 11.2 12.1 13.2 14.4 14.5
-IPHONESIMULATOR_VERSIONS ?= 11.2 12.1 13.2 14.4 14.5
-SKIP_IPHONEOS_VERSIONS ?= 9.2 10.2
-SKIP_IPHONESIMULATOR_VERSIONS ?= 6.1 7.1 8.2 9.2 10.2
-
-
-IOS_SDKS ?= \
-	$(addprefix iphoneos,$(IPHONEOS_VERSIONS)) \
-	$(addprefix iphonesimulator,$(IPHONESIMULATOR_VERSIONS))
 
 # Choose the correct build type
 MODE ?= debug
@@ -138,27 +125,6 @@ all-linux-%:
 	$(MAKE) compile-linux-$*
 
 $(addsuffix -linux,all config compile check): %: %-$(guess_linux_arch)
-
-################################################################
-# Android rules
-################################################################
-
-ANDROID_ARCHS = armv6 armv7 arm64 x86 x86_64
-
-config-android-%:
-	./config.sh --platform android-$*
-
-compile-android-%:
-	$(MAKE) -C build-android-$*/livecode default
-
-check-android-%:
-	$(MAKE) -C build-android-$*/livecode check
-
-all-android-%:
-	$(MAKE) config-android-$*
-	$(MAKE) compile-android-$*
-
-$(addsuffix -android,all config compile check): %: %-armv6
 
 ################################################################
 # Mac rules
@@ -277,11 +243,7 @@ package-mac:
 	@# Toolset libraries: IDE support scripts from ide-support/
 	@# ----------------------------------------------------------------
 	@for f in \
-	    revsblibrary revsaveasstandalone \
-	    revsaveasiosstandalone revsaveasandroidstandalone \
-	    revsaveasemscriptenstandalone revliburl \
-	    revdeploylibraryios revdeploylibraryandroid \
-	    revdeploylibraryemscripten revhtml5urllibrary; do \
+	    revsblibrary revsaveasstandalone; do \
 	  [ -f "ide-support/$$f.livecodescript" ] && \
 	    cp "ide-support/$$f.livecodescript" "$(TOOLS_DIR)/Toolset/libraries/" \
 	    || true; \
@@ -306,6 +268,14 @@ package-mac:
 	    cp -R "$(MAC_BIN)/$$b.bundle" \
 	      "$(TOOLS_DIR)/Externals/Database Drivers/" || true; \
 	done
+	@# Sign all bundles from mac-bin with hardened runtime before copying
+	@for b in revbrowser revxml revspeech revzip revdb revpdfprinter dbmysql dbodbc dbpostgresql dbsqlite; do \
+	  [ -d "$(MAC_BIN)/$$b.bundle" ] && \
+	    codesign --force --deep --sign "$(CODESIGN_IDENTITY)" \
+	        --options runtime \
+	        --entitlements HyperXTalk.entitlements \
+	        "$(MAC_BIN)/$$b.bundle" || true; \
+	done
 	@# ----------------------------------------------------------------
 	@# Externals discovery files (read by the standalone builder)
 	@# ----------------------------------------------------------------
@@ -316,11 +286,48 @@ package-mac:
 	@printf 'MySQL,dbmysql.bundle\nODBC,dbodbc.bundle\nPostgreSQL,dbpostgresql.bundle\nSQLite,dbsqlite.bundle\n' \
 	    > "$(RUNTIME_ARM64)/Externals/Database Drivers/Database Drivers.txt"
 	@# ----------------------------------------------------------------
+	@# Externals (Runtime standalone use) — mirror of Tools/Externals
+	@# ----------------------------------------------------------------
+	@for b in revbrowser revxml revspeech revzip revdb; do \
+	  [ -d "$(TOOLS_DIR)/Externals/$$b.bundle" ] && \
+	    cp -R "$(TOOLS_DIR)/Externals/$$b.bundle" \
+	      "$(RUNTIME_ARM64)/Externals/" || true; \
+	done
+	@for b in dbmysql dbodbc dbpostgresql dbsqlite; do \
+	  [ -d "$(TOOLS_DIR)/Externals/Database Drivers/$$b.bundle" ] && \
+	    cp -R "$(TOOLS_DIR)/Externals/Database Drivers/$$b.bundle" \
+	      "$(RUNTIME_ARM64)/Externals/Database Drivers/" || true; \
+	done
+	@# ----------------------------------------------------------------
 	@# Runtime: arm64 standalone engine + support libraries
 	@# ----------------------------------------------------------------
+	@# Remove existing Standalone.app first so cp -R replaces it rather
+	@# than nesting HyperXTalk-Standalone.app inside it on re-runs.
+	@rm -rf "$(RUNTIME_ARM64)/Standalone.app"
 	@[ -d "$(MAC_BIN)/HyperXTalk-Standalone.app" ] && \
 	    cp -R "$(MAC_BIN)/HyperXTalk-Standalone.app" \
 	      "$(RUNTIME_ARM64)/Standalone.app" || true
+	@# Re-sign Standalone.app inside-out with hardened runtime so
+	@# notarization accepts it (strips get-task-allow from debug build).
+	@if [ -d "$(RUNTIME_ARM64)/Standalone.app" ]; then \
+	  find "$(RUNTIME_ARM64)/Standalone.app" \
+	      \( -name "*.framework" -o -name "*.dylib" \) | \
+	      sort -r | while read F; do \
+	    codesign --force --sign "$(CODESIGN_IDENTITY)" \
+	        --options runtime \
+	        --entitlements HyperXTalk.entitlements "$$F" 2>/dev/null || true; \
+	  done; \
+	  find "$(RUNTIME_ARM64)/Standalone.app" -name "*.bundle" | \
+	      while read F; do \
+	    codesign --force --sign "$(CODESIGN_IDENTITY)" \
+	        --options runtime \
+	        --entitlements HyperXTalk.entitlements "$$F" 2>/dev/null || true; \
+	  done; \
+	  codesign --force --sign "$(CODESIGN_IDENTITY)" \
+	      --options runtime \
+	      --entitlements HyperXTalk.entitlements \
+	      "$(RUNTIME_ARM64)/Standalone.app"; \
+	fi
 	@[ -d "$(MAC_BIN)/revpdfprinter.bundle" ] && \
 	    cp -R "$(MAC_BIN)/revpdfprinter.bundle" \
 	      "$(RUNTIME_ARM64)/Support/" || true
@@ -339,6 +346,14 @@ package-mac:
 	      "$(TOOLS_DIR)/Toolchain/" || true
 	@[ -d "$(MAC_BIN)/modules" ] && \
 	    cp -R "$(MAC_BIN)/modules" "$(TOOLS_DIR)/Toolchain/" || true
+	@# Re-sign toolchain tools with hardened runtime (strips get-task-allow).
+	@for t in lc-compile lc-run lc-compile-ffi-java; do \
+	  [ -f "$(TOOLS_DIR)/Toolchain/$$t" ] && \
+	    codesign --force --sign "$(CODESIGN_IDENTITY)" \
+	        --options runtime \
+	        --entitlements HyperXTalk.entitlements \
+	        "$(TOOLS_DIR)/Toolchain/$$t" || true; \
+	done
 	@# ----------------------------------------------------------------
 	@# Extensions
 	@# ----------------------------------------------------------------
@@ -354,6 +369,12 @@ package-mac:
 	    cp "ide/about.txt" "$(SUPPORT_DIR)/" || true
 	@[ -f "ide/Open Source Licenses.txt" ] && \
 	    cp "ide/Open Source Licenses.txt" "$(SUPPORT_DIR)/" || true
+	@# ----------------------------------------------------------------
+	@# Strip extended attributes (resource forks, Finder info, etc.)
+	@# xattr -cr must run before codesign or signing will be rejected.
+	@# ----------------------------------------------------------------
+	@echo "Stripping extended attributes..."
+	@xattr -cr "$(BUNDLE)"
 	@# ----------------------------------------------------------------
 	@# Re-sign the bundle now that new files have been added
 	@# ----------------------------------------------------------------
@@ -394,6 +415,29 @@ package-mac-bin:
 	@mkdir -p "$(MACBIN_TOOLS)/Extensions"
 	@mkdir -p "$(MACBIN_TOOLS)/Toolchain"
 	@mkdir -p "$(MACBIN_SUPPORT)"
+	@# Sign all loose executables in mac-bin with hardened runtime
+	@for f in server-community lc-compile lc-run lc-compile-ffi-java installer-stub; do \
+	  [ -f "$(MACBIN_BIN)/$$f" ] && \
+	    codesign --force --sign "$(CODESIGN_IDENTITY)" \
+	        --options runtime \
+	        --entitlements HyperXTalk.entitlements \
+	        "$(MACBIN_BIN)/$$f" || true; \
+	done
+	@for f in server-dbmysql.dylib server-dbodbc.dylib server-dbpostgresql.dylib server-dbsqlite.dylib server-revdb.dylib server-revxml.dylib server-revzip.dylib revsecurity.dylib; do \
+	  [ -f "$(MACBIN_BIN)/$$f" ] && \
+	    codesign --force --sign "$(CODESIGN_IDENTITY)" \
+	        --options runtime \
+	        --entitlements HyperXTalk.entitlements \
+	        "$(MACBIN_BIN)/$$f" || true; \
+	done
+	@# Sign all loose bundles in mac-bin with hardened runtime
+	@for b in revbrowser revxml revspeech revzip revdb revpdfprinter dbmysql dbodbc dbpostgresql dbsqlite; do \
+	  [ -d "$(MACBIN_BIN)/$$b.bundle" ] && \
+	    codesign --force --deep --sign "$(CODESIGN_IDENTITY)" \
+	        --options runtime \
+	        --entitlements HyperXTalk.entitlements \
+	        "$(MACBIN_BIN)/$$b.bundle" || true; \
+	done
 	@# ----------------------------------------------------------------
 	@# Edition marker
 	@# ----------------------------------------------------------------
@@ -406,11 +450,7 @@ package-mac-bin:
 	@# Toolset libraries: IDE support scripts from ide-support/
 	@# ----------------------------------------------------------------
 	@for f in \
-	    revsblibrary revsaveasstandalone \
-	    revsaveasiosstandalone revsaveasandroidstandalone \
-	    revsaveasemscriptenstandalone revliburl \
-	    revdeploylibraryios revdeploylibraryandroid \
-	    revdeploylibraryemscripten revhtml5urllibrary; do \
+	    revsblibrary revsaveasstandalone; do \
 	  [ -f "ide-support/$$f.livecodescript" ] && \
 	    cp "ide-support/$$f.livecodescript" "$(MACBIN_TOOLS)/Toolset/libraries/" \
 	    || true; \
@@ -445,11 +485,48 @@ package-mac-bin:
 	@printf 'MySQL,dbmysql.bundle\nODBC,dbodbc.bundle\nPostgreSQL,dbpostgresql.bundle\nSQLite,dbsqlite.bundle\n' \
 	    > "$(MACBIN_RT_ARM64)/Externals/Database Drivers/Database Drivers.txt"
 	@# ----------------------------------------------------------------
+	@# Externals (Runtime standalone use) — mirror of Tools/Externals
+	@# ----------------------------------------------------------------
+	@for b in revbrowser revxml revspeech revzip revdb; do \
+	  [ -d "$(MACBIN_TOOLS)/Externals/$$b.bundle" ] && \
+	    cp -R "$(MACBIN_TOOLS)/Externals/$$b.bundle" \
+	      "$(MACBIN_RT_ARM64)/Externals/" || true; \
+	done
+	@for b in dbmysql dbodbc dbpostgresql dbsqlite; do \
+	  [ -d "$(MACBIN_TOOLS)/Externals/Database Drivers/$$b.bundle" ] && \
+	    cp -R "$(MACBIN_TOOLS)/Externals/Database Drivers/$$b.bundle" \
+	      "$(MACBIN_RT_ARM64)/Externals/Database Drivers/" || true; \
+	done
+	@# ----------------------------------------------------------------
 	@# Runtime: arm64 standalone engine + support libraries
 	@# ----------------------------------------------------------------
+	@# Remove existing Standalone.app first so cp -R replaces it rather
+	@# than nesting HyperXTalk-Standalone.app inside it on re-runs.
+	@rm -rf "$(MACBIN_RT_ARM64)/Standalone.app"
 	@[ -d "$(MACBIN_BIN)/HyperXTalk-Standalone.app" ] && \
 	    cp -R "$(MACBIN_BIN)/HyperXTalk-Standalone.app" \
 	      "$(MACBIN_RT_ARM64)/Standalone.app" || true
+	@# Re-sign Standalone.app inside-out with hardened runtime so
+	@# notarization accepts it (strips get-task-allow from debug build).
+	@if [ -d "$(MACBIN_RT_ARM64)/Standalone.app" ]; then \
+	  find "$(MACBIN_RT_ARM64)/Standalone.app" \
+	      \( -name "*.framework" -o -name "*.dylib" \) | \
+	      sort -r | while read F; do \
+	    codesign --force --sign "$(CODESIGN_IDENTITY)" \
+	        --options runtime \
+	        --entitlements HyperXTalk.entitlements "$$F" 2>/dev/null || true; \
+	  done; \
+	  find "$(MACBIN_RT_ARM64)/Standalone.app" -name "*.bundle" | \
+	      while read F; do \
+	    codesign --force --sign "$(CODESIGN_IDENTITY)" \
+	        --options runtime \
+	        --entitlements HyperXTalk.entitlements "$$F" 2>/dev/null || true; \
+	  done; \
+	  codesign --force --sign "$(CODESIGN_IDENTITY)" \
+	      --options runtime \
+	      --entitlements HyperXTalk.entitlements \
+	      "$(MACBIN_RT_ARM64)/Standalone.app"; \
+	fi
 	@[ -d "$(MACBIN_BIN)/revpdfprinter.bundle" ] && \
 	    cp -R "$(MACBIN_BIN)/revpdfprinter.bundle" \
 	      "$(MACBIN_RT_ARM64)/Support/" || true
@@ -468,6 +545,14 @@ package-mac-bin:
 	      "$(MACBIN_TOOLS)/Toolchain/" || true
 	@[ -d "$(MACBIN_BIN)/modules" ] && \
 	    cp -R "$(MACBIN_BIN)/modules" "$(MACBIN_TOOLS)/Toolchain/" || true
+	@# Re-sign toolchain tools with hardened runtime (strips get-task-allow).
+	@for t in lc-compile lc-run lc-compile-ffi-java; do \
+	  [ -f "$(MACBIN_TOOLS)/Toolchain/$$t" ] && \
+	    codesign --force --sign "$(CODESIGN_IDENTITY)" \
+	        --options runtime \
+	        --entitlements HyperXTalk.entitlements \
+	        "$(MACBIN_TOOLS)/Toolchain/$$t" || true; \
+	done
 	@# ----------------------------------------------------------------
 	@# Extensions
 	@# ----------------------------------------------------------------
@@ -484,66 +569,37 @@ package-mac-bin:
 	@[ -f "ide/Open Source Licenses.txt" ] && \
 	    cp "ide/Open Source Licenses.txt" "$(MACBIN_SUPPORT)/" || true
 	@# ----------------------------------------------------------------
+	@# Strip extended attributes (resource forks, Finder info, etc.)
+	@# xattr -cr must run before codesign or signing will be rejected.
+	@# ----------------------------------------------------------------
+	@echo "Stripping extended attributes..."
+	@xattr -cr "$(MACBIN_BUNDLE)"
+	@# ----------------------------------------------------------------
 	@# Re-sign the bundle now that new files have been added
 	@# ----------------------------------------------------------------
-	@echo "Re-signing bundle contents..."
+	@echo "Re-signing bundle contents with hardened runtime..."
 	@find "$(MACBIN_BUNDLE)" \( -name "*.framework" -o -name "*.dylib" \) | \
 	    sort -r | while read F; do \
-	  codesign --force --sign "$(CODESIGN_IDENTITY)" "$$F" 2>/dev/null || true; \
+	  codesign --force --sign "$(CODESIGN_IDENTITY)" \
+	      --options runtime \
+	      --entitlements HyperXTalk.entitlements "$$F" 2>/dev/null || true; \
 	done
 	@find "$(MACBIN_BUNDLE)" -name "*.bundle" | while read F; do \
-	  codesign --force --sign "$(CODESIGN_IDENTITY)" "$$F" 2>/dev/null || true; \
+	  codesign --force --sign "$(CODESIGN_IDENTITY)" \
+	      --options runtime \
+	      --entitlements HyperXTalk.entitlements "$$F" 2>/dev/null || true; \
+	done
+	@# Sign executables inside bundles and in MacOS folder
+	@find "$(MACBIN_BUNDLE)" -type f -name "lc-compile" | while read F; do \
+	  codesign --force --sign "$(CODESIGN_IDENTITY)" \
+	      --options runtime \
+	      --entitlements HyperXTalk.entitlements "$$F" 2>/dev/null || true; \
 	done
 	@codesign --force --sign "$(CODESIGN_IDENTITY)" \
 	    --options runtime \
 	    --entitlements HyperXTalk.entitlements \
 	    "$(MACBIN_BUNDLE)"
 	@echo "=== Package complete: $(MACBIN_BUNDLE) ==="
-
-################################################################
-# iOS rules
-################################################################
-
-all-ios-%:
-	$(MAKE) config-ios-$*
-	$(MAKE) compile-ios-$*
-
-config-ios-%:
-	./config.sh --platform ios --generator-output build-ios-$*/livecode -Dtarget_sdk=$*
-
-compile-ios-%:
-	$(XCODEBUILD) -project "build-ios-$*$(BUILD_SUBDIR)/$(BUILD_PROJECT).xcodeproj" -configuration $(BUILDTYPE) -target default
-
-check-ios-%:
-	$(XCODEBUILD) -project "build-ios-$*$(BUILD_SUBDIR)/$(BUILD_PROJECT).xcodeproj" -configuration $(BUILDTYPE) -target check
-
-# Dummy targets to prevent our build system from building old iOS simulators+devices
-$(addprefix config-ios-iphonesimulator,$(SKIP_IPHONESIMULATOR_VERSIONS)):
-	@echo "Skipping $@ (no longer supported)"
-$(addprefix compile-ios-iphonesimulator,$(SKIP_IPHONESIMULATOR_VERSIONS)):
-	@echo "Skipping $@ (no longer supported)"
-$(addprefix check-ios-iphonesimulator,$(SKIP_IPHONESIMULATOR_VERSIONS)):
-	@echo "Skipping $@ (no longer supported)"
-	
-$(addprefix config-ios-iphonesimulator,$(SKIP_IPHONEOS_VERSIONS)):
-	@echo "Skipping $@ (no longer supported)"
-$(addprefix compile-ios-iphonesimulator,$(SKIP_IPHONEOS_VERSIONS)):
-	@echo "Skipping $@ (no longer supported)"
-$(addprefix check-ios-iphonesimulator,$(SKIP_IPHONEOS_VERSIONS)):
-	@echo "Skipping $@ (no longer supported)"
-
-# Provide some synonyms for "latest iOS SDK"
-$(addsuffix -ios-iphoneos,all config compile check): %: %$(lastword $(IPHONEOS_VERSIONS))
-	@true
-$(addsuffix -ios-iphonesimulator,all config compile check): %: %$(lastword ($IPHONESIMULATOR_VERSIONS))
-	@true
-
-all_ios_subplatforms = iphoneos iphonesimulator $(IOS_SDKS)
-
-all-ios: $(addprefix all-ios-,$(IOS_SDKS))
-config-ios: $(addprefix config-ios-,$(IOS_SDKS))
-compile-ios: $(addprefix compile-ios-,$(IOS_SDKS))
-check-ios: $(addprefix check-ios-,$(IOS_SDKS))
 
 ################################################################
 # Windows rules
@@ -577,19 +633,3 @@ all-win-x86_64:
 	$(MAKE) config-win-x86_64
 	$(MAKE) compile-win-x86_64
 
-################################################################
-# Emscripten rules
-################################################################
-
-config-emscripten:
-	$(EMMAKE) ./config.sh --platform emscripten
-
-compile-emscripten:
-	$(EMMAKE) $(MAKE) -C build-emscripten/livecode default
-
-check-emscripten:
-	$(EMMAKE) $(MAKE) -C build-emscripten/livecode check
-
-all-emscripten:
-	$(MAKE) config-emscripten
-	$(MAKE) compile-emscripten

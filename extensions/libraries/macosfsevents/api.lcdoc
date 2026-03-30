@@ -1,0 +1,22 @@
+Library: 
+
+Type: 
+
+version: 1.0.0
+
+author: HyperXTalk
+
+
+Name: fseventsLastPath
+
+Type: handler
+
+Syntax: fseventsLastPath()
+
+Summary:
+ * fseventsLastPath
+ * Returns the file path from the most recently received FSEvent.
+ * Call this inside any fsevents* message handler to get the affected path.
+
+
+

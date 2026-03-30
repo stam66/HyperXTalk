@@ -38,7 +38,7 @@ on subscribeMessages
    revIDESubscribe "idePluginsChanged"
    revIDESubscribe "ideWindowsChanged"
    
-   revIDESubscribe "ideTutorialProgressChanged"
+   --   revIDESubscribe "ideTutorialProgressChanged"
    revIDESubscribe "ideActiveStacksChanged"
 end subscribeMessages
 
@@ -278,11 +278,11 @@ on ideActiveStacksChanged
    updateButtonState
 end ideActiveStacksChanged
 
-on ideTutorialProgressChanged
-   highlightObject empty
-   layoutMenu
-   revMenubarBuildMenus
-end ideTutorialProgressChanged
+--on ideTutorialProgressChanged
+--   highlightObject empty
+--   layoutMenu
+--   revMenubarBuildMenus
+--end ideTutorialProgressChanged
 
 on idePreferenceChanged pPreference
    switch pPreference
@@ -320,6 +320,7 @@ on generateMenu
    generateMenuGroup
    generateContextMenu
 end generateMenu
+
 
 constant kTutorialActionSize = 10
 on generateMenubarUI
@@ -462,31 +463,31 @@ private command generateTutorialGroup
 end generateTutorialGroup
 
 private command generateUpgradeGroup
-   if there is a group "upgrade" of me then
-      delete group "upgrade" of me
-   end if
-   
-   create group "upgrade"
-   set the margins of it to 0
-   
-   create graphic "bg" in group "upgrade" of me
-   set the opaque of it to true
-   set the style of it to "roundRect"
-   set the lineSize of it to 0
-   
-   local tUpgradeEdition
-   put revEnvironmentEditionProperty("upgrade_edition") into tUpgradeEdition
-   set the backcolor of it to revEnvironmentEditionProperty("color", tUpgradeEdition)
-   set the roundRadius of it to 8
-   
-   create field "label" in group "upgrade" of me
-   set the margins of it to 4
-   set the traversalOn of it to false
-   set the text of it to "Upgrade Options"
-   set the textStyle["bold"] of it to true
-   set the textColor of it to "white"
-   
-   hide group "upgrade" of me
+  if there is a group "upgrade" of me then
+     delete group "upgrade" of me
+  end if
+
+  create group "upgrade"
+  set the margins of it to 0
+
+  create graphic "bg" in group "upgrade" of me
+  set the opaque of it to true
+  set the style of it to "roundRect"
+  set the lineSize of it to 0
+
+  local tUpgradeEdition
+  put revEnvironmentEditionProperty("upgrade_edition") into tUpgradeEdition
+  set the backcolor of it to revEnvironmentEditionProperty("color", tUpgradeEdition)
+  set the roundRadius of it to 8
+
+  create field "label" in group "upgrade" of me
+  set the margins of it to 4
+  set the traversalOn of it to false
+  set the text of it to "Upgrade Options"
+  set the textStyle["bold"] of it to true
+  set the textColor of it to "white"
+
+  hide group "upgrade" of me
 end generateUpgradeGroup
 
 on generateMenuGroup
@@ -568,8 +569,8 @@ constant kDividerWidth = 2
 constant kDividerHeight = 41
 constant kMenuBarHeight = 26
 constant kMenuBarTop = 3
-constant kUpgradeButtonMarginVertical = 8
-constant kUpgradeButtonMarginHorizontal = 15
+//eh constant kUpgradeButtonMarginVertical = 8
+//eh constant kUpgradeButtonMarginHorizontal = 15
 on layoutMenu
    lock screen
    lock messages
@@ -608,66 +609,9 @@ on layoutMenu
       end if
    end repeat
    
-   local tTutorial, tLabelWidth
-   put revIDETutorialInProgress() into tTutorial
-   if tTutorial is not empty then
-      hide group "upgrade" of me
-      
-      add kPadding/2 to tLeft
-      show group "tutorial" of me
-      show tLastDivide
-      set the text of field "label" of group "tutorial" of me to tTutorial["lesson"] 
-      set the width of field "label" of group "tutorial" of me to 1000
-      set the height of field "label" of group "tutorial" of me to the formattedHeight of field "label" of group "tutorial" of me
-      
-      put the formattedwidth of field "label" of group "tutorial" of me into tLabelWidth
-      set the width of field "label" of group "tutorial" of me to tLabelWidth
-      set the topleft of field "label" of group "tutorial" of me to 0, 0
-      
-      set the backcolor of graphic "Trough" of group "progress" of me to "white"
-      set the backcolor of graphic "Bar" of group "progress" of me to "black"
-      set the rect of graphic "Trough" of group "progress" of me to 0, 0, tLabelWidth, kPadding / 2
-      set the rect of graphic "Bar" of group "progress" of me to 0, 0, revIDETutorialDonePercentage() * tLabelWidth / 100, kPadding / 2
-      set the rect of group "progress" of me to the formattedRect of group "progress" of me
-      set the loc of group "progress" of me to the loc of field "label" of me
-      set the top of group "progress" of me to the bottom of field "label" of group "tutorial" of me + kPadding / 5
-      
-      set the topleft of widget "skip" of group "actions" of group "tutorial" of me to 0,0
-      set the topleft of widget "stop" of group "actions" of group "tutorial" of me to kTutorialActionSize + kPadding / 2, 0
-      set the rect of group "actions" of group "tutorial" of me to the formattedRect of group "actions" of group "tutorial" of me
-      set the loc of group "actions" of group "tutorial" of me to the loc of field "label" of me
-      set the top of group "actions" of group "tutorial" of me to the bottom of group "progress" of me + kPadding / 2
-      
-      set the rect of group "tutorial" of me to the formattedRect of group "tutorial" of me
-      set the loc of group "tutorial" of me to the loc of group "toolbar" of me
-      set the left of group "tutorial" of me to tLeft
-      
-      add the width of group "tutorial" of me + kPadding to tLeft
-   else if ideShouldShowUpgradeOptions() then
-      hide group "tutorial" of me
-      
-      add kPadding/2 to tLeft
-      show group "upgrade" of me
-      show tLastDivide
-      
-      put the height of me into tHeight
-      
-      local tMenuBarHeight = 0
-      if the platform is not "MacOS" then
-         subtract kMenuBarHeight from tHeight
-         put kMenuBarHeight into tMenuBarHeight
-      end if
-      
-      set the topLeft of group "upgrade" of me to \
-            tLeft, \
-            tMenuBarHeight + (tHeight - the height of group "upgrade" of me) / 2
-      
-      add the width of group "upgrade" of me + kPadding to tLeft
-   else
-      hide tLastDivide
-      hide group "tutorial" of me
-      hide group "upgrade" of me
-   end if	
+   hide tLastDivide
+   hide group "tutorial" of me
+   hide group "upgrade" of me
    
    set the width of me to tLeft
    set the height of group "revMenuBar" of me to kMenuBarHeight
@@ -676,13 +620,14 @@ on layoutMenu
    set the rect of button "Divider" of group "revMenuBar" of me to 0, kMenuBarHeight - kDividerWidth, tLeft + kPadding, kMenuBarHeight
    set the topleft of me to tTopLeft
    unlock messages
-   
+      
    updateButtonState
    unlock screen
 end layoutMenu	
 
 function revMenubarItems
-   return "Inspector,Code,Message Box,Divide,Group,Edit Group,Select Grouped,Divide,Messages,Errors,Divide,Sample Stacks,Tutorials,Resources,Dictionary,Divide,Test,Divide"
+   return "Inspector,Code,Message Box,Divide,Group,Edit Group,Select Grouped,Divide,Messages,Errors,Divide,Dictionary,Divide"
+--   Sample Stacks,Tutorials,Resources,Dictionary,Divide,Test,Divide"
 end revMenubarItems
 
 on updateMenubarPreference
@@ -748,6 +693,7 @@ on updateMenubarPreference
       end if
    end if
    
+/*
    set the width of field "label" of group "upgrade" of me to 1000
    set the height of field "label" of group "upgrade" of me to the formattedHeight of field "label" of group "upgrade" of me
    local tLabelWidth
@@ -779,8 +725,10 @@ on updateMenubarPreference
       set the rect of graphic "bg" of group "upgrade" of me to tRect
    end if
    set the rect of group "upgrade" of me to the formattedRect of group "upgrade" of me
-   
+
    set the topleft of me to tTopLeft
+*/
+
    unlock messages
    unlock screen
 end updateMenubarPreference
@@ -874,10 +822,10 @@ on updateButtonState
    updateButtonHilite "Message Box", false
    updateButtonHilite "Inspector", false
    updateButtonHilite "Code", false
-   updateButtonHilite "Test", false
-   updateButtonHilite "Sample Stacks", false
-   updateButtonHilite "Tutorials", false
-   updateButtonHilite "Resources", false
+//   updateButtonHilite "Test", false
+//   updateButtonHilite "Sample Stacks", false
+//   updateButtonHilite "Tutorials", false
+//   updateButtonHilite "Resources", false
    updateButtonHilite "Dictionary", false
    
    # Toggle buttons hilited according to state of property
@@ -895,8 +843,7 @@ on updateButtonState
    setToolbarButtonState "Inspector", tCanInspect
    
    # Deal with enabled/disabled of test
-   setToolbarButtonState "Test", \
-         revIDEGetPreference("cDeployPlatforms") is not empty 
+//   setToolbarButtonState "Test", revIDEGetPreference("cDeployPlatforms") is not empty 
    
    if revIDETutorialInProgress() is not empty then
       disableToolbar
@@ -1158,19 +1105,19 @@ on revMenubarMenuButtonClicked pWhich
       case "Errors"
          revIDEToggle "Suppress Errors"
          break
-      case "Sample Stacks"
-      case "Tutorials"
-         revIDELaunchResource pWhich
-         break
-      case "Resources"
-         revIDEOpenPalette "Resource Center"
-         break
+//      case "Sample Stacks"
+//      case "Tutorials"
+//         revIDELaunchResource pWhich
+//         break
+//      case "Resources"
+//         revIDEOpenPalette "Resource Center"
+//         break
       case "Dictionary"
          revIDEDocumentationLoad "API", "LiveCode Script"
          break
-      case "Test"
-         revIDEDeployAction
-         break
+//      case "Test"
+//         revIDEDeployAction
+//         break
    end switch
 end revMenubarMenuButtonClicked
 /*
@@ -1366,15 +1313,15 @@ private function revMenubarFileMenu pContext
    
    local tFile
    put "&New Stack" & return after tFile
-   put tab & "Default Size" & return after tFile
-   put tab & "-" & return after tFile
-   put tab & "iPhone 4 (320x480)" & return after tFile
-   put tab & "iPhone 5 (320x568)" & return after tFile
-   put tab & "iPhone 6 (375x667)" & return after tFile
-   put tab & "iPhone 6 Plus (414x736)" & return after tFile
-   put tab & "iPad//Tablet Portrait (768x1024)" & return after tFile
-   put tab & "iPad//Tablet Landscape (1024x768)" & return after tFile
-   put tab & "-" & return after tFile
+   put tab & "Default Size/CMD SHIFT N" & return after tFile
+   --   put tab & "-" & return after tFile
+   --   put tab & "iPhone 4 (320x480)" & return after tFile
+   --   put tab & "iPhone 5 (320x568)" & return after tFile
+   --   put tab & "iPhone 6 (375x667)" & return after tFile
+   --   put tab & "iPhone 6 Plus (414x736)" & return after tFile
+   --   put tab & "iPad//Tablet Portrait (768x1024)" & return after tFile
+   --   put tab & "iPad//Tablet Landscape (1024x768)" & return after tFile
+   --   put tab & "-" & return after tFile
    put tab & "Script only Stack" & return after tFile
    
    if tIsUserTarget and not tIsScriptOnly then
@@ -1516,7 +1463,11 @@ private function revMenubarEditMenu pContext
    put "-" & return after tEdit
    put "Find and Replace.../F" & return after tEdit
    put "-" & return after tEdit
-   put "Pre&ferences" after tEdit
+   if (the platform = "MacOS") then
+      put "Preferences" after tEdit
+   else
+      put "Settings" after tEdit
+   end if
    
    return modifyMenu("Edit", tEdit)
 end revMenubarEditMenu
@@ -1533,7 +1484,7 @@ private function revMenubarToolsMenu pContext
    put toggleMenuItem("&Paint and Draw Tools", "paint" is among the items of revIDEGetPreference("revTools_show")) & return after tTools
    put "-" & return after tTools
    
-   put toggleMenuItem("Project Browser", revIDEPaletteIsVisible("project browser")) & return after tTools
+   put toggleMenuItem("Project Browser/Cmd Shift P", revIDEPaletteIsVisible("project browser")) & return after tTools
    put toggleMenuItem("&Message Box/M", revIDEPaletteIsVisible("message box")) & return after tTools
    put toggleMenuItem("Extension Manager", revIDEPaletteIsVisible("extension manager")) & return after tTools
    put toggleMenuItem("Extension Builder", revIDEPaletteIsVisible("extension builder")) & return after tTools
@@ -1893,35 +1844,35 @@ private function revMenubarHelpMenu pContext
    local tHelp
    # AL-2015-07-10: Temporarily remove welcome screen option from help menu
    //put "Welcome Screen/|Welcome" & return after tHelp
-   put "Start Center/|Start Center" & return after tHelp
-   put "User Guide" & return after tHelp
+//   put "Start Center/|Start Center" & return after tHelp
+//   put "User Guide" & return after tHelp
    put "Dictionary (API)/|Dictionary" & return after tHelp
    
    put "-" & return  after tHelp
    
-   put "Sample Stacks" & return after tHelp
-   put "Sample Scripts" & return after tHelp
-   put "-" & return after tHelp
-   put "Beginners Guide" & return after tHelp
-   put "All Guides" & return after tHelp
-   put "Tutorials" & return after tHelp
-   put "-" & return after tHelp
+//   put "Sample Stacks" & return after tHelp
+//   put "Sample Scripts" & return after tHelp
+//   put "-" & return after tHelp
+//   put "Beginners Guide" & return after tHelp
+//   put "All Guides" & return after tHelp
+//   put "Tutorials" & return after tHelp
+//   put "-" & return after tHelp
    put "Forums" & return after tHelp
    put "Technical Questions" & return after tHelp
-   put "Discussion List" & return after tHelp
-   put "Newsletters" & return after tHelp
+//   put "Discussion List" & return after tHelp
+//   put "Newsletters" & return after tHelp
+//   put "-" & return after tHelp
+//   put "Release Notes/|Release Notes" & return after tHelp
+//   put "License Agreement/|License Agreement" & return after tHelp
+//   put "-" & return after tHelp
+//   put "&Buy a License.../|Buy" & return after tHelp
+//   put "&Support.../|Support" & return after tHelp
+//   put "-" & return after tHelp
+//   put enableMenuItem("Re-license LiveCode/|Relicense", line 7 of the revLicenseInfo is not "Global") & return after tHelp
+//   put "-" & return after tHelp
+//   put "Check For Updates/|Update" & return after tHelp
    put "-" & return after tHelp
-   put "Release Notes/|Release Notes" & return after tHelp
-   put "License Agreement/|License Agreement" & return after tHelp
-   put "-" & return after tHelp
-   put "&Buy a License.../|Buy" & return after tHelp
-   put "&Support.../|Support" & return after tHelp
-   put "-" & return after tHelp
-   put enableMenuItem("Re-license LiveCode/|Relicense", line 7 of the revLicenseInfo is not "Global") & return after tHelp
-   put "-" & return after tHelp
-   put "Check For Updates/|Update" & return after tHelp
-   put "-" & return after tHelp
-   put "About LiveCode/|About" after tHelp
+   put "About HyperXTalk/|About" after tHelp
    
    return modifyMenu("Help", tHelp)
 end revMenubarHelpMenu
@@ -1971,8 +1922,6 @@ private function revMenubarDevelopmentMenu pContext
    put tab & "-" & return after tDevelopment
    put tab & "Plugin Settings" & return after tDevelopment
    put "-" & return after tDevelopment
-   put revMenubarSimulatorSubmenu() after tDevelopment
-   put "-" & return after tDevelopment   
    
    if revEnvironmentEditionProperty("script_profiler") then
       local tProfiler
@@ -1997,32 +1946,6 @@ private function revMenubarDevelopmentMenu pContext
    return modifyMenu("Development", tDevelopment)
 end revMenubarDevelopmentMenu
 
-private function revMenubarSimulatorSubmenu
-   local tSimulators
-   put revIDETestTargets() into tSimulators
-   
-   if tSimulators is not an array then
-      return "(Test/|Simulate" & return & "(Test Target" & return & tab & "(No targets configured" & return
-   end if
-   
-   local tCurrentTarget
-   put revIDETestTarget() into tCurrentTarget
-   
-   local tMenu
-   put enableMenuItem("Test/|Simulate", tCurrentTarget is not empty) & return after tMenu
-   put "Test Target/|Simulator Version" & return after tMenu
-   repeat for each key tPlatform in tSimulators
-      local tCanDeploy
-      put revIDETestCanDeployToTarget(tPlatform) into tCanDeploy
-      repeat for each line tTarget in tSimulators[tPlatform]
-         put tab & enableMenuItem(toggleMenuItem(tTarget, tTarget is tCurrentTarget), tCanDeploy) & return after tMenu
-      end repeat
-      put tab & "-" & return after tMenu
-   end repeat
-   delete char -3 to -1 of tMenu
-   
-   return tMenu
-end revMenubarSimulatorSubmenu
 
 ################################################################################
 
@@ -2872,6 +2795,7 @@ on revMenubarEditMenuPick pWhich
          revIDEToggle pWhich
          break
       case "Preferences"
+      case "Settings"
          revIDEOpenPalette "preferences"
          break
       case "Find and Replace..."
@@ -3077,12 +3001,6 @@ on revMenubarDevelopmentMenuPick pWhich
       case "Suspend Development Tools"
          revIDESuspendDevelopmentTools
          break
-      case "Simulate"
-         revIDEActionTest
-         break
-      case "Simulator Version"
-         revIDESetTestTarget item 2 of pWhich
-         break
       case "Object Library"
          go cd 1 of stack "revImageLibrary" as modeless
          lock messages
@@ -3168,34 +3086,34 @@ on revMenubarHelpMenuPick pWhich
       case "Dictionary"
          revIDEDocumentationLoad "API", "LiveCode Script"
          break
-      case "Start Center"
-      case "Welcome"
+//      case "Start Center"
+//      case "Welcome"
       case "About"
          revIDEOpenPalette tPick
          break
-      case "Buy"
-      case "Support"
-      case "User Guide"
+//      case "Buy"
+//      case "Support"
+//      case "User Guide"
       case "License Agreement"
       case "Release Notes"
-      case "Sample Stacks"
-      case "Sample Scripts"
-      case "Beginners Guide"
-      case "Tutorials"
+//      case "Sample Stacks"
+//      case "Sample Scripts"
+//      case "Beginners Guide"
+//      case "Tutorials"
       case "Forums"
       case "Technical Questions"
-      case "Discussion List"
-      case "Newsletters"
+//      case "Discussion List"
+//      case "Newsletters"
          revIDELaunchResource tPick
          break
       case "All Guides"
          revIDEOpenPalette "guide"
          break
-      case "Relicense"
-         revIDEActionRelicense
-         break
-      case "Update"
-         revIDECheckForUpdates
-         break
+      //eh case "Relicense"
+         //eh revIDEActionRelicense
+         //eh break
+      //eh case "Update"
+         //eh revIDECheckForUpdates
+         //eh break
    end switch
 end revMenubarHelpMenuPick

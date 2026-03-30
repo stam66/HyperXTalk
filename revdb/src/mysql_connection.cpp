@@ -78,15 +78,27 @@ Bool DBConnection_MYSQL::connect(char **args, int numargs)
 	else
 		t_use_ssl = 0;
 		
-	if (t_use_ssl && !load_ssl_library())
-	{
-		errorMessageSet("Unable to load SSL library");
-		return false;
-	}
-	
+	// Note: do NOT call load_ssl_library() here.  The prebuilt libmysql (MySQL 9.x)
+	// has OpenSSL statically linked via libcustomssl.a and handles SSL internally.
+	// Calling load_ssl_library() would dlopen() revsecurity into the same process,
+	// creating duplicate OpenSSL symbols that collide with those already in
+	// libcustomssl.a and crash the engine.  SSL_MODE_REQUIRED below is sufficient.
+
 	//initialize mysql data structure for connection
 	if (!mysql_init(getMySQL()))
 		return False;
+
+	// When SSL is explicitly disabled, override any ssl_key/cert/ca/cipher settings
+	// that may have been loaded from a system my.cnf.  The prebuilt libmysql is MySQL 8.x
+	// which uses MYSQL_OPT_SSL_MODE rather than the old use_ssl field.
+	//
+	// MYSQL_OPT_SSL_MODE = 35 in the MySQL 8.0 enum (stable since MySQL 8.0 GA).
+	// SSL_MODE_DISABLED  = 1  (ssl_mode enum: DISABLED=1, PREFERRED=2, REQUIRED=3, ...)
+	if (!t_use_ssl)
+	{
+		unsigned int t_ssl_mode_disabled = 1; /* SSL_MODE_DISABLED */
+		mysql_options(getMySQL(), (enum mysql_option)35 /* MYSQL_OPT_SSL_MODE */, &t_ssl_mode_disabled);
+	}
 
 	// MM-2011-09-09: [[ BZ 9712]] Allow the user to specify the socket or named pipe to connect with
 	char *t_socket;
@@ -115,8 +127,16 @@ Bool DBConnection_MYSQL::connect(char **args, int numargs)
 			mysql_options(getMySQL(), MYSQL_OPT_CONNECT_TIMEOUT, &t_read_write_timeout))
 			return false;	
 	
+	// For ssl=true, use MYSQL_OPT_SSL_MODE = SSL_MODE_REQUIRED (3) so MySQL 8.x handles
+	// the SSL setup properly instead of relying on the legacy CLIENT_SSL flag.
+	if (t_use_ssl)
+	{
+		unsigned int t_ssl_mode_required = 3; /* SSL_MODE_REQUIRED */
+		mysql_options(getMySQL(), (enum mysql_option)35 /* MYSQL_OPT_SSL_MODE */, &t_ssl_mode_required);
+	}
+
 	//connect to mysql database.
-	if (!mysql_real_connect(getMySQL(), t_host, t_user, t_password, t_dbname, t_port, t_socket, t_use_ssl > 0 ? CLIENT_SSL : 0))
+	if (!mysql_real_connect(getMySQL(), t_host, t_user, t_password, t_dbname, t_port, t_socket, 0))
 		return False;
 
 	connectionType = CT_MYSQL,

@@ -648,6 +648,13 @@ void MCStack::kfocusset(MCControl *target)
             }
 
         }
+		// If the field was successfully kunfocused (CS_KFOCUSED cleared) but
+		// MCactivefield was not cleared — this happens when the field had
+		// selected text, because MCField::kunfocus() only clears MCactivefield
+		// when !focusedparagraph->isselection(). Force-clear it here so that
+		// the early-return below does not misfire and re-focus the wrong control.
+		if (MCactivefield.IsValid() && !(MCactivefield->getstate(CS_KFOCUSED)))
+			MCactivefield = nil;
 	}
 	if (MCactivefield && target != NULL)
 	{

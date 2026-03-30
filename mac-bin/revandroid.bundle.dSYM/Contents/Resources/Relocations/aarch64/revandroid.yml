@@ -1,5 +1,0 @@
----
-triple:          'arm64-apple-darwin'
-binary-path:     '/Users/emily-elizabethhoward/Developer/HyperXTalk/_build/mac/Debug/revandroid.bundle/Contents/MacOS/revandroid'
-relocations:     []
-...
