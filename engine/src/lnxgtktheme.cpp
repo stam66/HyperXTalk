@@ -294,6 +294,14 @@ static GtkWidget *s_probe_window = NULL;
 void MCPlatformHandleSystemAppearanceChanged(void);
 static gboolean reload_theme(void);
 
+// linux-theme.cpp: destroys the hidden sample widgets whose style contexts
+// supply the themed text, background and border colours (and the cached
+// fonts). GTK restyles realized widgets lazily on the next frame, so without
+// this the repaint that follows a theme change reads the previous theme's
+// colours, and only controls repainted later (hover, click) pick up the new
+// ones. Fresh widgets are styled against the current theme on creation.
+void MCLinuxThemeFlushCache(void);
+
 // ── XDG Desktop Portal callbacks and helpers ─────────────────────────────────
 
 // Called by the GLib main loop whenever org.freedesktop.portal.Settings emits
@@ -556,6 +564,10 @@ static gboolean reload_theme(void)
 			s_polled_color_valid = true;
 		}
 	}
+
+	// Drop the cached sample widgets so the colours read during the repaint
+	// below come from the new theme (see the declaration above).
+	MCLinuxThemeFlushCache();
 
 	Boolean reload = True;
 	if (MCcurtheme && MCcurtheme->getthemeid() == LF_NATIVEGTK)
@@ -878,8 +890,10 @@ extern "C" void MCplatformSetPreferredAppearance(int p_mode)
 	}
 	else
 	{
-		// Not using the GTK theme: nothing to reload, but the engine's own
-		// dark-mode drawing and the systemAppearance property have changed.
+		// Not using the GTK theme: nothing to reload, but the themed colours,
+		// the engine's own dark-mode drawing and the systemAppearance property
+		// have changed.
+		MCLinuxThemeFlushCache();
 		MCPlatformHandleSystemAppearanceChanged();
 	}
 }
