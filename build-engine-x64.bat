@@ -1057,13 +1057,32 @@ echo revxml OK.
 
 echo.
 :: ----------------------------------------------------------
+:: Build server-revxml.dll (Debug) — needed by the LCB
+:: extensions step below.  extension-utils.lc calls
+:: __EnsureExternal "revxml" to parse manifest.xml; in server mode
+:: it looks for server-revxml.dll next to server-community.exe
+:: (Debug\).  Without it the extension build aborts with
+:: "cannot load external revxml".  libxml.lib / libxslt.lib were
+:: already built before the engine above.
+:: ----------------------------------------------------------
+echo Building server-revxml.dll (Debug — for extension packaging) ...
+echo Building server-revxml.dll ... >> "%LOGFILE%"
+"%MSBUILD%" %TOOLSET% %VCXPROJ_REVXML_SERVER% /t:Rebuild /p:Configuration=Debug /p:Platform=x64 /p:BuildProjectReferences=false "/p:SolutionDir=%~dp0build-win-x86_64\hyperxtalk\\" /v:minimal /nologo >> "%LOGFILE%" 2>&1
+if %ERRORLEVEL% NEQ 0 (
+    echo WARNING: server-revxml.dll Debug build failed -- LCB extension build will fail with "cannot load external revxml". See %LOGFILE%
+) else (
+    echo server-revxml.dll OK.
+)
+
+echo.
+:: ----------------------------------------------------------
 :: Build server-revzip.dll (Debug) — needed by the LCB
 :: extensions step below (extension-utils loads revzip via
 :: __EnsureExternal "revzip" to package .lcm files into zips).
 :: libz and libzip must exist in Debug\lib\ first.
 :: ----------------------------------------------------------
-echo Building server-revxml.dll (Debug — for extension packaging) ...
-echo Building server-revxml.dll ... >> "%LOGFILE%"
+echo Building libzip (Debug — for server-revzip) ...
+echo Building libzip ... >> "%LOGFILE%"
 set "VCXPROJ_LIBZIP=build-win-x86_64\hyperxtalk\thirdparty\libzip\libzip.vcxproj"
 "%MSBUILD%" %TOOLSET% %VCXPROJ_LIBZIP% /t:Rebuild /p:Configuration=Debug /p:Platform=x64 /p:BuildProjectReferences=false "/p:SolutionDir=%~dp0build-win-x86_64\hyperxtalk\\" /v:minimal /nologo >> "%LOGFILE%" 2>&1
 if %ERRORLEVEL% NEQ 0 ( echo WARNING: libzip Debug build failed -- server-revzip may not link. )
@@ -1218,4 +1237,16 @@ if exist "%BROWSER_LCB%" (
     if exist "%BROWSER_PKG_DBG%\module.lcm" (
         echo Browser widget compiled OK.
     ) else (
-        echo WARNING: brow
+        echo WARNING: browser widget compilation failed -- skipping.
+    )
+) else (
+    echo WARNING: browser.lcb not found -- skipping browser widget compilation.
+)
+
+echo.
+echo ==========================================================
+echo Debug engine build complete.
+echo   Output: %DBG_OUT%
+echo   Log:    %LOGFILE%
+echo ==========================================================
+exit /b 0

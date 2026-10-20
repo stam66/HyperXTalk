@@ -265,14 +265,27 @@ cp "$APPDIR/usr/share/applications/HyperXTalk.desktop" "$APPDIR/HyperXTalk.deskt
 # Install the hi-res source icon at all standard hicolor sizes so desktop
 # environments (GNOME, KDE, XFCE) pick the best resolution for each context.
 ICON_SRC="$REPO_ROOT/Installer/application-1024.png"
+# Resizing needs ImageMagick (`magick` on IM7, `convert` on IM6).  The CI
+# workflow installs the imagemagick package; on a machine without it we fall
+# back to copying the 1024px source unscaled — a valid PNG at every path, just
+# not downscaled — rather than aborting the whole AppImage build.
+if command -v magick >/dev/null 2>&1; then
+    resize_icon() { magick "$1" -resize "$2x$2" "$3"; }
+elif command -v convert >/dev/null 2>&1; then
+    resize_icon() { convert "$1" -resize "$2x$2" "$3"; }
+else
+    echo "WARNING: ImageMagick (magick/convert) not found — icons will not be resized."
+    echo "  Install it with: sudo apt-get install imagemagick"
+    resize_icon() { cp "$1" "$3"; }
+fi
 for size in 16 32 48 64 128 256 512; do
     mkdir -p "$APPDIR/usr/share/icons/hicolor/${size}x${size}/apps"
-    convert "$ICON_SRC" -resize "${size}x${size}" \
+    resize_icon "$ICON_SRC" "$size" \
         "$APPDIR/usr/share/icons/hicolor/${size}x${size}/apps/hyperxtalk.png"
 done
 # AppImage root icon (used by file managers and appimagetool for embedding).
 # 512px is the conventional sweet spot — large enough for HiDPI, not bloated.
-convert "$ICON_SRC" -resize 512x512 "$APPDIR/hyperxtalk.png"
+resize_icon "$ICON_SRC" 512 "$APPDIR/hyperxtalk.png"
 
 # --- Bundle libvlc, its support libs, plugins, and all transitive deps ---
 #

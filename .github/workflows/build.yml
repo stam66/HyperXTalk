@@ -101,6 +101,7 @@ jobs:
             flex bison gawk \
             libmysqlclient-dev libpq-dev \
             default-jdk \
+            imagemagick \
             fuse libfuse2
 
       - name: Prepare cairo-features.h for Linux
