@@ -1331,11 +1331,14 @@ void MCScreenDC::settaskbarstate(bool p_visible)
 //
 // A value of 0 means dark; 1 (or absent) means light.
 //
-// We treat dark mode as active if EITHER key is 0, so that:
-//   - toggling the "Windows mode" slider (SystemUsesLightTheme) is detected, AND
-//   - toggling the "App mode" slider (AppsUseLightTheme) is detected.
-// On Windows 11 22H2+ there is a single combined slider that writes both keys,
-// so the behaviour is unchanged there.
+// Applications follow the app mode (AppsUseLightTheme): that is what Windows
+// itself uses for the apps it draws dark, and what uxtheme's AllowDark mode
+// keys off. The Windows mode (SystemUsesLightTheme) only colours the taskbar
+// and Start menu; with the "Custom" colour setting a user can have a dark
+// taskbar and light apps, and treating either value as dark made the engine
+// draw dark on such a machine. It is consulted only when the app-mode value
+// is absent (very old Windows 10 builds). On Windows 11 22H2+ the single
+// slider writes both values, so nothing changes there.
 static bool MCWin32SystemIsDarkMode(void)
 {
     static const LPCWSTR k_subkey =
@@ -1344,18 +1347,18 @@ static bool MCWin32SystemIsDarkMode(void)
     DWORD t_value = 1;
     DWORD t_size  = sizeof(t_value);
 
-    // Check app mode first (most widely used).
-    RegGetValueW(HKEY_CURRENT_USER, k_subkey, L"AppsUseLightTheme",
-                 RRF_RT_REG_DWORD, nullptr, &t_value, &t_size);
-    if (t_value == 0)
-        return true;
+    if (RegGetValueW(HKEY_CURRENT_USER, k_subkey, L"AppsUseLightTheme",
+                     RRF_RT_REG_DWORD, nullptr, &t_value, &t_size) == ERROR_SUCCESS)
+        return t_value == 0;
 
-    // Check system/Windows mode as a fallback.
+    // No app-mode value: fall back to the Windows mode.
     t_value = 1;
     t_size  = sizeof(t_value);
-    RegGetValueW(HKEY_CURRENT_USER, k_subkey, L"SystemUsesLightTheme",
-                 RRF_RT_REG_DWORD, nullptr, &t_value, &t_size);
-    return t_value == 0;
+    if (RegGetValueW(HKEY_CURRENT_USER, k_subkey, L"SystemUsesLightTheme",
+                     RRF_RT_REG_DWORD, nullptr, &t_value, &t_size) == ERROR_SUCCESS)
+        return t_value == 0;
+
+    return false;
 }
 
 // ── preferredAppearance override ──────────────────────────────────────────────
