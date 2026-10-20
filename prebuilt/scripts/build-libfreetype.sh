@@ -12,7 +12,10 @@ THIS="libfreetype"
 ACTUAL_VERSION="2.14.3"
 # should do this with sed
 UNTARRED="freetype-${ACTUAL_VERSION}"
-URL_ROOT="https://sourceforge.net/projects/freetype/files/latest/download"
+# Fetch the pinned release rather than "latest": SourceForge's latest/download
+# now resolves to freetype 2.15.0, whose zip unpacks to freetype-2.15.0 and
+# breaks the mv/rsync below (the Linux CI build stopped at this step).
+URL_ROOT="https://sourceforge.net/projects/freetype/files/freetype2/${ACTUAL_VERSION}/ft$(echo "${ACTUAL_VERSION}" | tr -d .).zip/download"
 ARCHIVE_DESTINATION="${THIS}-${libfreetype_VERSION}"
 FILE_DIRECTORY="../../thirdparty/${THIS}/src"
 INCLUDE_DIRECTORY="../../thirdparty/${THIS}/include"
