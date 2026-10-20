@@ -25,6 +25,8 @@ along with LiveCode.  If not see <http://www.gnu.org/licenses/>.  */
 #include "mcstring.h"
 #include "util.h"
 #include "globals.h"
+
+#include <string.h>
 #include "stack.h"
 #include "stacklst.h"
 #include "redraw.h"
@@ -596,6 +598,31 @@ static int s_preferred_appearance_mode = 0;
 // output).
 static gboolean s_saved_prefer_dark       = FALSE;
 static bool     s_saved_prefer_dark_valid = false;
+// The gtk-theme-name before the first override, for the same reason. A desktop
+// whose theme is itself the dark variant (Omarchy and GNOME set Adwaita-dark,
+// Ubuntu Yaru-dark) does not go light by clearing prefer-dark, because that
+// flag only picks the dark variant of the named theme; forcing "light" then
+// also switches to the base theme name, and "system" / "dark" put it back.
+static gchar   *s_saved_theme_name        = NULL;
+
+// The base (light) name of a dark theme variant: "Adwaita-dark" -> "Adwaita",
+// "Yaru-dark" -> "Yaru", "Mint-Y-Dark" -> "Mint-Y". NULL when the name has no
+// dark suffix. The caller frees the result.
+static gchar *MCLinuxLightThemeName(const gchar *p_name)
+{
+	if (p_name == NULL)
+		return NULL;
+	static const char *k_suffixes[] = { "-dark", "_dark" };
+	size_t t_len = strlen(p_name);
+	for (size_t i = 0; i < sizeof(k_suffixes) / sizeof(k_suffixes[0]); i++)
+	{
+		size_t t_slen = strlen(k_suffixes[i]);
+		if (t_len > t_slen &&
+		    g_ascii_strcasecmp(p_name + t_len - t_slen, k_suffixes[i]) == 0)
+			return g_strndup(p_name, t_len - t_slen);
+	}
+	return NULL;
+}
 
 // Read by MCScreenDC::getsystemappearance() in lnxdcs.cpp.
 int MCLinuxPreferredAppearanceMode(void)
@@ -787,12 +814,18 @@ extern "C" void MCplatformSetPreferredAppearance(int p_mode)
 	gboolean t_prefer_dark;
 	if (p_mode == 0)
 	{
-		// Back to the desktop's setting: put the property back to what the
+		// Back to the desktop's setting: put the properties back to what the
 		// desktop had set before our first override, then re-sample the probe
 		// so the luminance fallback (check #5 in MCLinuxSystemIsDarkMode)
 		// reflects the desktop's theme rather than the variant we forced.
 		if (s_saved_prefer_dark_valid)
 		{
+			if (s_saved_theme_name != NULL)
+			{
+				g_object_set(t_settings, "gtk-theme-name", s_saved_theme_name, NULL);
+				g_free(s_saved_theme_name);
+				s_saved_theme_name = NULL;
+			}
 			g_object_set(t_settings, "gtk-application-prefer-dark-theme",
 			             s_saved_prefer_dark, NULL);
 			s_saved_prefer_dark_valid = false;
@@ -815,7 +848,21 @@ extern "C" void MCplatformSetPreferredAppearance(int p_mode)
 			g_object_get(t_settings, "gtk-application-prefer-dark-theme", &t_current, NULL);
 			s_saved_prefer_dark       = t_current;
 			s_saved_prefer_dark_valid = true;
+			g_free(s_saved_theme_name);
+			s_saved_theme_name = NULL;
+			g_object_get(t_settings, "gtk-theme-name", &s_saved_theme_name, NULL);
 		}
+
+		// Theme name: the desktop's own name for "dark" (prefer-dark picks its
+		// dark variant); for "light" the base name when the desktop's theme is
+		// itself a dark variant, since clearing prefer-dark alone would leave
+		// "Adwaita-dark" dark.
+		gchar *t_light_name = (p_mode == 1) ? MCLinuxLightThemeName(s_saved_theme_name) : NULL;
+		const gchar *t_theme_name = (t_light_name != NULL) ? t_light_name : s_saved_theme_name;
+		if (t_theme_name != NULL)
+			g_object_set(t_settings, "gtk-theme-name", t_theme_name, NULL);
+		g_free(t_light_name);
+
 		t_prefer_dark = (p_mode == 2) ? TRUE : FALSE;
 	}
 

@@ -59,9 +59,11 @@ What the forced appearance covers depends on the platform:
   for the application in that appearance (Windows 10 1903 or later).
 - Linux: the GTK application-prefer-dark-theme setting is switched, so the
   theme's dark or light variant is used for the engine's native controls and
-  the engine's own drawing follows the forced value. A GTK theme that has no
-  dark or light variant keeps its own colors; only what the engine draws and
-  reports changes.
+  the engine's own drawing follows the forced value. When the desktop's theme
+  is itself a dark variant (Adwaita-dark, Yaru-dark), "light" uses the base
+  theme (Adwaita, Yaru) and "system" puts the desktop's theme back. A GTK
+  theme that has no dark or light variant keeps its own colors; only what the
+  engine draws and reports changes.
 
 Setting the property always sends <systemAppearanceChanged> to the open
 stacks, even when the effective appearance did not change, so handlers can
