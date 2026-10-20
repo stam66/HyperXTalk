@@ -371,6 +371,22 @@ jobs:
         shell: cmd
         run: build-engine-x64.bat
 
+      # The Debug engines are linked well before the LCB extension sub-step of
+      # build-engine-x64.bat, which currently fails on the runner. Upload them
+      # whatever happened so an engine change can still be tried by hand on a
+      # Windows machine (standalone-community.exe <stack> opens a stack file).
+      - name: Upload Debug engine (always, for manual testing)
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: HyperXTalk-Windows-x86_64-Debug-engine
+          path: |
+            build-win-x86_64\hyperxtalk\Debug\*.exe
+            build-win-x86_64\hyperxtalk\Debug\*.dll
+            _test_stacks\Preferred Appearance\
+          if-no-files-found: warn
+          retention-days: 14
+
       - name: Build Release
         shell: cmd
         run: build-release-x64.bat
