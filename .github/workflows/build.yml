@@ -135,6 +135,23 @@ jobs:
         env:
           BUILDTYPE: ${{ inputs.build_type || 'Release' }}
 
+      # The engines are linked by the Compile step; the AppImage step after it
+      # currently fails on the runner (no ImageMagick). Upload them whatever
+      # happened so an engine change can be tried by hand on a Linux desktop
+      # (standalone-community <stack> opens a stack file).
+      - name: Upload engines (always, for manual testing)
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: HyperXTalk-Linux-x86_64-engines
+          path: |
+            build-linux-x86_64/hyperxtalk/out/${{ inputs.build_type || 'Release' }}/standalone-community
+            build-linux-x86_64/hyperxtalk/out/${{ inputs.build_type || 'Release' }}/HyperXTalk
+            build-linux-x86_64/hyperxtalk/out/${{ inputs.build_type || 'Release' }}/server-community
+            _test_stacks/Preferred Appearance/
+          if-no-files-found: warn
+          retention-days: 14
+
       - name: Build AppImage
         run: |
           chmod +x packaging/linux/build-appimage.sh
@@ -370,6 +387,22 @@ jobs:
       - name: Build engine (Debug — required by Release bootstrap)
         shell: cmd
         run: build-engine-x64.bat
+
+      # The Debug engines are linked well before the LCB extension sub-step of
+      # build-engine-x64.bat, which currently fails on the runner. Upload them
+      # whatever happened so an engine change can still be tried by hand on a
+      # Windows machine (standalone-community.exe <stack> opens a stack file).
+      - name: Upload Debug engine (always, for manual testing)
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: HyperXTalk-Windows-x86_64-Debug-engine
+          path: |
+            build-win-x86_64\hyperxtalk\Debug\*.exe
+            build-win-x86_64\hyperxtalk\Debug\*.dll
+            _test_stacks\Preferred Appearance\
+          if-no-files-found: warn
+          retention-days: 14
 
       - name: Build Release
         shell: cmd
