@@ -1,0 +1,62 @@
+Name: scrollbarForeColor
+
+Type: property
+
+Syntax: set the scrollbarForeColor of <field> to {empty | <colorName> | <RGBColor>}
+
+Summary:
+Specifies the color of the thumb of a scrolling <field|field's>
+scrollbars.
+
+Associations: field
+
+Introduced: 0.9.16
+
+OS: mac, windows, linux
+
+Platforms: desktop
+
+Example:
+set the scrollbarForeColor of field "Log" to "#8A8A8A"
+
+Example:
+set the scrollbarBackColor of field "Log" to "40,40,40"
+set the scrollbarForeColor of field "Log" to "gray"
+
+Example:
+-- revert to the platform's native scrollbars
+set the scrollbarBackColor of field "Log" to empty
+set the scrollbarForeColor of field "Log" to empty
+
+Value:
+The <scrollbarForeColor> of a <field> is a <color> reference: a color
+name, an <RGB> triplet, or an HTML-style color. If no color has been set
+the <property> reports empty.
+
+Description:
+Use the <scrollbarForeColor> <property> to color the thumb of a
+<field|field's> vertical and horizontal scrollbars. Use the
+<scrollbarBackColor> <property> to color the track.
+
+Native scrollbars cannot be recolored, so as soon as either the
+<scrollbarForeColor> or the <scrollbarBackColor> of a <field> is set, the
+engine draws that field's scrollbars itself: a flat track filled with the
+<scrollbarBackColor> and a rounded thumb filled with the
+<scrollbarForeColor>. The scrollbars keep the geometry of the native
+theme, so clicking and dragging behave as before. The thumb is not drawn
+when the field has nothing to scroll.
+
+If only one of the two properties is set, the other part uses the
+field's effective <foreColor> (for the thumb) or <backColor> (for the
+track). Setting both properties to empty restores the native scrollbars.
+
+The property applies to the scrollbars of a <field> only; it has no
+effect on scrollbar <control|controls> or on <group|groups>.
+
+References: field (object), color (glossary), property (glossary),
+control (object), group (object), RGB (glossary),
+scrollbarBackColor (property), scrollbarWidth (property),
+hScrollbar (property), vScrollbar (property), backColor (property),
+foreColor (property)
+
+Tags: ui

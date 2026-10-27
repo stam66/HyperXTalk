@@ -245,6 +245,15 @@ private:
 	MCScrollbar *hscrollbar;
 	MCStringRef label;
     MCStringRef m_hint_text;
+    // Optional custom colors for the field's scrollbars. When either is set
+    // the scrollbars are drawn by the engine (flat track + thumb) instead of
+    // the native theme, so the colors take effect on every platform.
+    MCColor m_scrollbar_back_color;          // track
+    MCStringRef m_scrollbar_back_color_name; // nil for a numeric color
+    MCColor m_scrollbar_fore_color;          // thumb
+    MCStringRef m_scrollbar_fore_color_name; // nil for a numeric color
+    bool m_has_scrollbar_back_color : 1;
+    bool m_has_scrollbar_fore_color : 1;
     // Field input validation properties
     MCStringRef m_input_type;    // "text", "email", "url", "tel", "number", "date"
     MCStringRef m_input_min;     // lower bound (string; parsed per type at validation time)
@@ -751,6 +760,14 @@ public:
 	void SetCancelButton(MCExecContext& ctxt, bool setting);
 	void GetHintText(MCExecContext& ctxt, MCStringRef& r_string);
 	void SetHintText(MCExecContext& ctxt, MCStringRef p_string);
+	void GetScrollbarBackColor(MCExecContext& ctxt, MCInterfaceNamedColor& r_color);
+	void SetScrollbarBackColor(MCExecContext& ctxt, const MCInterfaceNamedColor& p_color);
+	void GetScrollbarForeColor(MCExecContext& ctxt, MCInterfaceNamedColor& r_color);
+	void SetScrollbarForeColor(MCExecContext& ctxt, const MCInterfaceNamedColor& p_color);
+	// Scrollbar color support: used by MCScrollbar::draw for embedded scrollbars.
+	bool hascustomscrollbarcolors(void) const { return m_has_scrollbar_back_color || m_has_scrollbar_fore_color; }
+	bool getscrollbarbackcolor(MCColor& r_color) const;
+	bool getscrollbarforecolor(MCColor& r_color) const;
     // Input validation properties
     void GetInputType(MCExecContext& ctxt, MCStringRef& r_string);
     void SetInputType(MCExecContext& ctxt, MCStringRef p_string);

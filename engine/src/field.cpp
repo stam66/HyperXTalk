@@ -101,6 +101,8 @@ MCPropertyInfo MCField::kProperties[] =
 	DEFINE_RW_OBJ_PROPERTY(P_HSCROLLBAR, Bool, MCField, HScrollbar)
 	DEFINE_RW_OBJ_PROPERTY(P_VSCROLLBAR, Bool, MCField, VScrollbar)
 	DEFINE_RW_OBJ_PROPERTY(P_SCROLLBAR_WIDTH, UInt16, MCField, ScrollbarWidth)
+	DEFINE_RW_OBJ_CUSTOM_PROPERTY(P_SCROLLBAR_BACK_COLOR, InterfaceNamedColor, MCField, ScrollbarBackColor)
+	DEFINE_RW_OBJ_CUSTOM_PROPERTY(P_SCROLLBAR_FORE_COLOR, InterfaceNamedColor, MCField, ScrollbarForeColor)
 	DEFINE_RO_OBJ_PROPERTY(P_FORMATTED_WIDTH, Int16, MCField, FormattedWidth)
 	DEFINE_RO_OBJ_PROPERTY(P_FORMATTED_HEIGHT, Int16, MCField, FormattedHeight)
 	DEFINE_RW_OBJ_PROPERTY(P_LIST_BEHAVIOR, Bool, MCField, ListBehavior)
@@ -276,6 +278,12 @@ MCField::MCField()
     m_cancel_button = false;
     m_spell_check = false;
     m_hint_text = MCValueRetain(kMCEmptyString);
+    m_scrollbar_back_color_name = nil;
+    m_scrollbar_fore_color_name = nil;
+    m_scrollbar_back_color.red = m_scrollbar_back_color.green = m_scrollbar_back_color.blue = 0;
+    m_scrollbar_fore_color.red = m_scrollbar_fore_color.green = m_scrollbar_fore_color.blue = 0;
+    m_has_scrollbar_back_color = false;
+    m_has_scrollbar_fore_color = false;
     m_input_type = MCValueRetain(kMCEmptyString);
     m_input_min = MCValueRetain(kMCEmptyString);
     m_input_max = MCValueRetain(kMCEmptyString);
@@ -376,6 +384,12 @@ MCField::MCField(const MCField &fref) : MCControl(fref)
     m_spell_check = false;   // spell errors are not copied; will re-check if needed
 	MCValueRetain(fref.m_hint_text);
 	m_hint_text = fref.m_hint_text;
+	m_scrollbar_back_color = fref.m_scrollbar_back_color;
+	m_scrollbar_back_color_name = fref.m_scrollbar_back_color_name != nil ? (MCStringRef)MCValueRetain(fref.m_scrollbar_back_color_name) : nil;
+	m_scrollbar_fore_color = fref.m_scrollbar_fore_color;
+	m_scrollbar_fore_color_name = fref.m_scrollbar_fore_color_name != nil ? (MCStringRef)MCValueRetain(fref.m_scrollbar_fore_color_name) : nil;
+	m_has_scrollbar_back_color = fref.m_has_scrollbar_back_color;
+	m_has_scrollbar_fore_color = fref.m_has_scrollbar_fore_color;
     MCValueRetain(fref.m_input_type);   m_input_type    = fref.m_input_type;
     MCValueRetain(fref.m_input_min);    m_input_min     = fref.m_input_min;
     MCValueRetain(fref.m_input_max);    m_input_max     = fref.m_input_max;
@@ -434,6 +448,8 @@ MCField::~MCField()
 
 	MCValueRelease(label);
 	MCValueRelease(m_hint_text);
+	MCValueRelease(m_scrollbar_back_color_name);
+	MCValueRelease(m_scrollbar_fore_color_name);
     MCValueRelease(m_input_type);
     MCValueRelease(m_input_min);
     MCValueRelease(m_input_max);
@@ -2756,6 +2772,8 @@ MCRectangle MCField::_cancelButtonIconRect() const
 #define FIELD_EXTRA_HINTTEXT        (1 << 5)
 #define FIELD_EXTRA_PASSWORDTOGGLE  (1 << 6)
 #define FIELD_EXTRA_CANCELBUTTON    (1 << 7)
+#define FIELD_EXTRA_SBBACKCOLOR     (1 << 8)
+#define FIELD_EXTRA_SBFORECOLOR     (1 << 9)
 
 IO_stat MCField::extendedsave(MCObjectOutputStream& p_stream, uint4 p_part, uint32_t p_version)
 {
@@ -2815,6 +2833,22 @@ IO_stat MCField::extendedsave(MCObjectOutputStream& p_stream, uint4 p_part, uint
         t_size += sizeof(uint8_t);
     }
 
+    // Each scrollbar color is stored as the color (3 x U16) followed by its
+    // name (empty when the color was given numerically).
+    if (m_has_scrollbar_back_color)
+    {
+        t_flags |= FIELD_EXTRA_SBBACKCOLOR;
+        t_size += 3 * sizeof(uint16_t);
+        t_size += p_stream . MeasureStringRefNew(m_scrollbar_back_color_name != nil ? m_scrollbar_back_color_name : kMCEmptyString, p_version >= kMCStackFileFormatVersion_7_0);
+    }
+
+    if (m_has_scrollbar_fore_color)
+    {
+        t_flags |= FIELD_EXTRA_SBFORECOLOR;
+        t_size += 3 * sizeof(uint16_t);
+        t_size += p_stream . MeasureStringRefNew(m_scrollbar_fore_color_name != nil ? m_scrollbar_fore_color_name : kMCEmptyString, p_version >= kMCStackFileFormatVersion_7_0);
+    }
+
 	IO_stat t_stat;
 	t_stat = p_stream . WriteTag(t_flags, t_size);
 
@@ -2857,6 +2891,20 @@ IO_stat MCField::extendedsave(MCObjectOutputStream& p_stream, uint4 p_part, uint
     if (t_stat == IO_NORMAL && (t_flags & FIELD_EXTRA_CANCELBUTTON))
     {
         t_stat = p_stream . WriteU8(m_cancel_button ? 1 : 0);
+    }
+
+    if (t_stat == IO_NORMAL && (t_flags & FIELD_EXTRA_SBBACKCOLOR))
+    {
+        t_stat = p_stream . WriteColor(m_scrollbar_back_color);
+        if (t_stat == IO_NORMAL)
+            t_stat = p_stream . WriteStringRefNew(m_scrollbar_back_color_name != nil ? m_scrollbar_back_color_name : kMCEmptyString, p_version >= kMCStackFileFormatVersion_7_0);
+    }
+
+    if (t_stat == IO_NORMAL && (t_flags & FIELD_EXTRA_SBFORECOLOR))
+    {
+        t_stat = p_stream . WriteColor(m_scrollbar_fore_color);
+        if (t_stat == IO_NORMAL)
+            t_stat = p_stream . WriteStringRefNew(m_scrollbar_fore_color_name != nil ? m_scrollbar_fore_color_name : kMCEmptyString, p_version >= kMCStackFileFormatVersion_7_0);
     }
 
     if (t_stat == IO_NORMAL)
@@ -2973,6 +3021,40 @@ IO_stat MCField::extendedload(MCObjectInputStream& p_stream, uint32_t p_version,
                 m_cancel_button = (t_value != 0);
         }
 
+        if (t_stat == IO_NORMAL && (t_flags & FIELD_EXTRA_SBBACKCOLOR) != 0)
+        {
+            MCColor t_color;
+            MCStringRef t_name;
+            t_stat = checkloadstat(p_stream . ReadColor(t_color));
+            if (t_stat == IO_NORMAL)
+                t_stat = checkloadstat(p_stream . ReadStringRefNew(t_name, p_version >= kMCStackFileFormatVersion_7_0));
+            if (t_stat == IO_NORMAL)
+            {
+                m_scrollbar_back_color = t_color;
+                MCValueRelease(m_scrollbar_back_color_name);
+                m_scrollbar_back_color_name = MCStringIsEmpty(t_name) ? nil : (MCStringRef)MCValueRetain(t_name);
+                MCValueRelease(t_name);
+                m_has_scrollbar_back_color = true;
+            }
+        }
+
+        if (t_stat == IO_NORMAL && (t_flags & FIELD_EXTRA_SBFORECOLOR) != 0)
+        {
+            MCColor t_color;
+            MCStringRef t_name;
+            t_stat = checkloadstat(p_stream . ReadColor(t_color));
+            if (t_stat == IO_NORMAL)
+                t_stat = checkloadstat(p_stream . ReadStringRefNew(t_name, p_version >= kMCStackFileFormatVersion_7_0));
+            if (t_stat == IO_NORMAL)
+            {
+                m_scrollbar_fore_color = t_color;
+                MCValueRelease(m_scrollbar_fore_color_name);
+                m_scrollbar_fore_color_name = MCStringIsEmpty(t_name) ? nil : (MCStringRef)MCValueRetain(t_name);
+                MCValueRelease(t_name);
+                m_has_scrollbar_fore_color = true;
+            }
+        }
+
         if (t_stat == IO_NORMAL)
             t_stat = checkloadstat(p_stream . Skip(t_length));
         
@@ -3003,7 +3085,9 @@ IO_stat MCField::save(IO_handle stream, uint4 p_part, bool p_force_ext, uint32_t
                       keyboard_type != kMCInterfaceKeyboardTypeNone ||
                       return_key_type != kMCInterfaceReturnKeyTypeNone ||
                       m_password_field ||
-                      !MCStringIsEmpty(m_hint_text);
+                      !MCStringIsEmpty(m_hint_text) ||
+                      m_has_scrollbar_back_color ||
+                      m_has_scrollbar_fore_color;
     
     if ((stat = MCObject::save(stream, p_part, t_has_extension || p_force_ext, p_version)) != IO_NORMAL)
 		return stat;

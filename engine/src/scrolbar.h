@@ -127,6 +127,10 @@ public:
 	void reset();
 	void redrawarrow(uint2 oldmode);
 	void drawmacthumb(MCDC *dc, MCRectangle &thumb);
+	// Draws a flat track + thumb using the custom colors of the owning field
+	// (scrollbarBackColor / scrollbarForeColor). Returns false when the
+	// scrollbar has no custom colors and should be drawn normally.
+	bool drawcustomcolors(MCDC *dc);
 	uint2 getwidgetthemetype();
 
 	bool issbdisabled(void) const;

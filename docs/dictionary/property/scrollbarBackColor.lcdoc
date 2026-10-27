@@ -1,0 +1,61 @@
+Name: scrollbarBackColor
+
+Type: property
+
+Syntax: set the scrollbarBackColor of <field> to {empty | <colorName> | <RGBColor>}
+
+Summary:
+Specifies the color of the track of a scrolling <field|field's>
+scrollbars.
+
+Associations: field
+
+Introduced: 0.9.16
+
+OS: mac, windows, linux
+
+Platforms: desktop
+
+Example:
+set the scrollbarBackColor of field "Log" to "#202020"
+
+Example:
+set the scrollbarBackColor of field "Log" to "40,40,40"
+set the scrollbarForeColor of field "Log" to "gray"
+
+Example:
+-- revert to the platform's native scrollbars
+set the scrollbarBackColor of field "Log" to empty
+set the scrollbarForeColor of field "Log" to empty
+
+Value:
+The <scrollbarBackColor> of a <field> is a <color> reference: a color
+name, an <RGB> triplet, or an HTML-style color. If no color has been set
+the <property> reports empty.
+
+Description:
+Use the <scrollbarBackColor> <property> to color the track of a
+<field|field's> vertical and horizontal scrollbars. Use the
+<scrollbarForeColor> <property> to color the thumb.
+
+Native scrollbars cannot be recolored, so as soon as either the
+<scrollbarBackColor> or the <scrollbarForeColor> of a <field> is set, the
+engine draws that field's scrollbars itself: a flat track filled with the
+<scrollbarBackColor> and a rounded thumb filled with the
+<scrollbarForeColor>. The scrollbars keep the geometry of the native
+theme, so clicking and dragging behave as before.
+
+If only one of the two properties is set, the other part uses the
+field's effective <backColor> (for the track) or <foreColor> (for the
+thumb). Setting both properties to empty restores the native scrollbars.
+
+The property applies to the scrollbars of a <field> only; it has no
+effect on scrollbar <control|controls> or on <group|groups>.
+
+References: field (object), color (glossary), property (glossary),
+control (object), group (object), RGB (glossary),
+scrollbarForeColor (property), scrollbarWidth (property),
+hScrollbar (property), vScrollbar (property), backColor (property),
+foreColor (property)
+
+Tags: ui

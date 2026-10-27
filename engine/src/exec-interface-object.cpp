@@ -386,6 +386,8 @@ static const PropList fieldprops[] =
         {"passwordToggle", P_PASSWORD_TOGGLE},
         {"rect", P_RECTANGLE},
         {"scrollbarWidth", P_SCROLLBAR_WIDTH},
+        {"scrollbarBackColor", P_SCROLLBAR_BACK_COLOR},
+        {"scrollbarForeColor", P_SCROLLBAR_FORE_COLOR},
         {"shadow", P_SHADOW},
         {"shadowColor", P_SHADOW_COLOR},
         {"shadowOffset", P_SHADOW_OFFSET},

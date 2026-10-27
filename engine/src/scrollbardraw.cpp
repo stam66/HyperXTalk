@@ -72,7 +72,11 @@ void MCScrollbar::draw(MCDC *dc, const MCRectangle& p_dirty, bool p_isolated, bo
 
 	MCWidgetInfo winfo;
 	winfo.type = (Widget_Type)getwidgetthemetype();
-	if (MCcurtheme && MCcurtheme->iswidgetsupported(winfo.type))
+	if (drawcustomcolors(dc))
+	{
+		// Drawn with the owning field's scrollbarBackColor / scrollbarForeColor.
+	}
+	else if (MCcurtheme && MCcurtheme->iswidgetsupported(winfo.type))
 	{
 		getwidgetthemeinfo(winfo);
 		MCcurtheme->drawwidget(dc, winfo, rect);
@@ -376,6 +380,70 @@ void MCScrollbar::draw(MCDC *dc, const MCRectangle& p_dirty, bool p_isolated, bo
 	{
 		dc -> end();
 	}
+}
+
+// Flat rendering used when the owning field has a scrollbarBackColor and/or
+// scrollbarForeColor. The native theme cannot be recolored, so the engine
+// paints a plain track (back color) and a rounded thumb (fore color). Thumb
+// geometry still comes from compute_thumb(), so hit-testing and dragging stay
+// consistent with the theme (or legacy) geometry.
+bool MCScrollbar::drawcustomcolors(MCDC *dc)
+{
+	// Only scrollbars embedded in a field have custom colors; scales and
+	// progress bars are never affected.
+	if (!parent.IsValid() || parent->gettype() != CT_FIELD || (flags & F_SB_STYLE) != 0)
+		return false;
+
+	MCField *t_field = parent.GetAs<MCField>();
+	if (!t_field->hascustomscrollbarcolors())
+		return false;
+
+	MCColor t_color;
+
+	// Track: the field's scrollbarBackColor, else the effective backColor
+	// (MCObject::setforeground also selects a pattern fill if one is set).
+	if (t_field->getscrollbarbackcolor(t_color))
+	{
+		dc->setforeground(t_color);
+		dc->setfillstyle(FillSolid, nil, 0, 0);
+	}
+	else
+		setforeground(dc, DI_BACK, False);
+	dc->fillrect(rect);
+
+	// No thumb when the scrollbar is disabled or there is nothing to scroll;
+	// this mirrors the native themes.
+	if (issbdisabled())
+		return true;
+
+	MCRectangle t_thumb = compute_thumb(thumbpos);
+	if (t_thumb.width == 0 || t_thumb.height == 0)
+		return true;
+
+	// Inset the thumb slightly so the track shows around it, then round the
+	// ends to a pill shape. The inset scales with the scrollbar width so
+	// narrow scrollbars keep a usable thumb.
+	bool t_vertical = (getstyleint(flags) == F_VERTICAL);
+	uint2 t_breadth = t_vertical ? t_thumb.width : t_thumb.height;
+	uint2 t_inset = t_breadth >= 12 ? 3 : (t_breadth >= 6 ? 1 : 0);
+	MCRectangle t_rect = MCU_reduce_rect(t_thumb, t_inset);
+	if (t_rect.width == 0 || t_rect.height == 0)
+		t_rect = t_thumb;
+
+	// Thumb: the field's scrollbarForeColor, else the effective foreColor.
+	if (t_field->getscrollbarforecolor(t_color))
+	{
+		dc->setforeground(t_color);
+		dc->setfillstyle(FillSolid, nil, 0, 0);
+	}
+	else
+		setforeground(dc, DI_FORE, False);
+
+	// fillroundrect takes the corner diameter.
+	uint2 t_radius = (uint2)MCU_min((int4)t_rect.width, (int4)t_rect.height);
+	dc->fillroundrect(t_rect, t_radius);
+
+	return true;
 }
 
 /*the color enum is defined in mccontrol.h as:

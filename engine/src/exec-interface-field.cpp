@@ -1032,6 +1032,78 @@ void MCField::GetHintText(MCExecContext& ctxt, MCStringRef& r_string)
 	r_string = MCValueRetain(m_hint_text);
 }
 
+////////////////////////////////////////////////////////////////////////////////
+// Scrollbar colors.
+//
+// An empty value clears the color, in which case the scrollbar reverts to the
+// native theme (if the other color is also empty) or to the field's effective
+// backColor / foreColor for the missing part.
+
+// Returns whether a color is now set.
+static bool MCFieldSetScrollbarColor(MCColor& x_color, MCStringRef& x_name, const MCInterfaceNamedColor& p_color)
+{
+	if (p_color . name != nil && MCStringIsEmpty(p_color . name))
+	{
+		MCValueRelease(x_name);
+		x_name = nil;
+		return false;
+	}
+
+	set_interface_color(x_color, x_name, p_color);
+	return true;
+}
+
+static void MCFieldGetScrollbarColor(const MCColor& p_color, MCStringRef p_name, bool p_has_color, MCInterfaceNamedColor& r_color)
+{
+	if (!p_has_color)
+	{
+		r_color . name = MCValueRetain(kMCEmptyString);
+		return;
+	}
+
+	get_interface_color(p_color, p_name, r_color);
+}
+
+void MCField::GetScrollbarBackColor(MCExecContext& ctxt, MCInterfaceNamedColor& r_color)
+{
+	MCFieldGetScrollbarColor(m_scrollbar_back_color, m_scrollbar_back_color_name, m_has_scrollbar_back_color, r_color);
+}
+
+void MCField::SetScrollbarBackColor(MCExecContext& ctxt, const MCInterfaceNamedColor& p_color)
+{
+	m_has_scrollbar_back_color = MCFieldSetScrollbarColor(m_scrollbar_back_color, m_scrollbar_back_color_name, p_color);
+	Redraw();
+}
+
+void MCField::GetScrollbarForeColor(MCExecContext& ctxt, MCInterfaceNamedColor& r_color)
+{
+	MCFieldGetScrollbarColor(m_scrollbar_fore_color, m_scrollbar_fore_color_name, m_has_scrollbar_fore_color, r_color);
+}
+
+void MCField::SetScrollbarForeColor(MCExecContext& ctxt, const MCInterfaceNamedColor& p_color)
+{
+	m_has_scrollbar_fore_color = MCFieldSetScrollbarColor(m_scrollbar_fore_color, m_scrollbar_fore_color_name, p_color);
+	Redraw();
+}
+
+bool MCField::getscrollbarbackcolor(MCColor& r_color) const
+{
+	if (!m_has_scrollbar_back_color)
+		return false;
+	r_color = m_scrollbar_back_color;
+	return true;
+}
+
+bool MCField::getscrollbarforecolor(MCColor& r_color) const
+{
+	if (!m_has_scrollbar_fore_color)
+		return false;
+	r_color = m_scrollbar_fore_color;
+	return true;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
 void MCField::SetHintText(MCExecContext& ctxt, MCStringRef p_string)
 {
 	MCValueAssign(m_hint_text, p_string);
