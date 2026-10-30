@@ -241,35 +241,54 @@ jobs:
       - name: Field probe for PR 564 (paste FSI PDI PDI, then type)
         if: always()
         shell: pwsh
-        timeout-minutes: 8
+        timeout-minutes: 14
         run: |
           $ErrorActionPreference = 'Continue'
-          $exe = Get-ChildItem -Path build-win-x86_64 -Recurse -Filter standalone-community.exe |
-                 Sort-Object LastWriteTime -Descending | Select-Object -First 1
-          if (-not $exe) { Write-Host "::error::no standalone-community.exe found"; exit 1 }
-          Write-Host "engine: $($exe.FullName) ($($exe.Length) bytes, $($exe.LastWriteTime))"
-          $out = Join-Path $env:GITHUB_WORKSPACE 'probe-out'
-          New-Item -ItemType Directory -Force -Path $out | Out-Null
-          $log = Join-Path $out 'bidi-probe.log'
-          $stack = Join-Path $env:GITHUB_WORKSPACE '.github\ci-probe\bidi-field-probe.livecodescript'
-          $env:BIDI_LOG = $log
-          $env:TEST_STACK = $stack
-          # Debug engines read TEST_STACK; release engines take the stack as argv[1].
-          $p = Start-Process -FilePath $exe.FullName -ArgumentList @("`"$stack`"") -PassThru -WorkingDirectory $out
-          Write-Host "started pid $($p.Id)"
           Add-Type -AssemblyName Microsoft.VisualBasic
           Add-Type -AssemblyName System.Windows.Forms
-          # Phase A keys: the probe waits 12 s after its first 'type'.
-          Start-Sleep -Seconds 7
-          try { [Microsoft.VisualBasic.Interaction]::AppActivate($p.Id); Start-Sleep -Milliseconds 500; [System.Windows.Forms.SendKeys]::SendWait('abc'); Write-Host "sent abc" } catch { Write-Host "SendKeys abc failed: $_" }
-          # Phase C keys: the probe pastes, types, then waits 15 s.
-          Start-Sleep -Seconds 14
-          try { [Microsoft.VisualBasic.Interaction]::AppActivate($p.Id); Start-Sleep -Milliseconds 500; [System.Windows.Forms.SendKeys]::SendWait('xyz'); Write-Host "sent xyz" } catch { Write-Host "SendKeys xyz failed: $_" }
-          if (-not $p.WaitForExit(240000)) { Write-Host "::warning::engine did not quit, killing"; Stop-Process -Id $p.Id -Force }
-          else { Write-Host "engine exit code $($p.ExitCode)" }
-          Write-Host "===== bidi-probe.log ====="
-          if (Test-Path $log) { Get-Content $log } else { Write-Host "(no log written)" }
-          Write-Host "===== end ====="
+          $out = Join-Path $env:GITHUB_WORKSPACE 'probe-out'
+          New-Item -ItemType Directory -Force -Path $out | Out-Null
+          $stack = Join-Path $env:GITHUB_WORKSPACE '.github\ci-probe\bidi-field-probe.livecodescript'
+          $dbg = Join-Path $env:GITHUB_WORKSPACE 'build-win-x86_64\hyperxtalk\Debug'
+
+          function Wait-Marker([string]$path, [int]$timeoutSec) {
+            $t = 0
+            while (-not (Test-Path $path) -and $t -lt $timeoutSec) { Start-Sleep -Seconds 1; $t++ }
+            return (Test-Path $path)
+          }
+          function Send-Keys([string]$keys, [string]$phase) {
+            try {
+              [Microsoft.VisualBasic.Interaction]::AppActivate('bidiTest')
+              Start-Sleep -Milliseconds 700
+              [System.Windows.Forms.SendKeys]::SendWait($keys)
+              Write-Host "$phase sent '$keys'"
+            } catch { Write-Host "$phase SendKeys failed: $_" }
+          }
+          function Run-Probe([string]$label, [string]$exe) {
+            Write-Host ""
+            Write-Host "########## $label : $exe"
+            if (-not (Test-Path $exe)) { Write-Host "::warning::$label engine not found: $exe"; return }
+            $log = Join-Path $out "bidi-probe-$label.log"
+            Remove-Item "$log*" -ErrorAction SilentlyContinue
+            $env:BIDI_LOG = $log
+            $env:TEST_STACK = $stack
+            $p = Start-Process -FilePath $exe -ArgumentList @("`"$stack`"") -PassThru -WorkingDirectory $dbg
+            Write-Host "started pid $($p.Id) at $(Get-Date -Format HH:mm:ss)"
+            if (Wait-Marker "$log.phaseA" 150) { Send-Keys 'abc' 'phaseA' } else { Write-Host "::warning::$label phaseA marker never appeared" }
+            if (Wait-Marker "$log.phaseC" 90)  { Send-Keys 'xyz' 'phaseC' } else { Write-Host "::warning::$label phaseC marker never appeared" }
+            if (Wait-Marker "$log.phaseH" 90)  { Send-Keys 'qrs' 'phaseH' } else { Write-Host "::warning::$label phaseH marker never appeared" }
+            $null = Wait-Marker "$log.done" 90
+            if (-not $p.WaitForExit(45000)) { Write-Host "$label engine still running after probe (IDE save prompt?), killing"; Stop-Process -Id $p.Id -Force -ErrorAction SilentlyContinue }
+            else { Write-Host "$label engine exit code $($p.ExitCode)" }
+            Get-Process | Where-Object { $_.Path -eq $exe } | Stop-Process -Force -ErrorAction SilentlyContinue
+            Write-Host "===== $label log ====="
+            if (Test-Path $log) { Get-Content $log } else { Write-Host "(no log written)" }
+            Write-Host "===== end $label ====="
+          }
+
+          Run-Probe 'standalone' (Join-Path $dbg 'standalone-community.exe')
+          Run-Probe 'ide' (Join-Path $dbg 'HyperXTalk.exe')
+          Get-ChildItem $out | Format-Table Name, Length
 
       - name: Upload probe output
         if: always()
