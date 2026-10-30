@@ -290,6 +290,19 @@ jobs:
           Run-Probe 'ide' (Join-Path $dbg 'HyperXTalk.exe')
           Get-ChildItem $out | Format-Table Name, Length
 
+      - name: Upload Debug engines for manual testing in a VM
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: HyperXTalk-Windows-x86_64-Debug-engines-PR564
+          # Drop the contents into <repo>\build-win-x86_64\hyperxtalk\Debug\ of a
+          # checkout of the PR branch; HyperXTalk.exe then loads the IDE from <repo>\ide.
+          path: |
+            build-win-x86_64\hyperxtalk\Debug\*.exe
+            build-win-x86_64\hyperxtalk\Debug\*.dll
+          if-no-files-found: warn
+          retention-days: 14
+
       - name: Upload probe output
         if: always()
         uses: actions/upload-artifact@v4
