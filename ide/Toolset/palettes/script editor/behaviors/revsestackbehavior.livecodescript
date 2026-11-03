@@ -778,6 +778,58 @@ command revSEGetModifiedObjects
    return tEditedObjects
 end revSEGetModifiedObjects
 
+# Parameters
+#   pObject : reference to an object whose script was set outside this script editor
+# Description
+#   Brings the tab for pObject up to date with the script the object now has, if
+#   pObject is open in this script editor and its script differs from the one the
+#   tab was loaded from. The tab is reloaded at once when it holds no unapplied
+#   edits. When it does, nothing is done here: the user's text stays, and the
+#   check made when the script editor is next focused (seCheckTargetChecksums)
+#   offers them the choice of reloading or keeping it.
+command revSEReloadObject pObject
+   if pObject is empty or there is not a pObject then
+      exit revSEReloadObject
+   end if
+   
+   local tTargetObjects
+   revSEGetTargetObjects
+   put the result into tTargetObjects
+   
+   local tObject
+   put seGetRuggedId(pObject) into tObject
+   if tObject is not among the lines of tTargetObjects then
+      exit revSEReloadObject
+   end if
+   
+   local tScript
+   try
+      put the script of tObject into tScript
+   catch tError
+      # Password protected: whether the script changed cannot be known
+      exit revSEReloadObject
+   end try
+   if binaryEquals(seGetChecksum(tObject), seGenerateChecksum(tScript)) then
+      exit revSEReloadObject
+   end if
+   
+   local tModifiedObjects
+   revSEGetModifiedObjects
+   put the result into tModifiedObjects
+   if tObject is among the lines of tModifiedObjects then
+      exit revSEReloadObject
+   end if
+   
+   seReloadObjects tObject
+end revSEReloadObject
+
+# Description
+#   Sent by the IDE (ideMessageSend) when a script was set by something other than
+#   this script editor, such as the xTalk MCP Bridge or another script editor.
+on ideScriptChanged pObject
+   revSEReloadObject pObject
+end ideScriptChanged
+
 local sObjectStates
 
 # Parameters
@@ -1683,6 +1735,13 @@ private command applyScript pObject, pIgnoreErrors, @rCompilationErrors
       # because the script was running at the time.
       if tExecutionError is empty then
          seUpdateChecksum pObject, tScript
+         
+         # Tell the IDE, and so any other script editor showing this object, that
+         # the script changed (this editor finds its checksum unchanged and does nothing)
+         try
+            ideMessageSend "ideScriptChanged", the long id of pObject
+         catch tError
+         end try
       end if
       
       # OK-2009-01-17 : Bug 7169 - When a script is compiled, it should be unflagged as dirty
@@ -2575,34 +2634,54 @@ command seWarnExternallyModifiedObjects pModifiedObjects
    put the cChoice of stack "revSEModifiedExternallyDialog" into tChoice
    
    if tChoice is "Reload" then
-      local tOldCurrentObject
-      revSEGetCurrentObject
-      put the result into tOldCurrentObject
-      
-      # Preserve the order of the tabs when reloading objects
-      local tTabOrdering
-      send "getTabOrdering" to group "Script Tabs" of me
-      put the result into tTabOrdering
-      
-      lock screen
-      repeat for each line tObject in pModifiedObjects
-         revSERemoveTargetObject tObject, true, true
-         revSEAddTargetObject tObject
-         
-         local tScript
-         put the script of tObject into tScript
-         seUpdateChecksum tObject, tScript
-      end repeat
-      
-      send "setTabOrdering tTabOrdering" to group "Script Tabs" of me
-      revSESetCurrentObject tOldCurrentObject
-      unlock screen
+      seReloadObjects pModifiedObjects
    end if
    
    if tChoice is "cancel" then
       exit seWarnExternallyModifiedObjects
    end if
 end seWarnExternallyModifiedObjects
+
+# Parameters
+#   pObjects : a list of target objects of this script editor, one per line
+# Description
+#   Loads the script each object now has into its tab, in place of what the tab
+#   held, keeping the order of the tabs and the current tab.
+private command seReloadObjects pObjects
+   local tOldCurrentObject
+   revSEGetCurrentObject
+   put the result into tOldCurrentObject
+   
+   # Preserve the order of the tabs when reloading objects
+   local tTabOrdering
+   send "getTabOrdering" to group "Script Tabs" of me
+   put the result into tTabOrdering
+   
+   lock screen
+   repeat for each line tObject in pObjects
+      revSERemoveTargetObject tObject, true, true
+      revSEAddTargetObject tObject
+      
+      local tScript
+      put the script of tObject into tScript
+      seUpdateChecksum tObject, tScript
+   end repeat
+   
+   send "setTabOrdering tTabOrdering" to group "Script Tabs" of me
+   revSESetCurrentObject tOldCurrentObject
+   
+   # Removing the only tab re-initialises the editor group, which leaves it with
+   # no object, while the tabs group still reports the re-added tab as current,
+   # so revSESetCurrentObject saw nothing to do: set the editor's object itself
+   # (setObject does nothing when the editor already shows it)
+   if tOldCurrentObject is not empty and seGetRuggedId(tOldCurrentObject) is among the lines of pObjects then
+      call "setObject tOldCurrentObject" to group "Editor" of me
+      call "update" to group "Toolbar" of me
+      dispatch "update" to group "Left Bar" of me with false, true
+      seUpdateWindowTitle tOldCurrentObject
+   end if
+   unlock screen
+end seReloadObjects
 
 private function binaryEquals p1, p2
    if (the length of p1 = the length of p2) and (p1 contains p2) then
@@ -2692,6 +2771,10 @@ command revSEInitialize pDontCheckTarget
    end if
    
    dispatch "ideSubscribe" to me with "idePreferenceChanged:cREVScriptDebugMode"
+   
+   # A script set by something other than this editor: the xTalk MCP Bridge,
+   # another script editor, the Message Box (see revSEReloadObject)
+   dispatch "ideSubscribe" to me with "ideScriptChanged"
    
    # Initialize the preferences
    sePrefInit
