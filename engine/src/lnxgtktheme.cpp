@@ -2358,6 +2358,10 @@ Boolean MCNativeTheme::drawwidget(MCDC *dc, const MCWidgetInfo & winfo,
 			getwidgetrect(twinfo, WTHEME_METRIC_PARTSIZE,drect,comboentryrect);
 			twinfo.part = WTHEME_PART_COMBOBUTTON;
 			getwidgetrect(twinfo, WTHEME_METRIC_PARTSIZE,drect,combobuttonrect);
+			fprintf(stderr, "[probe combo] drect=%d,%d %dx%d entry=%d,%d %dx%d button=%d,%d %dx%d\n",
+			        drect.x, drect.y, drect.width, drect.height,
+			        comboentryrect.x, comboentryrect.y, comboentryrect.width, comboentryrect.height,
+			        combobuttonrect.x, combobuttonrect.y, combobuttonrect.width, combobuttonrect.height);
 			twinfo.type = WTHEME_TYPE_TEXTFIELD_FRAME;
 			drawwidget(dc, twinfo, comboentryrect);
 			twinfo.type = WTHEME_TYPE_COMBOBUTTON;
@@ -2373,6 +2377,9 @@ Boolean MCNativeTheme::drawwidget(MCDC *dc, const MCWidgetInfo & winfo,
 	{
 		GtkWidgetState t_old_state;
 		t_old_state = state;
+		fprintf(stderr, "[probe tf-frame] crect=%d,%d %dx%d moztype=%d disabled=%d focused=%d\n",
+		        crect.x, crect.y, crect.width, crect.height, (int)moztype,
+		        (int)state.disabled, (int)state.focused);
 
 		// crect is the target rectangle for the whole control
 		// cliprect and rect are essentially the same

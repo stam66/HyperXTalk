@@ -2545,6 +2545,13 @@ moz_gtk_entry_frame_paint_to_surface(GdkRectangle *rect, GtkWidgetState *state,
 	cairo_t *cr;
 	cairo_surface_t *surface = make_transparent_surface(width, height, &cr);
 
+	{
+		GtkBorder t_b;
+		gtk_style_context_get_border(context, sf, &t_b);
+		fprintf(stderr, "[probe entry-frame] %dx%d border=%d,%d,%d,%d interior_focus=%d\n",
+		        width, height, t_b.left, t_b.top, t_b.right, t_b.bottom, (int)interior_focus);
+	}
+
 	int x = 0, y = 0, w = width, h = height;
 	if (state && state->focused && !state->disabled && !interior_focus) {
 		x += focus_width; y += focus_width;

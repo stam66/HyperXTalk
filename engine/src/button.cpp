@@ -1733,6 +1733,10 @@ void MCButton::applyrect(const MCRectangle &nrect)
 			//now get contents rect for comboentry rect (to display MC borderless field in)
 			winfo.type = WTHEME_TYPE_COMBOTEXT;
 			MCcurtheme->getwidgetrect(winfo, WTHEME_METRIC_CONTENTSIZE,comboentryrect,trect);
+			fprintf(stderr, "[probe combo-entry] rect=%d,%d %dx%d comboentryrect=%d,%d %dx%d entry=%d,%d %dx%d\n",
+			        nrect.x, nrect.y, nrect.width, nrect.height,
+			        comboentryrect.x, comboentryrect.y, comboentryrect.width, comboentryrect.height,
+			        trect.x, trect.y, trect.width, trect.height);
 
 			// PM-2015-10-12: [[ Bug 16193 ]] Make sure the label stays always within the combobox when resizing
 			trect.y = nrect.y + nrect.height / 2 - trect.height / 2;
