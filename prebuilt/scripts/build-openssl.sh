@@ -77,7 +77,7 @@ function buildOpenSSL {
 	# Each target type in OpenSSL is given a name
 	case "${PLATFORM}" in
 		mac)
-			if [ "${ARCH}" == "x86_64" -o "${ARCH}" == "ppc64" ] ; then
+			if [ "${ARCH}" == "x86_64" -o "${ARCH}" == "arm64" -o "${ARCH}" == "ppc64" ] ; then
 				SPEC="darwin64-${ARCH}-cc"
 			else
 				SPEC="darwin-${ARCH}-cc"

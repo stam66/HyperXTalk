@@ -76,6 +76,12 @@ extern "C" void finalise_weak_link_ssl(void);
 
 static Boolean cryptinited = False;
 
+// True once OSSL_PROVIDER_load(NULL, "legacy") has succeeded. The legacy
+// provider is what supplies Blowfish, RC4, DES, CAST5, IDEA etc. in
+// OpenSSL 3.x; when it is missing those ciphers are still listed by
+// EVP_get_cipherbyname() but fail to initialise.
+static bool s_ssl_legacy_provider_loaded = false;
+
 #ifdef MCSSL
 // IM-2014-07-28: [[ Bug 12822 ]] OS-specified root certificates
 static STACK_OF(X509) *s_ssl_system_root_certs;
@@ -124,7 +130,17 @@ Boolean InitSSLCrypt()
         // deploy_sign.cpp calls EVP_rc4() for Windows PVK signing. Load both
         // default and legacy providers so those paths keep working.
         OSSL_PROVIDER_load(NULL, "default");
-        OSSL_PROVIDER_load(NULL, "legacy");
+        s_ssl_legacy_provider_loaded = OSSL_PROVIDER_load(NULL, "legacy") != NULL;
+        if (!s_ssl_legacy_provider_loaded)
+        {
+            // If libcrypto was built with the providers as loadable modules
+            // (rather than no-module), this fails on any machine that lacks
+            // the module at the path baked into libcrypto, leaving a DSO
+            // "could not load the shared library" error on the queue. Clear
+            // it so it is not reported by the next, unrelated, SSL call;
+            // SSL_encode reports the missing provider explicitly instead.
+            ERR_clear_error();
+        }
 #endif
 
         uint32_t t_randomseed_bytes[4];
@@ -407,7 +423,7 @@ bool MCCrypt_rsa_op(bool p_encrypt, bool p_is_public, MCStringRef p_message_in, 
 	}
 
 #ifdef MCSSL
-	uint4 t_outlen;
+	uint4 t_outlen = 0;
 	char *t_ssl_encode;
 
     MCAutoPointer<char>t_data, t_key, t_salt, t_iv, t_cipher;
@@ -432,15 +448,27 @@ bool MCCrypt_rsa_op(bool p_encrypt, bool p_is_public, MCStringRef p_message_in, 
 			r_error = EE_NO_MEMORY;
 		else
 		{
+			char *t_result = nil;
+			if (t_outlen == 792)
+			{
+#if OPENSSL_VERSION_NUMBER >= 0x30000000L
+				if (!s_ssl_legacy_provider_loaded)
+					MCCStringClone("cipher not available: the OpenSSL legacy provider could not be loaded", t_result);
+				else
+#endif
+					MCCStringClone("cipher not available", t_result);
+			}
+			else
+				MCCStringClone("cipher operation failed", t_result);
+
 			uint32_t t_err;
-            char *t_result = nil;
 			t_err = ERR_get_error();
 			if (t_err)
 			{
 				const char *t_ssl_error = ERR_reason_error_string(t_err);
 				MCCStringAppendFormat(t_result, " (SSL error: %s)", t_ssl_error);
-				/* UNCHECKED */ MCStringCreateWithNativeCharsAndRelease((char_t *) t_result, strlen(t_result), r_result);
 			}
+			/* UNCHECKED */ MCStringCreateWithNativeCharsAndRelease((char_t *) t_result, strlen(t_result), r_result);
 		}
 		return false;
 	}
@@ -489,7 +517,13 @@ char *SSL_encode(Boolean isdecrypt, const char *ciphername,
 	
 	//init context with cipher and specify operation
 	if (EVP_CipherInit(*ctx, cipher,NULL, NULL, operation) == 0)
+	{
+		// The cipher is known by name but no provider implements it (in
+		// OpenSSL 3.x this is what happens to Blowfish, RC4, DES, ... when
+		// the legacy provider could not be loaded).
+		outlen = 792;
 		return NULL;
+	}
 
 	//try setting keylength if specified. This will fail for some ciphers.
 	if (keylen && EVP_CIPHER_CTX_set_key_length(*ctx, keylen/8) == 0)

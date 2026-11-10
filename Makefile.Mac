@@ -11,17 +11,19 @@ all-mac:
 
 # Build all macOS arm64 prebuilt dependencies in one pass.
 # Replaces the manual ritual previously documented in BUILD1.md.
-# Requires Homebrew prereqs: openssl@3, libpq, mysql-client, pixman.
+# Requires Homebrew prereqs: libpq, mysql-client, pixman. OpenSSL is built
+# from source by build-mac-extras.sh (see the note there on why Homebrew's
+# openssl@3 archives must not be used).
 #
 # Step order matters: build-libcairo is configured to link the repo's own
 # zlib and libpng, so build-libz and build-mac-extras (which produces
 # libpng.a) must run before it.
 prebuilt-mac:
 	@echo "=== Verifying Homebrew prereqs ==="
-	@for formula in openssl@3 libpq mysql-client pixman; do \
+	@for formula in libpq mysql-client pixman; do \
 	  if ! brew --prefix $$formula >/dev/null 2>&1; then \
 	    echo "ERROR: Homebrew formula '$$formula' not installed."; \
-	    echo "  Run: brew install openssl@3 libpq mysql-client pixman"; \
+	    echo "  Run: brew install libpq mysql-client pixman"; \
 	    exit 1; \
 	  fi; \
 	done

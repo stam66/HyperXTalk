@@ -10,13 +10,15 @@
 #
 # Then this script:
 #   - Builds libgif/libjpeg/libpng/libpcre via xcodebuild and installs them
-#   - Supplies libcustomcrypto.a / libcustomssl.a from Homebrew openssl@3
-#     (engine now targets the 3.x symbol names directly; no compat shim)
+#   - Builds libcustomcrypto.a / libcustomssl.a from the OpenSSL source via
+#     build-openssl.sh (configured with no-module so the legacy provider is
+#     compiled into libcrypto.a; engine targets the 3.x symbol names directly)
 #   - Writes empty stub libpq.a and libmysql.a so the dbpostgresql /
 #     dbmysql externals can link via -undefined dynamic_lookup
 #
-# Requirements: Xcode command line tools, Homebrew, and an installed
-# openssl@3 (`brew install openssl@3`).
+# Requirements: Xcode command line tools and Homebrew (for the other
+# prebuilt-mac steps); network access the first time, to fetch the OpenSSL
+# source tarball.
 #
 # All of this is a workaround for the broken fetch-mac step in the
 # generated Xcode project. Once gyp is usable again or the prebuilt
@@ -48,21 +50,49 @@ for LIB in libgif libjpeg libpng libpcre; do
     cp "${DEBUG_OUT}/${LIB}.a" "${PREBUILT_LIB}/${LIB}.a"
 done
 
-# ── 2. libcustomcrypto / libcustomssl from Homebrew openssl@3 ────────────────
-echo "=== Supplying libcustomcrypto/libcustomssl from Homebrew openssl@3 ==="
-OPENSSL_PREFIX="$(brew --prefix openssl@3 2>/dev/null || true)"
-if [ -z "${OPENSSL_PREFIX}" ] || [ ! -f "${OPENSSL_PREFIX}/lib/libcrypto.a" ]; then
-    echo "ERROR: Homebrew openssl@3 not installed. Run: brew install openssl@3"
+# ── 2. libcustomcrypto / libcustomssl from an OpenSSL no-module build ────────
+# Do NOT take these from Homebrew's openssl@3. Homebrew builds OpenSSL 3
+# with loadable provider modules: the legacy provider (Blowfish, RC4, DES,
+# CAST5, IDEA, MD4, RIPEMD160, ...) is a separate legacy.dylib under
+# /opt/homebrew/Cellar/openssl@3/<version>/lib/ossl-modules, and that
+# absolute path is baked into libcrypto.a as MODULESDIR. An engine linked
+# against that archive only finds the legacy provider on a Mac that has the
+# very same Homebrew openssl@3 version installed; on every other Mac
+# OSSL_PROVIDER_load(NULL, "legacy") fails and `encrypt ... using "blowfish"`
+# returns empty with an SSL "could not load the shared library" error
+# (GitHub issue #398). build-openssl.sh configures OpenSSL 3.x with
+# no-module, which compiles the default and legacy providers into
+# libcrypto.a itself, so the shipped engine is self-contained.
+echo "=== Building OpenSSL (no-module) for libcustomcrypto/libcustomssl ==="
+OPENSSL_BUILDDIR="${REPO_ROOT}/prebuilt/build"
+OPENSSL_INSTALL_DIR="${OPENSSL_BUILDDIR}/install"
+# build-openssl.sh also copies the headers into ${OUTPUT_DIR}/include; stage
+# them out of the tree so the tracked prebuilt/include/openssl is untouched.
+OPENSSL_STAGE_DIR="${OPENSSL_BUILDDIR}/openssl-stage"
+mkdir -p "${OPENSSL_BUILDDIR}" "${OPENSSL_INSTALL_DIR}" "${OPENSSL_STAGE_DIR}"
+(
+    cd "${REPO_ROOT}/prebuilt" && \
+    BASEDIR="${REPO_ROOT}/prebuilt" \
+    BUILDDIR="${OPENSSL_BUILDDIR}" \
+    INSTALL_DIR="${OPENSSL_INSTALL_DIR}" \
+    OUTPUT_DIR="${OPENSSL_STAGE_DIR}" \
+    PLATFORM=mac ARCH=arm64 SUBPLATFORM= \
+    bash scripts/build-openssl.sh
+)
+OPENSSL_LIB="${OPENSSL_INSTALL_DIR}/mac/arm64/lib"
+if [ ! -f "${OPENSSL_LIB}/libcrypto.a" ] || [ ! -f "${OPENSSL_LIB}/libssl.a" ]; then
+    echo "ERROR: OpenSSL build did not produce ${OPENSSL_LIB}/libcrypto.a"
     exit 1
 fi
-# Homebrew installs these archives read-only. A plain `cp` copies the
-# source's permission bits, so the destination also becomes read-only and
-# the *next* `make prebuilt-mac` run fails with "Permission denied" here
-# (set -e then aborts the whole script). `cp -f` replaces a read-only
-# destination; the chmod keeps the installed copies writable thereafter.
-cp -f "${OPENSSL_PREFIX}/lib/libcrypto.a" "${PREBUILT_LIB}/libcustomcrypto.a"
-cp -f "${OPENSSL_PREFIX}/lib/libssl.a"    "${PREBUILT_LIB}/libcustomssl.a"
+# A previous run may have left read-only copies (Homebrew's archives are
+# installed read-only); `cp -f` replaces them and chmod keeps ours writable.
+cp -f "${OPENSSL_LIB}/libcrypto.a" "${PREBUILT_LIB}/libcustomcrypto.a"
+cp -f "${OPENSSL_LIB}/libssl.a"    "${PREBUILT_LIB}/libcustomssl.a"
 chmod u+w "${PREBUILT_LIB}/libcustomcrypto.a" "${PREBUILT_LIB}/libcustomssl.a"
+if ! nm "${PREBUILT_LIB}/libcustomcrypto.a" 2>/dev/null | grep -q "ossl_legacy_provider_init"; then
+    echo "ERROR: libcustomcrypto.a has no built-in legacy provider (was OpenSSL configured with no-module?)"
+    exit 1
+fi
 
 # ── 3. Stub libpq.a and libmysql.a ───────────────────────────────────────────
 # dbpostgresql.bundle and dbmysql.dylib link with -undefined dynamic_lookup
