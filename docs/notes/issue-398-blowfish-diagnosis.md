@@ -132,60 +132,32 @@ Windows/Linux (unchanged: Windows uses the prebuilt `openssl3` archive from
 
 ## Draft reply for GitHub issue 398
 
-> I can reproduce this on the shipped macOS builds (checked the 0.9.13 DMG and
-> engines built from current main), and it is not Tahoe-specific. Here is
-> what is going on.
+> Reproduced on the shipped macOS builds (0.9.13 DMG and engines built from
+> current main). It is not Tahoe-specific.
 >
-> Since the April switch to a statically linked OpenSSL 3 on macOS, the
-> archive the engine links (`prebuilt/lib/mac/libcustomcrypto.a`) is a
-> straight copy of Homebrew's `openssl@3` libcrypto.a
-> (`prebuilt/scripts/build-mac-extras.sh` does the copy; the two files are
-> byte-identical). Homebrew builds OpenSSL 3 with the providers as loadable
-> modules, so the "legacy" provider, which is where OpenSSL 3 keeps Blowfish,
-> RC4, DES, CAST5, IDEA, MD4 and RIPEMD160, is not inside libcrypto.a at all:
-> it is `/opt/homebrew/Cellar/openssl@3/3.6.2/lib/ossl-modules/legacy.dylib`,
-> and that absolute path is compiled into libcrypto as the module directory.
-> The shipped engine still contains that string.
+> The macOS engine links `prebuilt/lib/mac/libcustomcrypto.a`, which
+> `build-mac-extras.sh` copies straight from Homebrew's openssl@3. Homebrew
+> builds the OpenSSL 3 providers as loadable modules, so the legacy provider
+> (Blowfish, RC4, DES, CAST5, IDEA, MD4, RIPEMD160) is not in that archive. It
+> is `/opt/homebrew/Cellar/openssl@3/3.6.2/lib/ossl-modules/legacy.dylib`, and
+> that path is baked into the engine. At startup the engine loads "legacy" from
+> there: on a Mac with Homebrew openssl@3 3.6.2 installed (every machine that
+> has run `make prebuilt-mac`, hence "a build from main works") it succeeds;
+> everywhere else it fails silently. Blowfish is still listed in
+> `the cipherNames`, but `EVP_CipherInit` has nothing to run it, so `it` comes
+> back empty and `the result` is either empty or " (SSL error: could not load
+> the shared library)" depending on what is left on the error queue. AES lives
+> in the built-in default provider, so it works.
 >
-> At startup `InitSSLCrypt()` calls `OSSL_PROVIDER_load(NULL, "legacy")`,
-> which makes libcrypto `dlopen` that Homebrew path. On a Mac with Homebrew
-> openssl@3 3.6.2 installed, which is every machine that has run
-> `make prebuilt-mac`, it loads and Blowfish works. That is why "a build from
-> main works": it is the developer's Homebrew install doing the work, not the
-> build. On any other Mac the load fails. The return value was not checked,
-> so the only trace is a DSO error left on the OpenSSL error queue.
-> `EVP_get_cipherbyname("bf-cbc")` still succeeds (the name table does not
-> depend on providers, so `the cipherNames` still lists Blowfish), but
-> `EVP_CipherInit` then fails because nothing implements the cipher. Depending
-> on whether that queued error is still there when `encrypt` runs, you get
-> either `the result` = " (SSL error: could not load the shared library)"
-> (Peter2) or an empty result and an empty `it` (Brian). AES is in the default
-> provider, which is compiled in, so it is unaffected.
+> To reproduce on a Mac that has Homebrew openssl@3, hide the modules folder:
+> `OPENSSL_MODULES=/nonexistent /Applications/HyperXTalk.app/Contents/MacOS/HyperXTalk`
+> then `encrypt "hello" using "blowfish" with password "world"`.
 >
-> You can reproduce it on a Mac that does have Homebrew openssl@3 by hiding
-> the modules directory: `OPENSSL_MODULES=/nonexistent /Applications/HyperXTalk.app/Contents/MacOS/HyperXTalk`
-> then run `encrypt "hello" using "blowfish" with password "world"`.
->
-> `prebuilt/scripts/build-openssl.sh` already configures OpenSSL 3 with
-> `no-module` (6035b6d3d) precisely so that the providers are compiled into
-> libcrypto.a, but on macOS it was never used: its arm64 target name
-> (`darwin-arm64-cc`) does not exist in OpenSSL, and `build-mac-extras.sh`
-> overwrote the archives with Homebrew's anyway.
->
-> Fix (PR to follow):
-> - `build-mac-extras.sh` builds OpenSSL from source via `build-openssl.sh`
->   (`no-module`, so the legacy provider is built in, the build log shows
->   `-DSTATIC_LEGACY`) instead of copying Homebrew's archives, and refuses to
->   continue if the resulting libcustomcrypto.a has no
->   `ossl_legacy_provider_init`. `build-openssl.sh` gets the right arm64
->   target name. `make prebuilt-mac` in CI picks this up, so the next release
->   build is self-contained.
-> - `mcssl.cpp` checks whether the legacy provider actually loaded, clears
->   the stale error so unrelated SSL calls do not report it, and when a
->   cipher cannot be initialised puts "cipher not available: the OpenSSL
->   legacy provider could not be loaded" in `the result` rather than failing
->   silently.
->
-> With the rebuilt archive, Blowfish and AES both work with
-> `OPENSSL_MODULES=/nonexistent`, and the engine no longer contains any
-> `/opt/homebrew` path.
+> Fix (PR to follow): `build-mac-extras.sh` builds OpenSSL from source via
+> `build-openssl.sh` with `no-module`, so the providers are compiled into
+> libcrypto.a, and `build-openssl.sh` gets the correct `darwin64-arm64-cc`
+> target. `mcssl.cpp` now checks that the legacy provider loaded and puts
+> "cipher not available: the OpenSSL legacy provider could not be loaded" in
+> `the result` instead of failing silently. With the rebuilt archive Blowfish
+> and AES both work with `OPENSSL_MODULES=/nonexistent`, and the engine no
+> longer contains any `/opt/homebrew` path.
