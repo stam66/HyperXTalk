@@ -23,11 +23,11 @@ is a separate `legacy.dylib` under
 path is compiled into libcrypto as `MODULESDIR`. Every shipped engine carries
 it:
 
-| binary | `ossl_legacy_provider_init` | baked MODULESDIR |
-| --- | --- | --- |
-| 0.9.13 release DMG (14 May 2026) | absent | `/opt/homebrew/Cellar/openssl@3/3.6.2/lib/ossl-modules` |
-| /Applications 0.9.16 (hand-assembled from main) | absent | same |
-| dev build from main, 10 Nov 2026 | absent | same |
+| Binary                                           | `ossl_legacy_provider_init` | Baked-in MODULESDIR                                      |
+|--------------------------------------------------|-----------------------------|----------------------------------------------------------|
+| 0.9.13 release DMG (14 May 2026)                 | absent                      | `/opt/homebrew/Cellar/openssl@3/3.6.2/lib/ossl-modules` |
+| /Applications 0.9.16 (hand-assembled from main)  | absent                      | same                                                     |
+| dev build from main, 10 Nov 2026                 | absent                      | same                                                     |
 
 So `InitSSLCrypt()` in `engine/src/mcssl.cpp` calls
 `OSSL_PROVIDER_load(NULL, "legacy")`, and libcrypto tries to `dlopen` that
@@ -111,13 +111,16 @@ shared -DOPENSSL_NO_ASYNC=1`; the compile lines carry `-DSTATIC_LEGACY`).
 `nm libcustomcrypto.a` now lists `ossl_legacy_provider_init`; `strings` finds
 no `/opt/homebrew` path. The `development` target relinked against it:
 
-| | engine from main (Homebrew archive) | this branch, Homebrew archive | this branch, no-module archive |
-| --- | --- | --- | --- |
-| `ossl_legacy_provider_init` in engine | no | no | yes |
-| `/opt/homebrew` strings in engine | yes | yes | none |
-| blowfish, Homebrew module reachable | ok | ok | ok |
-| blowfish, `OPENSSL_MODULES=/nonexistent` | `it` empty, result ` (SSL error: could not load the shared library)` | `it` empty, result `cipher not available: the OpenSSL legacy provider could not be loaded (SSL error: unsupported)` | ok |
-| aes-256-cbc either way | ok | ok | ok |
+| Check                                       | Engine from main (Homebrew archive) | This branch, Homebrew archive | This branch, no-module archive |
+|---------------------------------------------|-------------------------------------|-------------------------------|--------------------------------|
+| `ossl_legacy_provider_init` in engine       | no                                  | no                            | yes                            |
+| `/opt/homebrew` strings in engine           | yes                                 | yes                           | none                           |
+| blowfish, Homebrew module reachable         | ok                                  | ok                            | ok                             |
+| blowfish, `OPENSSL_MODULES=/nonexistent`    | fails (A)                           | fails (B)                     | ok                             |
+| aes-256-cbc, either way                     | ok                                  | ok                            | ok                             |
+
+- (A): `it` is empty and `the result` is ` (SSL error: could not load the shared library)`.
+- (B): `it` is empty and `the result` is `cipher not available: the OpenSSL legacy provider could not be loaded (SSL error: unsupported)`.
 
 Encrypt/decrypt round trips with `OPENSSL_MODULES=/nonexistent` on the fixed
 engine: blowfish, bf-cbc, rc4, des-ede3-cbc, cast5-cbc and aes-256-cbc all
