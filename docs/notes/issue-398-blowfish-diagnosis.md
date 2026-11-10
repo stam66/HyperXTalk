@@ -153,11 +153,16 @@ Windows/Linux (unchanged: Windows uses the prebuilt `openssl3` archive from
 > `OPENSSL_MODULES=/nonexistent /Applications/HyperXTalk.app/Contents/MacOS/HyperXTalk`
 > then `encrypt "hello" using "blowfish" with password "world"`.
 >
-> Fix (PR to follow): `build-mac-extras.sh` builds OpenSSL from source via
-> `build-openssl.sh` with `no-module`, so the providers are compiled into
-> libcrypto.a, and `build-openssl.sh` gets the correct `darwin64-arm64-cc`
-> target. `mcssl.cpp` now checks that the legacy provider loaded and puts
-> "cipher not available: the OpenSSL legacy provider could not be loaded" in
-> `the result` instead of failing silently. With the rebuilt archive Blowfish
-> and AES both work with `OPENSSL_MODULES=/nonexistent`, and the engine no
-> longer contains any `/opt/homebrew` path.
+> How to fix it: the macOS build needs a libcrypto.a with the providers
+> compiled in, which means building OpenSSL from source with `no-module`
+> rather than taking Homebrew's archive. `build-openssl.sh` already passes
+> `no-module` for 3.x; it just needs the right arm64 target name
+> (`darwin64-arm64-cc`) and `build-mac-extras.sh` has to use its output
+> instead of copying from `brew --prefix openssl@3`. A quick check for any
+> future build: `nm libcustomcrypto.a | grep ossl_legacy_provider_init` should
+> find the symbol, and `strings` on the engine should find no `/opt/homebrew`
+> path. Separately, `InitSSLCrypt()` in `mcssl.cpp` should check the return
+> value of `OSSL_PROVIDER_load(NULL, "legacy")` and report a missing provider
+> in `the result`, so this cannot fail silently again. I have tested this
+> locally: with a `no-module` archive, Blowfish and AES both work with
+> `OPENSSL_MODULES=/nonexistent`.
