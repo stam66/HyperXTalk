@@ -371,6 +371,21 @@ jobs:
         shell: cmd
         run: build-engine-x64.bat
 
+      - name: Upload Debug engines (themes test build)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: HyperXTalk-Windows-x86_64-Debug-engines-themes
+          # Drop the contents into <repo>\build-win-x86_64\hyperxtalk\Debug\ of a
+          # checkout of feat/app-colour-themes; HyperXTalk.exe then loads the IDE
+          # from <repo>\ide.
+          path: |
+            build-win-x86_64\hyperxtalk\Debug\*.exe
+            build-win-x86_64\hyperxtalk\Debug\*.dll
+            build-win-x86_64\hyperxtalk\Debug\packaged_extensions\**
+          if-no-files-found: warn
+          retention-days: 14
+
       - name: Build Release
         shell: cmd
         run: build-release-x64.bat
