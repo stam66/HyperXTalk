@@ -79,7 +79,7 @@ jobs:
   # ─────────────────────────────────────────────────────────────────────────────
   build-linux:
     name: Linux x86_64
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout
